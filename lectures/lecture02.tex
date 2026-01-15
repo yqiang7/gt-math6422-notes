@@ -1,0 +1,389 @@
+\chapter{Jan.~15 --- Vector and Line Bundles}
+
+\section{Vector and Line Bundles, Continued}
+
+\begin{example}[Tautological bundle]
+  Let $X = \PP^n$ and
+  $\mathbb{L} = \{(\ell, x) \in \PP^n \times \Affine^{n + 1} : x \in \ell\}$. Consider
+  \[
+    \begin{tikzcd}
+      & \mathbb{L} \ar[dl, "p", swap] \ar[dr, "q"] \\
+      \PP^n & & \Affine^{n + 1}
+    \end{tikzcd}
+  \] 
+  The map $q : \mathbb{L} \to \Affine^{n + 1}$ is the blowup.
+  We claim that $p : \mathbb{L} \to \PP^n$
+  is a line bundle. We have:
+  \begin{itemize}
+    \item $p^{-1}([x]) = \{([x], cx) : c \in k\} \cong kx$,
+      a $1$-dimensional vector space;
+    \item let $U_i = \{[x] \in \PP^n : x_i \ne 0\}$,
+      then we can define
+      \begin{align*}
+        p^{-1}(U_i)
+        &\longrightarrow U_i \times \Affine^1 \\
+        ([x], y)
+        &\longmapsto ([x], y_i),
+      \end{align*}
+      which we claim is
+      a trivialization. To see this,
+      observe that for fixed
+      $[x] \in \PP^n$, we have
+      \begin{align*}
+        \mathbb{L}_{[x]}
+        = \{([x], cx) : c \in k\}
+        &\longrightarrow
+        \{[x]\} \times \Affine^1 \\
+        ([x], cx)
+        &\longmapsto
+        ([x], cx_i),
+      \end{align*}
+      which is a vector space
+      isomorphism.
+  \end{itemize}
+  We can also compute the
+  transitions functions. Let
+  $U_{i, j} = U_i \cap U_j$. We have
+  \[
+    \begin{tikzcd}[row sep=small]
+      U_{i, j} \times \Affine^1
+      \ar[r, "{\phi_j^{-1}}", swap]
+      \ar[rr, bend left=15, "{\phi_{i, j}}"]
+      & p^{-1}(U_{i, j})
+      \ar[r, "{\phi_i}", swap]
+      & U_{i, j} \times \Affine^1 \\
+      ([x], t)
+      \ar[r, mapsto] &
+      ([x], (t x_0 / x_j, \dots, t x_n / x_j))
+      \ar[r, mapsto] &
+      ([x], tx_i / x_j).
+    \end{tikzcd}
+  \]
+  Thus we see that
+  $g_{i, j} = x_i / x_j$.
+  This is called the \emph{tautological bundle},
+  or $\OO_{\PP^n}(-1)$.
+\end{example}
+
+\begin{example}[Hyperplane bundle, or $\OO_{\PP^n}(1)$]
+  Consider
+  \begin{align*}
+    \mathbb{L} := \PP^{n + 1} \setminus \{[0 : \cdots : 0 : 1]\}
+    &\longrightarrow \PP^n \\
+    {[x_0 : \cdots : x_n : x_{n + 1}]}
+    &\longmapsto {[x_0 : \cdots : x_n]}.
+  \end{align*}
+  Then $\mathbb{L}$ is a line
+  bundle with transition functions
+  with respect to $\{U_i\}$ given
+  by $g_{i, j} = x_j / x_i$ (HW).
+\end{example}
+
+\section{Operations on Vector Bundles}
+
+\begin{remark}
+  The philosophy is:
+  Every natural operation of
+  vector spaces gives one for
+  vector bundles.
+\end{remark}
+
+\begin{example}[Direct sum]
+  Let
+  $p : \EE \to X$ and $q : \mathbb{F} \to X$
+  be vector bundles of rank
+  $e$ and $f$ on $X$, respectively.
+  There exists trivializations
+  with respect to a common open cover
+  $\{U_i\}$ (just take intersections)
+  with transition functions
+  $g_{i, j}$ and $h_{i, j}$ for
+  $\EE$ and $\mathbb{F}$, respectively.
+
+  Then we define the vector bundle
+  $\EE \oplus \mathbb{F}
+    \longrightarrow X$
+  as follows:
+  \begin{itemize}
+    \item As a set, it is
+      $r : \EE \oplus \mathbb{F} = \{(x, u, v) : (x, u) \in \EE, (x, v) \in \mathbb{F}\} \to X$.
+    \item We give $\EE \oplus \mathbb{F}$
+      the structure of a variety by
+      requiring that
+      \begin{align*}
+        r^{-1}(U_i)
+        &\longrightarrow U_i \times \Affine^{e + f} \\
+        (x, u, v)
+        &\longmapsto
+        (x, \pr_2(\phi^E_i(x, u)), \pr_2(\phi^F_i(x, v)))
+      \end{align*}
+      be an isomorphism,
+      where $\phi^E_i$ and $\phi^F_i$
+      are the trivializations of
+      $\EE$ and $\mathbb{F}$,
+      and $\pr_2$ is the
+      second projection.
+      This gives a variety structure on
+      $r^{-1}(U_i)$, and one can show that
+      these are consistent
+      on $U_{i, j}$, so that this
+      gives a variety structure on
+      all of $\EE \oplus \mathbb{F}$.
+  \end{itemize}
+  Note that the transition functions
+  for $\EE \oplus \mathbb{F}$
+  with respect to $\{U_i\}$ are given
+  by the block matrix
+  \[
+    \begin{bmatrix}
+      g_{i, j} & 0 \\
+      0 & h_{i, j}
+    \end{bmatrix}
+    : U_{i, j} \longrightarrow \GL(e + f, k).
+  \]
+\end{example}
+
+\begin{example}
+  Let $\EE$ and
+  $\mathbb{F}$ be vector bundles on $X$
+  of ranks $e$ and $f$, respectively.
+  Then the following are
+  also vector bundles on $X$:
+  \begin{enumerate}
+    \item $\Hom(\EE, \mathbb{F})$,
+      of rank $ef$;
+    \item $\EE^\vee = \Hom(\EE, \mathbbm{1}_X)$,
+      of rank $e$;
+    \item $\EE \otimes \mathbb{F}$,
+      of rank $ef$;
+    \item $\wedge^k \EE$
+      and $\mathrm{Sym}^d \EE$.
+  \end{enumerate}
+\end{example}
+
+\begin{remark}
+  Let $\mathbb{L}, \mathbb{M}$ be line bundles
+  on $X$ with trivializations
+  on $\{U_i\}$ and transition functions
+  $g_{i, j}, h_{i, j} \in \OO_X(U_{i, j})^\times$.
+  In this case, we can describe
+  operations on
+  $\mathbb{L}, \mathbb{M}$
+  more explicitly:
+  \begin{enumerate}
+    \item $\mathbb{L} \otimes \mathbb{M}$
+      has transition functions
+      $g_{i, j} h_{i, j}$;
+    \item $\Hom(\mathbb{L}, \mathbb{M})$
+      has transition functions
+      $h_{i, j} / g_{i, j}$;
+    \item $\mathbb{L}^\vee = \Hom(\mathbb{L}, \mathbbm{1}_X)$
+      has transition functions
+      $1 / g_{i, j}$;
+    \item $\mathbb{L}^{\otimes m} =
+      \begin{cases}
+        \mathbb{L}^{\otimes m}, & \text{if } m > 0, \\
+        \mathbbm{1}_X, & \text{if } m = 0, \\
+        (\mathbb{L}^\vee)^{\otimes -m}, & \text{if } m < 0
+      \end{cases}$
+      has transition functions
+      $g_{i, j}^m$.
+  \end{enumerate}
+\end{remark}
+
+\begin{example}
+  Define $\OO_{\PP^n}(m) := \OO_{\PP^n}(1)^{\otimes m}$
+  with transition functions
+  $(x_j / x_i)^m$ with respect
+  to the standard open cover
+  for $\PP^n$.
+\end{example}
+
+\section{Morphisms of Vector Bundles}
+
+\begin{remark}
+  Let $p : \EE \to X$ and
+  $q : \mathbb{F} \to X$ be
+  vector bundles on $X$, as before.
+\end{remark}
+
+\begin{definition}
+  A \emph{morphism of vector
+  bundles} $\EE \to \mathbb{F}$
+  is a morphism of
+  varieties
+  \[
+    \begin{tikzcd}
+      \EE \ar[rr, "a"] \ar[dr, "p", swap] & & \mathbb{F} \ar[dl, "q"] \\
+      & X
+    \end{tikzcd}
+  \]
+  such that the diagram commutes
+  and $a$ is linear on each fiber.
+\end{definition}
+
+\begin{remark}
+  More concretely, given an
+  open cover
+  $\{U_i\}$ which trivializes
+  both vector bundles, we have
+  \[
+    \begin{tikzcd}[row sep=small]
+      p^{-1}(U_i) \ar[r, "a"]
+      \ar[dd, "\phi_i", swap]
+      \ar[dd, "\cong"]
+      & q^{-1}(U_i)
+      \ar[dd, "\psi_j"]
+      \ar[dd, "\cong", swap]
+      \\ \\
+      U_i \times \Affine^e
+      \ar[r] &U_i \times \Affine^f \\
+      (x, v)
+      \ar[r, mapsto]
+             & (x, a_i(x) v)
+    \end{tikzcd}
+  \]
+  such that $a_i : U_i \to \Hom(k^e, k^f)$
+  is regular.
+  On $U_{i, j}$, we have
+  \[
+    \begin{tikzcd}
+      U_{i, j} \times \Affine^e
+      \ar[r, "a_j"]
+      \ar[d, "g_{i, j}", swap]
+      & U_{i, j} \times \Affine^f
+      \ar[d, "h_{i, j}"] \\
+      U_{i, j} \times \Affine^e
+      \ar[r, "a_i", swap]
+      & U_{i, j} \times \Affine^f
+    \end{tikzcd}
+  \]
+  So $h_{i, j} a_j = a_i g_{i, j}$,
+  or equivalently,
+  $a_i = h_{i, j} a_j g_{i, j}^{-1}$.
+
+  As a special case when
+  $e = f$,
+  $a : \EE \to \mathbb{F}$
+  is an isomorphism if and only if
+  the $a_i$ are isomorphisms.
+\end{remark}
+
+\begin{remark}
+  When is a line bundle
+  $\mathbb{L}$ given by
+  the trivialization data
+  $\{U_i, g_{i, j}\}$ isomorphic
+  to $\mathbbm{1}_X$?
+  We have
+  \begin{align*}
+    \mathbb{L} \cong \mathbbm{1}_X
+    &\iff
+    \text{if and only if there exists
+    an isomorphism }
+    a : \mathbbm{1}_X \to \mathbb{L} \\
+    &\iff
+    \text{there exist }
+    a_i \in \OO_X(U_i)^\times
+    \text{ such that }
+    (a_j / a_i)|_{U_{i, j}} = g_{i, j}.
+  \end{align*}
+\end{remark}
+
+\begin{definition}
+  Define the \emph{Picard group}
+  of $X$ to be
+  \[
+    \Pic X
+    := \{\text{line bundles on $X$}\} / {\cong}.
+  \]
+  This is a group with respect
+  to $\otimes$ with
+  $\mathbbm{1}_X$
+  as the identity and
+  $\mathbb{L}^\vee \otimes \mathbb{L} \cong \mathbbm{1}_X$.
+\end{definition}
+
+\section{Global Sections}
+
+\begin{definition}
+  A \emph{(global) section}
+  of a vector bundle $p : \EE \to X$
+  is a morphism
+  $s : X \to \EE$
+  such that $p \circ s = \id_X$.
+  Note that for $x \in X$, we have
+  $s(x) \in \EE_x$.
+\end{definition}
+
+\begin{example}[Zero section]
+  Let $s : X \to \EE$ where
+  $s(x)$ is the zero element
+  in $\EE_x$.
+\end{example}
+
+\begin{example}
+  Let $\EE = \mathbbm{1}_X$.
+  Then sections $s : X \to X \times \Affine^1$
+  of $\EE$ correspond to
+  morphisms $X \to \Affine^1$,
+  which correspond to
+  regular functions $X \to k$.
+\end{example}
+
+\begin{remark}[Local description of sections]
+  Let $\{U_i, g_{i, j}\}$ be the
+  trivialization data for
+  $\EE \to X$, and let
+  $s : X \to \EE$ be a section.
+  On $U_i$, we have:
+  \[
+    \begin{tikzcd}
+      & U_i \times \Affine^e \\
+      U_i \ar[r, "{s|_{U_i}}", swap] \ar[ur, "{x \mapsto (x, s_i(x))}"] & p^{-1}(U_i) \ar[u, "\phi_i", swap] \ar[u, "\cong"]
+    \end{tikzcd}
+  \]
+  Note that $s_i : U_i \to k^e$
+  is a regular function (i.e.
+  regular on each coordinate).
+  These maps must satisfy
+  the compatibility condition
+  $s_i = g_{i, j} s_j$.
+\end{remark}
+
+\begin{example}
+  We can use the above compatibility
+  condition to compute the
+  global sections of $\OO_{\PP^1}(1)$.
+  Write $\PP^1_{x_0 : x_1} = U_0 \cup U_1$.
+  Given a section $s : \PP^1 \to \OO(1)$,
+  we get regular functions
+  \begin{align*}
+    s_0 : U_0 &\longrightarrow k \\
+    s_1 : U_1 &\longrightarrow k
+  \end{align*}
+  satisfying
+  $(x_1 / x_0) s_1 = s_0$ $(*)$.
+  We can write
+  \[
+    s_0 = \sum_{m \ge 0} a_m (x_1 / x_0)^m
+    \quad \text{and}
+    \quad
+    s_1 = \sum_{m \ge 0} b_m (x_0 / x_1)^m
+  \]
+  with $a_m, b_m \in k$ (finitely
+  many nonzero).
+  Then $(*)$ implies that
+  \[
+    a_0 + a_1 (x_1 / x_0) + \cdots
+    = (x_1 / x_0)(b_0 + b_1 (x_0 / x_1) + \cdots),
+  \]
+  so $a_0 = b_1$, $a_1 = b_0$, and
+  all other terms are $0$. So
+  we can relate $s$ to a linear form
+  \[
+    f = c_0 x_0 + c_1 x_1,
+  \]
+  where $s_0 = (x_1 / x_0) f$
+  and $s_1 = (x_0 / x_1) f$.
+\end{example}

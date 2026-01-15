@@ -259,8 +259,8 @@
       \[
         \begin{tikzcd}
           p^{-1}(U)
-          \ar[rr, "\phi_U"] \ar[dr ] & &
-          U \times \Affine^m \ar[dl] \\
+          \ar[rr, "\phi_U"] \ar[dr, "p", swap] & &
+          U \times \Affine^m \ar[dl, "\mathrm{proj}"] \\
           & U
         \end{tikzcd}
       \]
@@ -310,7 +310,7 @@
       the map
       $g_{U, V} : U \cap V\to \GL(m, k)$
       is equivalent to the data of a
-      non-vanishing function
+      non-vanishing regular function
       $g_{U, V} : U \cap V \to k$.
     \item The data of a vector bundle
       of rank $m$
@@ -358,32 +358,4 @@
   We will denote the trivial
   line bundle by
   $\mathbbm{1}_X : X \times \Affine^1 \to X$.
-\end{example}
-
-\begin{example}
-  Let $X = \PP^n$ and
-  $\mathbb{L} = \{(\ell, x) \in \PP^n \times \Affine^{n + 1} : x \in \ell\}$. Consider
-  \[
-    \begin{tikzcd}
-      & \mathbb{L} \ar[dl, "p"] \ar[dr, "q"] \\
-      \PP^n & & \Affine^{n + 1}
-    \end{tikzcd}
-  \] 
-  The map $q : \mathbb{L} \to \Affine^{n + 1}$ is the blowup.
-  We claim that $p : \mathbb{L} \to \PP^n$
-  is a line bundle. We have:
-  \begin{itemize}
-    \item $p^{-1}([x]) = kx$,
-      a $1$-dimensional vector space;
-    \item let $U_i = \{[x] \in \PP^n : x_i \ne 0\}$,
-      then we can define
-      \begin{align*}
-        p^{-1}(U_i)
-        &\longrightarrow U_i \times \Affine^1 \\
-        ([x], y)
-        &\longmapsto ([x], y_i),
-      \end{align*}
-      which one can check is
-      a trivialization.
-  \end{itemize}
 \end{example}

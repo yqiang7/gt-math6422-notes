@@ -1,0 +1,389 @@
+\chapter{Jan.~13 --- Overview and Review}
+
+\section{Course Overview}
+
+\begin{remark}
+  This course will cover the following
+  topics:
+  \begin{enumerate}[(i)]
+    \item vector bundles and line
+      bundles in algebraic geometry;
+    \item coherent sheaves;
+    \item differentials;
+    \item sheaf cohomology: in
+      particular, we will see that
+      $H^k_{\mathrm{dR}}(X^{\mathrm{an}}, \C) = \bigoplus_{i + j = k} H^i(X, \wedge^j T_X^*)$);
+    \item the Riemann-Roch theorem:
+      if $\omega = f\, dz$ is a rational
+      $1$-form on a smooth
+      projective curve $C$, then
+      \[
+        (\# \text{ zeroes of } \omega)
+        - (\# \text{ poles of } \omega)
+        = 2 \genus(C) - 2;
+      \]
+    \item surfaces and toric varieties;
+    \item schemes: for example,
+      $\Spec \Z$ has points
+      corresponding to the primes $p$
+      and $0$.
+  \end{enumerate}
+\end{remark}
+
+\section{Review of Algebraic Geometry I}
+
+\begin{remark}
+  Let $k = \overline{k}$ be an
+  algebraically closed field.
+\end{remark}
+
+\begin{remark}[Hilbert's Nullstellensatz]
+  There is a correspondence
+  \begin{align*}
+    \text{closed subvarieties of $\Affine^n$}
+    &\longleftrightarrow
+    \text{radical ideals in $k[x_1, \dots, x_n]$} \\
+    Z &\longmapsto I(Z) \\
+    V(J) &\mathrel{\reflectbox{\ensuremath{\longmapsto}}} J.
+  \end{align*}
+  Under this correspondence,
+  $Z$ being
+  irreducible (resp. a point)
+  corresponds to $I(Z)$ being
+  prime (resp. maximal).
+\end{remark}
+
+\begin{remark}[Zariski topology on $\Affine^n$]
+  The closed sets in $\Affine^n$ are
+  of the form $V(J)$, and this induces
+  a Zarisiki topology on any subset
+  of $\Affine^n$.
+\end{remark}
+
+\begin{remark}[Embedded affine varieties]
+  Let $J \le k[x_1, \dots, x_n]$.
+  Then we can associate to $J$ a
+  ringed space $(X, \OO_X)$
+  by setting $X := V(J) \subseteq \Affine^n$
+  with the Zariski topology, and
+  $\OO_X$ to be the sheaf of regular functions on $X$, i.e.
+  for $U \subseteq X$ open, we have
+  \[
+    \OO_X(U)
+    := \{
+      \varphi : U \to k \mid
+      \varphi \text{ is regular}
+    \}.
+  \]
+  Here, $\varphi : U \to k$ is
+  \emph{regular} if for each $p \in U$,
+  there exists an open set
+  $p \in U_p \subseteq U$ and
+  $f, g \in k[x_1, \dots, x_n]$
+  such that $\varphi(x) = f(x) / g(x)$
+  for all $x \in U_p$.
+\end{remark}
+
+\begin{remark}[Coordinate ring]
+  The \emph{coordinate ring} of $X$ is
+  \[
+    A(X) :=
+    \OO_X(X)
+    \cong k[x_1, \dots, x_n] / I(X).
+  \]
+  We also get a version of
+  Hilbert's Nullstellensatz for
+  $A(X)$:
+  \[
+    \text{closed subsets of $X$}
+    \longleftrightarrow
+    \text{radical ideals of $A(X)$}.
+  \]
+\end{remark}
+
+\begin{remark}[Distinguished open sets]
+  The \emph{distinguished open sets} of $X$
+  are
+  \[
+    D(f)
+    := \{x \in X : f(x) \ne 0\}
+    = X \setminus V(f).
+  \]
+  These for a basis for $X$ as we vary
+  $f \in A(X)$.
+\end{remark}
+
+\begin{definition}
+  An \emph{affine variety} is a
+  ringed space $(X, \OO_X)$ (here
+  $\OO_X$ is a sheaf of $k$-valued
+  functions) which is
+  isomorphic to an embedded affine
+  variety.
+\end{definition}
+
+\begin{example}
+  If $(X, \OO_X)$ is an affine variety
+  and $f \in \OO_X(X)$, then
+  \[
+    (D(f), \OO_X|_{D(f)})
+  \]
+  is again an affine variety. To
+  see this, we may assume that
+  $X = V(J) \subseteq \Affine^n$
+  with $J \le k[x_1, \dots, x_n]$
+  a radical ideal. Now we can define
+  a map
+  \begin{align*}
+    D(f) &\longrightarrow
+    V(J, fy - 1) \subseteq \Affine^n_{x_i} \times \Affine^1_y \\
+    x &\longmapsto (x, 1 / f(x)),
+  \end{align*}
+  which one can check is an isomorphism.
+  Now that this also shows
+  \[
+    \OO_X(D(f))
+    = A(D(f))
+    \cong \frac{k[x_1, \dots, x_n, y]}{(J, fy - 1)}
+    \cong \frac{(k[x_1, \dots, x_n] / J)[y]}{(\overline{f} y - 1)}
+    \cong A(X)_f.
+  \]
+\end{example}
+
+\begin{theorem}
+  There is an equivalence of
+  categories
+  \begin{align*}
+    \Phi :
+    \mathrm{Aff\text{-}var}
+    &\longrightarrow
+  \mathrm{Red\text{-}f.g.\text{-}} k \mathrm{\text{-}alg}^{\mathrm{op}} \\
+  (X, \OO_X)
+    &\longmapsto A(X).
+  \end{align*}
+  This implies the following:
+  \begin{enumerate}
+    \item There is a bijection
+      \begin{align*}
+        \Hom_{\mathrm{aff}\text{-}\mathrm{var}}(X, Y)
+        &\longrightarrow
+        \Hom_{k\text{-}\mathrm{alg}}(A(Y), A(X)) \\
+        f &\longmapsto f^*.
+      \end{align*}
+    \item For any reduced finitely
+      generated $k$-algebra $A$,
+      there exists an affine variety
+      with $A \cong A(X)$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{remark}
+  How can we explicitly
+  define the inverse
+  functor
+  $
+  \mathrm{Red\text{-}f.g.\text{-}} k \mathrm{\text{-}alg}^{\mathrm{op}}
+    \rightarrow
+  \mathrm{Aff\text{-}var}
+  $?
+  We can define this as
+  $A \mapsto (X, \OO_X)$, where
+  $X$ is the set of maximal ideals
+  of $A$. Think about what
+  $\OO_X$ should be.
+\end{remark}
+
+\begin{remark}[Varieties]
+  A \emph{variety} $(X, \OO_X)$
+  is a ringed space such that
+  \begin{itemize}
+    \item there exists a finite open
+      cover of $X$ by affine varieties,
+    \item the diagonal $\Delta_X$ is
+      closed in $X \times X$.
+  \end{itemize}
+\end{remark}
+
+\begin{example}
+  The following are examples of
+  varieties:
+  \begin{itemize}
+    \item affine varieties,
+    \item open or closed subsets of
+      varieties,
+    \item $\PP^n = (\Affine^{n + 1} \setminus \{0\}) / k^\times$.
+  \end{itemize}
+\end{example}
+
+\begin{remark}[Projective spaces]
+  Recall that $\PP^n$ has an
+  open cover by
+  \[
+    U_i
+    = \{[x] \in \PP^n : x_i \ne 0\}
+    \cong \Affine^n.
+  \]
+  A basis for $\PP^n$ by distinguished
+  open sets is given by
+  \[
+    D(f)
+    = \{[x] \in \PP^n : f(x) \ne 0\}
+  \]
+  with $f \in k[x_0, \dots, x_n]$
+  homogeneous.
+\end{remark}
+
+\section{Vector and Line Bundles}
+
+\begin{definition}
+  Let $X$ be a variety. A
+  \emph{vector bundle (of rank $m$)}
+  on $X$ is a variety
+  $\EE$ with a morphism
+  $p : \EE \to X$ such that
+  \begin{enumerate}
+    \item $\EE_x = p^{-1}(X)$ has the
+      structure of a rank $m$
+      vector space for every $x \in X$ 
+      (i.e. $k^m$),
+    \item for every $x \in X$,
+      there exists an open neighborhood
+      $x \in U \subseteq X$ 
+      and an isomorphism
+      $p^{-1}(U) \to U \times \Affine^m$
+      such that for any $y \in U$,
+      the map
+      $\EE_y \to \{y\} \times \Affine^m$
+      is an isomorphism of vector
+      spaces, i.e.
+      \[
+        \begin{tikzcd}
+          p^{-1}(U)
+          \ar[rr, "\phi_U"] \ar[dr ] & &
+          U \times \Affine^m \ar[dl] \\
+          & U
+        \end{tikzcd}
+      \]
+      commutes.
+      We will call the map $\phi_U$ a
+      \emph{trivialization.}
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  A \emph{line bundle} on $X$ is a
+  rank $1$ vector bundle.
+\end{definition}
+
+\begin{remark}
+  A different way to think about
+  this is the following:
+  \begin{enumerate}
+    \item Given two trivializations
+      $\phi_U : p^{-1}(U) \to U \times \Affine^m$
+      and $\phi_V : p^{-1}(V) \to V \times \Affine^m$,
+      we get a morphism
+      \[
+        \begin{tikzcd}
+        (U \cap V) \times \Affine^m
+        \ar[rr, "\phi_{U, V}"]
+        \ar[dr, "\phi_V^{-1}", swap]
+        & & (U \cap V) \times \Affine^m \\
+        & p^{-1}(U \cap V) \ar[ur, "\phi_U", swap]
+        \end{tikzcd}
+      \]
+      with $\phi_{U, V} = \phi_U \circ \phi_V^{-1}$.
+      Observe
+      $\phi_{U, V}(x, v) = (x, g_{U, V}(x) v)$
+      for some
+      $g_{U, V}(x) \in \GL(m, k)$.
+      Furthermore,
+      $g_{U, V} : U \cap V \to \GL(m, k)$
+      is a morphism.
+      We will call the
+      $g_{U, V}$ \emph{transition functions}.
+
+      In the special case where
+      $m = 1$ (so
+      $\EE$ is a line bundle
+      and $\GL(1, k) = k^\times$),
+      the map
+      $g_{U, V} : U \cap V\to \GL(m, k)$
+      is equivalent to the data of a
+      non-vanishing function
+      $g_{U, V} : U \cap V \to k$.
+    \item The data of a vector bundle
+      of rank $m$
+      is equivalent to the data of
+      \begin{itemize}
+        \item an open cover
+          $X = \bigcup_{i \in I} U_i$,
+        \item and morphisms
+          $g_{i, j} : U_i \cap U_j \to \GL(m, k)$
+      \end{itemize}
+      such that
+      $g_{i, k} = g_{i, j} g_{j, k}$,
+      $g_{i, j} = g_{j, i}^{-1}$,
+      and $g_{i, i} = \id$.
+
+      To recover the vector bundle,
+      we can glue
+      $\EE_i = U_i \times \Affine^m$
+      for $i \in I$
+      via
+      \begin{align*}
+        \EE_{i, j}
+        = (U_i \cap U_j) \times \Affine^m
+        &\longrightarrow
+        \EE_{j, i}
+        = (U_j \cap U_i) \times \Affine^m \\
+        (x, v) &\longmapsto
+        (x, g_{i, j}(x) v).
+      \end{align*}
+      One can check that this defines
+      a vector bundle $\EE$ on $X$.
+  \end{enumerate}
+\end{remark}
+
+\begin{example}[Trivial vector bundle]
+  Define the vector bundle
+  $\EE : X \times \Affine^m \to X$
+  by $(x, v) \to x$.
+  Given a cover $X = \bigcup_{i \in I} U_i$,
+  we get $g_{i, j} : U_i \cap U_j \to \GL(m, k)$
+  as $x \mapsto I_m$.
+\end{example}
+
+\begin{example}[Trivial line bundle]
+  We will denote the trivial
+  line bundle by
+  $\mathbbm{1}_X : X \times \Affine^1 \to X$.
+\end{example}
+
+\begin{example}
+  Let $X = \PP^n$ and
+  $\mathbb{L} = \{(\ell, x) \in \PP^n \times \Affine^{n + 1} : x \in \ell\}$. Consider
+  \[
+    \begin{tikzcd}
+      & \mathbb{L} \ar[dl, "p"] \ar[dr, "q"] \\
+      \PP^n & & \Affine^{n + 1}
+    \end{tikzcd}
+  \] 
+  The map $q : \mathbb{L} \to \Affine^{n + 1}$ is the blowup.
+  We claim that $p : \mathbb{L} \to \PP^n$
+  is a line bundle. We have:
+  \begin{itemize}
+    \item $p^{-1}([x]) = kx$,
+      a $1$-dimensional vector space;
+    \item let $U_i = \{[x] \in \PP^n : x_i \ne 0\}$,
+      then we can define
+      \begin{align*}
+        p^{-1}(U_i)
+        &\longrightarrow U_i \times \Affine^1 \\
+        ([x], y)
+        &\longmapsto ([x], y_i),
+      \end{align*}
+      which one can check is
+      a trivialization.
+  \end{itemize}
+\end{example}

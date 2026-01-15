@@ -1,0 +1,120 @@
+\documentclass[12pt, letterpaper, oneside]{book}
+\usepackage[margin={0.6in, 0.75in}]{geometry}
+\usepackage{microtype}
+% \usepackage{kpfonts}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{bbm}
+\usepackage{parskip}
+\usepackage[many]{tcolorbox}
+\usepackage{footnote}
+\usepackage{cancel}
+\usepackage{titlesec}
+\usepackage{pgffor}
+\usepackage[shortlabels, inline]{enumitem}
+\usepackage{hyperref}
+\usepackage{tikz-cd}
+
+\usepackage[overload]{textcase}
+\usepackage{graphicx}
+
+\renewcommand{\chaptername}{Lecture}
+\newtheorem{axiom}{Axiom}[chapter]
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{prop}{Proposition}[chapter]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{conjecture}{Conjecture}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{exercise}{Exercise}[chapter]
+\newtheorem{example}{Example}[definition]
+\newtheorem*{remark}{Remark}
+
+\tcbset{sharp corners, breakable, enhanced, parbox=false}
+\newtcolorbox{mybox}[3][]
+{
+  colframe = #2!150,
+  colback  = #2!5,
+  coltitle = #2!0!white,  
+  title    = {#3},
+  #1,
+}
+
+\titleformat{\chapter}[display]
+    {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{0pt}{40pt}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\Affine}{\mathbb{A}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\p}{\mathfrak{p}}
+\newcommand{\q}{\mathfrak{q}}
+\newcommand{\m}{\mathfrak{m}}
+\newcommand{\Mod}[1]{\ {\mathrm{mod}\ #1}}
+\newcommand{\Pmod}[1]{\ (\mathrm{mod}\ #1)}
+
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\B}{\mathcal{B}}
+
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Int}{int}
+\DeclareMathOperator{\area}{area}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\height}{ht}
+\DeclareMathOperator{\trdeg}{tr{.}deg}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\Open}{Open}
+\DeclareMathOperator{\Rings}{Rings}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Char}{char}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\PGL}{PGL}
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\rank}{rk}
+\DeclareMathOperator{\Sing}{Sing}
+\DeclareMathOperator{\Smooth}{Smooth}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\mult}{mult}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\PDiv}{PDiv}
+\DeclareMathOperator{\divv}{div}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\genus}{genus}
+
+\title{MATH 6421: Algebraic Geometry II}
+\author{Frank Qiang\\Instructor: Harold Blum}
+\date{Georgia Institute of Technology\\Spring 2026}
+
+\begin{document}
+  \maketitle
+
+  \begingroup
+  \let\cleardoublepage\clearpage
+  \tableofcontents
+  \endgroup
+
+  % \foreach \i in {00, 01, 02, 03, 04, ..., 50} {%
+  %   \edef\FileName{lectures/lecture\i.tex}%     The % here are necessary to eliminate any
+  %   \IfFileExists{\FileName}{%  spurious spaces that may get inserted
+  %      \input{\FileName}%       at these points
+  %   }
+  % }
+  \input{lectures/lecture01.tex}
+\end{document}

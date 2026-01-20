@@ -348,7 +348,15 @@
   regular on each coordinate).
   These maps must satisfy
   the compatibility condition
-  $s_i = g_{i, j} s_j$.
+  $s_i = g_{i, j} s_j$, since
+  we have the diagram:
+  \[
+    \begin{tikzcd}
+      & & U_{i, j} \times \Affine^e \ar[dd, "{(x, v) \mapsto (x, g_{i, j}(v))}"] \\
+      U_{i, j} \ar[urr, bend left=30, "{(x, s_j(x))}"] \ar[drr, bend right=30, swap, "{(x, s_i(x))}"] \ar[r, "s|_{U_{i, j}}"]& p^{-1}(U_{i, j}) \ar[ur, "\phi_j"] \ar[dr, swap, "\phi_i"] \\
+               & & U_{i, j} \times \Affine^e
+    \end{tikzcd}
+  \]
 \end{remark}
 
 \begin{example}

@@ -1,0 +1,403 @@
+\chapter{Jan.~20 --- Sections}
+
+\section{Global Sections, Continued}
+
+\begin{definition}
+  Let $\Gamma(X, \EE) := \{\text{sections of } \EE \to X\}$,
+  which
+  has the structure of a
+  $k$-vector space by
+  \[
+    (s + t)(x) = s(x) + t(x)
+    \quad \text{and} \quad
+    (cs)(x) = c s(x)
+  \]
+  for $s, t \in \Gamma(X, \EE)$ and
+  $c \in k$.
+\end{definition}
+
+\begin{example}
+  One can check that
+  $\Gamma(\PP^n, \OO_{\PP^n}(d)) \cong k[x_0, \dots, x_n]_d$ (HW).
+  For example, for $d < 0$, we have
+  $\Gamma(\PP^n, \OO(d)) = \{0\}$, and
+  for $d = 0$, we have
+  \[
+    \Gamma(\PP^n, \OO(0))
+    = \Gamma(\PP^n, \mathbbm{1}_{\PP^n})
+    = \OO_{\PP^n}(\PP^n)
+    = k.
+  \]
+  For $d = 1$,
+  we can define an isomorphism
+  \begin{align*}
+    k[x_0, \dots, x_n]_1
+    &\overset{\cong}{\longrightarrow}
+    \Gamma(\PP^n, \OO(1)) \\
+    f &\longmapsto
+    \text{section } s : \PP^n \to \OO(1)
+    \text{ given by }
+    s_i = f / x_i.
+  \end{align*}
+  Note that $(x_j / x_i) s_j = s_i$
+  holds, so this is a section.
+  An alternative perspective
+  is that $s$ corresponds to
+  \begin{align*}
+    \PP^n &\longrightarrow \PP^{n + 1} \setminus \{[0 : \cdots : 0 : 1]\} \\
+    x &\longmapsto [x_0 : \cdots : x_n : f(x)].
+  \end{align*}
+\end{example}
+
+\section{Morphisms and Sections}
+
+\begin{definition}
+  Given a section $s : X \to \EE$,
+  its \emph{vanishing locus} is
+  \[
+    V(s) := \{s = 0\}
+    = \{x \in X : s(x) = 0\}.
+  \]
+  Using a trivializing cover, one
+  can check that $V(s)$ is closed in
+  $X$.
+\end{definition}
+
+\begin{example}
+  For a section $s : \PP^n \to \OO(1)$
+  corresponding to
+  $f \in k[x_0, \dots, x_n]_1$,
+  we have $V(s) = V_{\PP^n}(f)$.
+\end{example}
+
+\begin{remark}
+  Recall that there is a bijection
+  \begin{align*}
+    \{\text{morphisms } X \to \Affine^n\}
+    &\longleftrightarrow
+    \{f_1, \dots, f_n \in \OO_X(X)\} \\
+    [f : X \to \Affine^n]
+    &\longmapsto
+    [f_1 = f^* x_1, \dots, f_n = f^* x_i \in \OO_X(X)] \\
+    [x \mapsto (f_1(x), \dots, f_n(x))] &\mathrel{\reflectbox{\ensuremath{\longmapsto}}} [f_1, \dots, f_n \in \OO_X(X)].
+  \end{align*}
+  We want a similar statement
+  for $\PP^n$.
+\end{remark}
+
+\begin{definition}
+  Given a line bundle
+  $\LL \to X$ and
+  $s_0, \dots, s_n \in \Gamma(X, \LL)$,
+  they
+  are \emph{nowhere vanishing}
+  if
+  \[V(s_0) \cap \cdots \cap V(s_n) = \varnothing.\]
+\end{definition}
+
+\begin{example}
+  For $\OO(1)$, the sections
+  $x_0, \dots, x_n \in \Gamma(\PP^n, \OO(1))$
+  are nowhere vanishing.
+\end{example}
+
+\begin{remark}
+  If $s_0, \dots, s_n \in \Gamma(X, \LL)$
+  are nowhere vanishing, then we
+  get a morphism
+  \begin{align*}
+    X &\longrightarrow \PP^n \\
+    x &\longmapsto
+    [s_0(x) : \cdots : s_n(x)].
+  \end{align*}
+  Note that $(s_0(x), \dots, s_n(x))$
+  is a well-defined point in
+  $\Affine^{n + 1}$ up to scaling.
+  One can check that this map is a morphism
+  by working locally.
+\end{remark}
+
+\begin{example}[Linear maps]
+  Let $X = \PP^n$ and $\LL = \OO(1)$.
+  \begin{enumerate}[(i)]
+    \item $x_0, \dots, x_n \in \Gamma(\PP^n, \OO(1))$
+      gives
+      $\id : \PP^n \to \PP^n$.
+    \item For $A \in \GL_{n + 1}(k)$,
+      we get a map
+      \begin{align*}
+         \PP^n &\longrightarrow \PP^n \\
+         [x] &\longmapsto
+         [A x]
+      \end{align*}
+      given by
+      $A x_0, \dots, A x_n \in \Gamma(\PP^n, \OO(1))$.
+  \end{enumerate}
+\end{example}
+
+\begin{remark}
+  Now given a morphism
+  $X \to \PP^n$, we want to get
+  a line bundle with sections.
+\end{remark}
+
+\begin{definition}[Pullback]
+  Let $p : \EE \to X$ be a vector
+  bundle and
+  $f : Y \to X$ a morphism.
+  Define
+  \[
+    f^* \EE
+    = \{
+      (e, y) : e \in \EE, y \in Y
+      \text{ with } p(e) = f(y)
+    \}
+    \longrightarrow Y.
+  \]
+  One can show that this has
+  the structure of a vector bundle
+  in a natural way.
+\end{definition}
+
+\begin{remark}
+  An alternative way to define the
+  pullback is to choose
+  trivialization data
+  $(U_i, g_{i, j})$ for $\EE \to X$.
+  Then we can define
+  $f^* : \EE \to Y$ to be the
+  vector bundle with
+  trivialization data
+  $(f^{-1}(U_i), f^* g_{i, j})$.
+\end{remark}
+
+\begin{remark}
+  Now to go in reverse,
+  given a morphism
+  $X \to \PP^n$ and nowhere
+  vanishing sections $x_0, \dots, x_n \in \Gamma(\PP^n, \OO(1))$, we get
+  nowhere vanishing sections
+  \[
+    f^* x_0, \dots, f^* x_n \in \Gamma(X, f^* \OO(1)).
+  \]
+  We can define the pullback of a
+  section in one of two ways:
+  by
+  $f^*(x_i)(a) = (x_i(f(a)), a) \in f^* \OO(1))$
+  for $a \in X$ or
+  by using trivializing covers.
+\end{remark}
+
+\begin{remark}
+  Using the above, we get a bijection
+  \begin{align*}
+    \{{\text{morphisms } X \to \PP^n}\}
+    &\longleftrightarrow
+    \{
+      \text{line bundles } \LL \to X
+      \text{ with }
+      s_0, \dots, s_n \in \Gamma(X, \LL)
+      \text{ nowhere vanishing}
+    \}.
+  \end{align*}
+  Note that we should consider the 
+  right-hand side up to isomorphism
+  of the line bundle.
+  When do $\LL \to X$ and
+  $s_0, \dots, s_n \in \Gamma(X, \LL)$
+  give an injective morphism
+  (or an embedding)?
+\end{remark}
+
+\begin{definition}
+  Given a vector bundle $\EE \to X$,
+  we get a sheaf of abelian groups
+  $\mathcal{E}$ on $X$ by
+  \[
+    \mathcal{E}(U)
+    := \{\text{sections of } p^{-1}(U) \to U\}
+  \]
+  for $U \subseteq X$ open.
+  For $V \subseteq U \subseteq X$ open,
+  the restriction map is given by
+  \begin{align*}
+    \mathcal{E}(U) &\longrightarrow \mathcal{E}(V) \\
+    s &\longmapsto s|_V.
+  \end{align*}
+  \pagebreak
+  We call $\mathcal{E}$ the
+  \emph{sheaf of sections} of $\EE$.
+  Also note that $\mathcal{E}(U)$ has the
+  structure of an $\OO_X(U)$-module.
+  We will see that this gives rise
+  to the structure of an
+  $\OO_X$-module.
+\end{definition}
+
+\section{Review of Sheaves}
+
+\begin{definition}
+  A \emph{presheaf} of abelian
+  groups $\mathcal{F}$ on a topological
+  space $X$ is the data of:
+  \begin{itemize}
+    \item for $U \subseteq X$ open,
+      an abelian group $\mathcal{F}(U)$ (with $\mathcal{F}(\varnothing) = 0$),
+    \item for $V \subseteq U \subseteq X$
+      open, a group homomorphism
+      $p_{V, U} : \mathcal{F}(U) \to \mathcal{F}(V)$.
+  \end{itemize}
+\end{definition}
+
+\begin{remark}
+  Note the following:
+  \begin{enumerate}
+    \item We may replace abelian groups in
+      the above definition by
+      rings, sets,
+      $R$-modules, etc.
+    \item We denote
+      $\Gamma(U, \mathcal{F}) = \mathcal{F}(U)$,
+      whose elements are called
+      \emph{sections}.
+    \item $s|_V := p_{V, U}(s)$
+      is called the \emph{restriction}
+      for $s \in \mathcal{F}(U)$ and
+      $V \subseteq U \subseteq X$
+      open.
+    \item We may view $\mathcal{F}$
+      as a functor
+      $\mathrm{Open}_X \to \mathrm{Ab}\text{-}\mathrm{gps}$
+      given by $U \mapsto \mathcal{F}(U)$.
+  \end{enumerate}
+\end{remark}
+
+\begin{definition}
+  For $\mathcal{F}$ a presheaf on
+  $X$ and $x \in X$, the
+  \emph{stalk} of $\mathcal{F}$ at $x$ is
+  \[
+    \mathcal{F}_x
+    = \lim_{\substack{\longrightarrow \\ U \ni x \text{ open}}}
+    \mathcal{F}(U)
+    = \{(s, U) : s \in \mathcal{F}(U)\} / {\sim}.
+  \]
+\end{definition}
+
+\begin{example}
+  The following are examples of
+  presheaves:
+  \begin{enumerate}
+    \item Let $M$ be a smooth manifold.
+      Then
+      \begin{itemize}
+        \item $\OO_M =$ sheaf of
+          smooth $\R$-valued functions on $M$,
+        \item $\mathcal{E} =$
+          sheaf of sections of a
+          vector bundle $\EE \to M$.
+      \end{itemize}
+    \item Let $X$ be an algebraic
+      variety, $\EE \to X$ a
+      vector bundle, and
+      $Z \subseteq X$ closed. Then
+      \begin{itemize}
+        \item $\OO_X$ and
+          $\mathcal{E}$ are sheaves,
+        \item $\ell_Z =$
+          ideal sheaf of $Z$, given by
+          $\ell_Z(U) = \{\varphi \in \OO_X(U) : \varphi|_Z = 0\}$.
+      \end{itemize}
+    \item Let $X$ be a topological
+      space and $A$ an abelian group.
+      \begin{itemize}
+        \item $\underline{A}^{\mathrm{pre}}$
+          given by
+          $U \mapsto \{\text{constant functions } U \to A\}$, i.e.
+          $\underline{A}^{\mathrm{pre}}(U) \cong A$ for
+          $U \ne \varnothing$,
+        \item $\underline{A}$
+          given by
+          $U \mapsto \{\text{locally constant functions $U \to A$}\}$,
+        \item $i_p A =$ skyscraper
+          sheaf, given by
+          $U \mapsto
+          \begin{cases}
+            A & \text{if } p \in U, \\
+            0 & \text{otherwise}.
+          \end{cases}$
+      \end{itemize}
+  \end{enumerate}
+\end{example}
+
+\begin{definition}
+  A presheaf $\mathcal{F}$ is a
+  \emph{sheaf} if for any
+  \begin{itemize}
+    \item open set $U \subseteq X$,
+    \item open cover
+      $U = \bigcup_{i \in I} U_i$,
+    \item and $s_i \in \mathcal{F}(U_i)$
+      such that $s_i|_{U_{i, j}} = s_j|_{U_{i, j}}$
+      for all $i, j \in I$,
+  \end{itemize}
+  then there exists a unique
+  $s \in \mathcal{F}(U)$ such that
+  $s|_{U_i} = s_i$ for every $i \in I$.
+\end{definition}
+
+\begin{remark}
+  The presheaf
+  $\underline{A}^{\mathrm{pre}}$
+  is not a sheaf in general.
+  All other examples above are sheaves.
+\end{remark}
+
+\pagebreak
+\begin{definition}
+  A \emph{morphism} of (pre)sheaves
+  $f : \mathcal{F} \to \mathcal{G}$
+  on a topological space $X$ is
+  the data of group homomorphisms
+  $f(U) : \mathcal{F}(U) \to \mathcal{G}(U)$
+  for each $U \subseteq X$ open
+  such that for all $V \subseteq U \subseteq X$, the following
+  diagram commutes:
+  \[
+    \begin{tikzcd}
+      \mathcal{F}(U) \ar[d, swap, "\mathrm{res}"] \ar[r, "{f(U)}"]
+      & \mathcal{G}(U) \ar[d, "\mathrm{res}"] \\
+      \mathcal{F}(V) \ar[r, swap, "{f(V)}"]
+      & \mathcal{G}(V)
+    \end{tikzcd}
+  \]
+\end{definition}
+
+\begin{example}
+  Let $X$ be a variety.
+  \begin{enumerate}
+    \item If
+      $a : \EE \to \mathbb{F}$ is a morphism
+      of vector bundles on $X$, then
+      we get a morphism of sheaves
+      $\mathcal{E} \to \mathcal{F}$
+      by $s \mapsto a \circ s \in \mathcal{F}(U)$
+      for $s \in \mathcal{E}(U)$.
+    \item A closed subvariety
+      $Z \subseteq X$ induces a
+      morphism $\ell_Z \to \OO_X$
+      given by inclusion.
+  \end{enumerate}
+\end{example}
+
+\begin{prop}
+  If $\mathcal{F}$ is a presheaf
+  on $X$, then there exists a morphism
+  to a sheaf $i : \mathcal{F} \to \mathcal{F}^+$
+  such that for any morphism
+  $g : \mathcal{F} \to \mathcal{G}$,
+  there exists a unique morphism
+  $g^+ : \mathcal{F}^+ \to \mathcal{G}$
+  such that
+  $g = g^+ \circ i$.
+\end{prop}

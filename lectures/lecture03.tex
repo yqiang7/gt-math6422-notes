@@ -304,9 +304,9 @@
       \begin{itemize}
         \item $\OO_X$ and
           $\mathcal{E}$ are sheaves,
-        \item $\ell_Z =$
+        \item $\mathcal{I}_Z =$
           ideal sheaf of $Z$, given by
-          $\ell_Z(U) = \{\varphi \in \OO_X(U) : \varphi|_Z = 0\}$.
+          $\mathcal{I}_Z(U) = \{\varphi \in \OO_X(U) : \varphi|_Z = 0\}$.
       \end{itemize}
     \item Let $X$ be a topological
       space and $A$ an abelian group.
@@ -356,18 +356,18 @@
 \pagebreak
 \begin{definition}
   A \emph{morphism} of (pre)sheaves
-  $f : \mathcal{F} \to \mathcal{G}$
+  $\varphi : \mathcal{F} \to \mathcal{G}$
   on a topological space $X$ is
   the data of group homomorphisms
-  $f(U) : \mathcal{F}(U) \to \mathcal{G}(U)$
+  $\varphi(U) : \mathcal{F}(U) \to \mathcal{G}(U)$
   for each $U \subseteq X$ open
   such that for all $V \subseteq U \subseteq X$, the following
   diagram commutes:
   \[
     \begin{tikzcd}
-      \mathcal{F}(U) \ar[d, swap, "\mathrm{res}"] \ar[r, "{f(U)}"]
+      \mathcal{F}(U) \ar[d, swap, "\mathrm{res}"] \ar[r, "{\varphi(U)}"]
       & \mathcal{G}(U) \ar[d, "\mathrm{res}"] \\
-      \mathcal{F}(V) \ar[r, swap, "{f(V)}"]
+      \mathcal{F}(V) \ar[r, swap, "{\varphi(V)}"]
       & \mathcal{G}(V)
     \end{tikzcd}
   \]
@@ -390,14 +390,14 @@
   \end{enumerate}
 \end{example}
 
-\begin{prop}
-  If $\mathcal{F}$ is a presheaf
-  on $X$, then there exists a morphism
-  to a sheaf $i : \mathcal{F} \to \mathcal{F}^+$
-  such that for any morphism
-  $g : \mathcal{F} \to \mathcal{G}$,
-  there exists a unique morphism
-  $g^+ : \mathcal{F}^+ \to \mathcal{G}$
-  such that
-  $g = g^+ \circ i$.
-\end{prop}
+\begin{remark}
+  Given a morphism of (pre)sheaves
+  and $\varphi : \mathcal{F} \to \mathcal{G}$
+  and $p \in X$, we get an
+  induced morphism
+  \begin{align*}
+    \mathcal{F}_p &\longrightarrow \mathcal{G}_p \\
+    (s, U) &\longmapsto
+    (\varphi(s), U).
+  \end{align*}
+\end{remark}

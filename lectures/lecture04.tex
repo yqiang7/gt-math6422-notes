@@ -1,0 +1,472 @@
+\chapter{Jan.~22 --- Sheaves}
+
+\section{Sheafification}
+
+\begin{theorem}[Sheafification]
+  For a presheaf $\mathcal{F}$ on
+  a topological space $X$, there
+  exists a morphism
+  to a sheaf $i : \mathcal{F} \to \mathcal{F}^+$
+  such that for any morphism to a sheaf
+  $g : \mathcal{F} \to \mathcal{G}$,
+  there exists a unique morphism
+  $g^+ : \mathcal{F}^+ \to \mathcal{G}$
+  such that
+  $g = g^+ \circ i$, i.e. the following
+  diagram commutes:
+  \[
+    \begin{tikzcd}
+      \mathcal{F} \ar[d, "i", swap] \ar[r, "g"] & \mathcal{G} \\
+      \mathcal{F}^+ \ar[ur, swap, "g^+", dashed]
+    \end{tikzcd}
+  \]
+  In the above, $\mathcal{F}^+$
+  is called the \emph{sheafification}
+  of $\mathcal{F}$, and the pair
+  $(i, \mathcal{F}^+)$ is unique
+  up to isomorphism (as a consequence
+  of the universal property).
+\end{theorem}
+
+\begin{proof}
+  We first define
+  $\mathcal{F}^+(U) = \{t : U \to \bigsqcup_{p \in X} \mathcal{F}_p : \text{(1) and (2) hold}\}$, where
+  \begin{enumerate}
+    \item $t(p) \in \mathcal{F}_p$;
+    \item for any $x \in X$, there
+      is an open set
+      $x \in V_x \subseteq U$
+      with $s \in \mathcal{F}(V_x)$
+      such that $t(p) = s_p$ for
+      all $p \in V_x$.
+  \end{enumerate}
+  It is straightforward to see that
+  $\mathcal{F}^+$ is a sheaf and
+  that
+  \begin{align*}
+    \mathcal{F}(U) &\longrightarrow \mathcal{F}^+(U) \\
+    s
+    &\longmapsto (X \ni p \mapsto s_p \in \mathcal{F}_p).
+  \end{align*}
+  gives a morphism
+  $i : \mathcal{F} \to \mathcal{F}^+$.
+  Now we check the universal property.
+  Given a morphism
+  $g : \mathcal{F} \to \mathcal{G}$
+  with $\mathcal{G}$ a sheaf, we
+  need to define $g^+ : \mathcal{F}^+ \to \mathcal{G}$.
+  Fix $t \in \mathcal{F}^+(U)$.
+  By definition, there exists an open
+  cover  $\{U_i\}$ of $U$ and
+  $s_i \in \mathcal{F}(U_i)$ such that
+  $t(p) = (s_i)_p \in \mathcal{F}_p$
+  for all $p \in U_i$.
+  Set $t_i' := g(t_i)$. Note that
+  \[
+    (t_i')_p = g_p(t_p)
+    = (t_j')_p
+    \in \mathcal{G}_p
+  \]
+  for every $p \in U_i \cap U_j$.
+  Since $\mathcal{G}$ is a sheaf, we
+  get $t_i'|_{U_i \cap U_j} = t_j'|_{U_i \cap U_j}$.
+  Thus there exists a unique
+  $t' \in \mathcal{G}(U)$
+  such that $t'|_{U_i} = t_i$
+  for every $i \in I$. Then
+  we can set $g^+(t) = t'$.
+  One can check as an exercise
+  that this gives a morphism
+  $\mathcal{F}^+ \to \mathcal{G}$
+  satisfying the universal property.
+\end{proof}
+
+\begin{example}
+  We have the following:
+  \begin{enumerate}
+    \item If $\mathcal{F}$ is a
+      sheaf, then $\mathcal{F} \to \mathcal{F}^+$
+      is an isomorphism.
+    \item For an abelian group
+      $A$ and topological space
+      $X$, we have
+      $(\underline{A}^{\mathrm{pre}})^+ \cong \underline{A}$.
+  \end{enumerate}
+\end{example}
+
+\begin{remark}\label{rem:properties-of-sheafification}
+  We have the following:
+  \begin{enumerate}
+    \item If $p \in X$, the induced
+      morphism on stalks
+      $i_p : \mathcal{F}_p \to \mathcal{F}_p^+$ is
+      an isomorphism for all
+      $p \in X$.
+
+      To construct the inverse map,
+      consider $\mathcal{F}^+_p \to \mathcal{F}_p$
+      defined by $(t, U) \mapsto t_p$
+      for $t \in \mathcal{F}^+(U)$
+      Check as an exercise that this
+      is well-defined and is inverse
+      to $i_p$.
+    \item If $\mathcal{F} \subseteq \mathcal{G}$
+      is a subpresheaf (i.e.
+      $\mathcal{F}(U) \subseteq \mathcal{G}(U)$
+      and $\rho_{V, U}^{\mathcal{F}} = \rho_{V, U}^{\mathcal{G}}|_{\mathcal{F}(U)}$
+      for all $V \subseteq U \subseteq X$)
+      and $\mathcal{G}$ is a sheaf,
+      then we could alternatively
+      define $\mathcal{F}^+$ as
+      \[
+        \mathcal{F}^+(U)
+        = \{
+          s \in \mathcal{G}(U)
+          : \text{for all } x \in X,\,
+          \text{there exists }
+          x \in U_x \subseteq U
+          \text{ open such that }
+          s|_{U_x} \in \mathcal{F}(U_x)
+        \}.
+      \]
+  \end{enumerate}
+\end{remark}
+
+\section{Kernel, Image, Cokernel for Sheaves}
+
+\begin{remark}
+  We want the following notions for
+  sheaves:
+  \begin{itemize}
+    \item kernel, image, cokernel;
+    \item short exact sequences;
+    \item injectivity and surjectivity.
+  \end{itemize}
+\end{remark}
+
+\begin{example}
+  We want the following to be
+  short exact sequences of sheaves:
+  \begin{itemize}
+    \item for $X$ a variety and
+      $Z \hookrightarrow X$ a
+      closed subvariety,
+      \[
+      \begin{tikzcd}
+        0 \ar[r] & \mathcal{I}_Z \ar[r] & \OO_X \ar[r] & i_x \OO_Z \ar[r] & 0
+      \end{tikzcd}
+      \]
+    \item for $M$ a complex manifold
+      (e.g. $\C^n$) with
+      $\OO_M$ the sheaf of
+      $\C$-valued holomorphic functions,
+      \[
+        \begin{tikzcd}
+          0 \ar[r] & \underline{\Z} \ar[r, "2\pi i \times"] & \OO_M \ar[r, "\varphi \mapsto e^\varphi"] & \OO_M^\times \ar[r] & 0
+        \end{tikzcd}
+      \]
+  \end{itemize}
+\end{example}
+
+\begin{remark}
+  Let $\varphi : \mathcal{F} \to \mathcal{G}$
+  be a morphism of sheaves on
+  a topological space $X$.
+\end{remark}
+
+\begin{definition}
+  The \emph{kernel} of $\varphi$
+  is $(\ker \varphi)(U) = \ker(\varphi(U) : \mathcal{F}(U) \to \mathcal{G}(U))$.
+\end{definition}
+
+\begin{remark}[Properties of the kernel]
+  It is straightforward to check that
+  $\ker \varphi$ is a sheaf. Moreover:
+  \begin{enumerate}
+    \item $\ker \varphi$
+      satisfies the following
+      universal property: For any
+      morphism to a sheaf $\alpha$
+      such that $\varphi \circ \alpha = 0$,
+      there exists a unique morphism
+      $\alpha'$
+      such that the following diagram commutes:
+      \[
+        \begin{tikzcd}
+          \mathcal{F}' \ar[r, "\alpha"] \ar[rr, bend left=30, "0"] \ar[dr, "\alpha'", dashed, swap]& \mathcal{F} \ar[r, "\varphi"] & \mathcal{G} \\
+                                                & \ker \varphi \ar[u]
+        \end{tikzcd}
+      \]
+      To see this, use the universal
+      property of the kernel in the
+      category of abelian groups.
+    \item Since filtered limits are
+      exact, we have
+      $(\ker \varphi_p) = (\ker \varphi)_p$
+      for all $p \in X$.
+  \end{enumerate}
+\end{remark}
+
+\begin{lemma}[Injectivity for sheaves]
+  The following are equivalent:
+  \begin{enumerate}
+    \item $\varphi(U) : \mathcal{F}(U) \to \mathcal{G}(U)$
+      is injective for all
+      $U \subseteq X$ open;
+    \item $\varphi_x : \mathcal{F}_x \to \mathcal{G}_x$
+      is injective for all $x \in X$.
+  \end{enumerate}
+  We say that $\varphi$ is
+  \emph{injective} if either of these
+  equivalent conditions hold.
+\end{lemma}
+
+\begin{proof}
+  $(1 \Rightarrow 2)$ This is clear.
+
+  $(2 \Rightarrow 1)$ Fix $s \in \mathcal{F}(U)$
+  with $\varphi(U)(s) = 0$. Then
+  \[
+    \varphi_p(s_p)
+    = (\varphi(U)(S))_p
+    = 0
+  \]
+  for all $p \in X$, so
+  $s_p = 0$ for all $p \in U$, so
+  $s = 0$ by homework from Algebraic
+  Geometry I.
+\end{proof}
+
+\begin{example}[Subtleties for the image]
+  Consider the following:
+  \begin{enumerate}
+    \item Let $\varphi : \OO_{\C^n} \xrightarrow{\exp} \OO_{\C^n}^\times$.
+      Then $U \mapsto \im(\OO_{\C^n}(U) \to \OO_{\C^n}^\times(U))$
+      is a presheaf but not a sheaf.
+      This is because logarithms
+      only exist locally.
+    \item Define
+      $\varphi : \OO_{\PP^n} \to i_{p_1} \underline{k} \oplus i_{p_2} \underline{k}$
+      by $f \mapsto (f(p_1), f(p_2))$.
+      Again
+      $U \mapsto \im(\varphi(U))$
+      is not a sheaf.
+  \end{enumerate}
+\end{example}
+
+\begin{definition}
+  Let $\widetilde{\im}\, \varphi = (U \mapsto \im(\varphi(U))$.
+  This is a presheaf and
+  $\widetilde{\im}\, \varphi \subseteq \mathcal{G}$.
+  Then the \emph{image} of $\varphi$
+  is $\im \varphi = (\widetilde{\im}\, \varphi)^+$.
+  By Remark \ref{rem:properties-of-sheafification},
+  we can equivalently define
+  \[
+    (\im \varphi)(U)
+    = \{
+      s \in \mathcal{G}(U)
+      : \text{there exists cover }
+      \{U_i\} \text{ of } U
+      \text{ such that }
+      s|_{U_i} \in \im(\mathcal{F}(U_i) \to \mathcal{G}(U_i))
+    \}.
+  \]
+\end{definition}
+
+\begin{remark}
+  We have $\im(\varphi_x) \cong (\widetilde{\im}\, \varphi)_x \cong (\im \varphi)_x$,
+  where the first isomorphism
+  is because filtered direct limits
+  are exact and the second isomorphism
+  is because sheafification
+  preserves stalks.
+\end{remark}
+
+\begin{definition}
+  Let $\widetilde{\coker}(\varphi) = (U \mapsto \coker(\varphi(U)))$.
+  Then the \emph{cokernel} of
+  $\varphi$ is $\coker(\varphi) = (\widetilde{\coker}(\varphi))^+$.
+\end{definition}
+
+\begin{remark}
+  We have the following:
+  \begin{enumerate}
+    \item $\coker(\varphi)_x \cong \coker(\varphi_x)$
+      (similar to above).
+    \item $\coker(\varphi)$
+      satisfies the universal
+      property of the cokernel:
+      \[
+        \begin{tikzcd}
+          \mathcal{F} \ar[r, "\varphi"] \ar[rr, "0", bend left=30]
+          & \mathcal{G} \ar[r, "p_0"] \ar[d]
+          & \mathcal{G}' \\
+          & \widetilde{\coker}(\varphi)
+          \ar[r] \ar[ur, dashed] & \coker(\varphi) \ar[u, dashed]
+        \end{tikzcd}
+      \]
+    \item For a subsheaf
+      $\mathcal{F}' \subseteq \mathcal{F}$,
+      we can define the \emph{quotient sheaf}
+      $\mathcal{F}/\mathcal{F}' = \coker(\mathcal{F'} \hookrightarrow \mathcal{F})$.
+    \item By the universal property
+      of the cokernel, we get natural
+      maps
+      \[
+        \begin{tikzcd}
+          \ker \varphi \ar[r] & \mathcal{F} \ar[r] \ar[d] & \im \mathcal{F} \\
+          & \mathcal{F} / {\ker \varphi} \ar[ur, dashed, "\alpha", swap]
+        \end{tikzcd}
+      \]
+      As the following diagram commutes,
+      \[
+        \begin{tikzcd}
+          (\mathcal{F} / {\ker \varphi})_p \ar[r, "\alpha_p"] \ar[d, "\cong"] & (\im \varphi)_p \ar[d, "\cong", swap] \\
+          \mathcal{F}_p / {(\ker \varphi)_p} \ar[r, "\cong", swap] & \im(\varphi_p)
+        \end{tikzcd}
+      \]
+      $\alpha_p$
+      is an isomorphism for all
+      $p \in X$. So by HW,
+      $\alpha$ is an isomorphism.
+      So $\mathcal{F} / {\ker \varphi} \cong \im \varphi$.
+  \end{enumerate}
+\end{remark}
+
+\begin{lemma}[Surjectivity for sheaves]
+  The following are equivalent:
+  \begin{enumerate}
+    \item $\coker \varphi = 0$;
+    \item $\im \varphi = \mathcal{G}$;
+    \item $\varphi_x : \mathcal{F}_x \to \mathcal{G}_x$
+      is surjective for all $x \in X$.
+  \end{enumerate}
+  We say that $\varphi$ is
+  \emph{surjective} if any of these
+  equivalent conditions hold.
+\end{lemma}
+
+\begin{proof}
+  $(3 \Leftrightarrow 1)$
+  We have (3) if and only if
+  $\coker(\varphi_x) = 0$
+  for all $x \in X$, if and only if
+  $(\coker \varphi)_x = 0$ for all
+  $x \in X$, if and only if (1).
+
+  $(3 \Leftrightarrow 2)$
+  We have (3) if and only if
+  $\coker(\varphi_x) = 0$ for all
+  $x \in X$, if and only if
+  $\im \varphi_x = \mathcal{G}_x$
+  for all $x \in X$, if and only if
+  $(\im \varphi)_x \rightarrow \mathcal{G}_x$
+  is an isomorphism for all
+  $x \in X$, if and only if (2) by HW.
+\end{proof}
+
+\begin{remark}
+  Note that if $\varphi(U) : \mathcal{F}(U) \to \mathcal{G}(U)$
+  is surjective for all $U \subseteq X$, then
+  $\varphi$ is surjective.
+  However, the converse is false
+  in general.
+\end{remark}
+
+\begin{definition}
+  A sequence of morphisms of
+  sheaves
+  \[
+    \begin{tikzcd}
+      \mathcal{F} \ar[r, "f"]
+      & \mathcal{G} \ar[r, "g"]
+      & \mathcal{H}
+    \end{tikzcd}
+  \]
+  is \emph{exact} at $\mathcal{G}$
+  if $\ker g = \im f$.
+\end{definition}
+
+\begin{lemma}
+  The following are equivalent:
+  \begin{enumerate}
+    \item $\ker g = \im f$;
+    \item $\ker g_x = \im f_x$
+      for all $x \in X$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  Similar to above.
+\end{proof}
+
+\section{Constructions with Sheaves}
+
+\begin{definition}
+  Let $\mathcal{F}_1, \mathcal{F}_2$
+  be sheaves on $X$. Then
+  $\mathcal{F}_1 \oplus \mathcal{F}_2$
+  is a sheaf defined by
+  \[
+    U \longmapsto
+    \mathcal{F}_1(U) \oplus \mathcal{F}_2(U).
+  \]
+  This is a \emph{biproduct} in
+  the category of sheaves.
+\end{definition}
+
+\begin{example}
+  Let $X$ be a variety with
+  connected components $X_1, \dots, X_n$.
+  Then
+  \[
+    \OO_X \cong \OO_{X_1} \oplus \cdots \oplus \OO_{X_n}
+  \]
+  as sheaves of abelian groups.
+\end{example}
+
+\begin{definition}
+  Let $U \subseteq X$ be open.
+  Then $\mathcal{F}_i|_U$
+  is a sheaf on $U$ given
+  by $V \mapsto \mathcal{F}_i(V)$
+\end{definition}
+
+\begin{definition}
+  $\Hom(\mathcal{F}_1, \mathcal{F}_2)$
+  is the sheaf
+  $U \mapsto \Hom^{\mathrm{sheaves}}(\mathcal{F}_1|_U, \mathcal{F}_2|_U)$.
+\end{definition}
+
+\begin{definition}[Gluing]
+  Let $\{U_i\}$ be an open cover of
+  $X$ with a sheaf
+  $\mathcal{F}_i$ on each
+  $U_i$ and
+  isomorphisms
+  $\alpha_{i, j} : \mathcal{F}_j|_{U_{i, j}} \to \mathcal{F}_i|_{U_{i, j}}$
+  such that $\alpha_{i, j} = \alpha_{j, i}^{-1}$,
+  $\alpha_{i, j} \circ \alpha_{j, k} = \alpha_{i, k}$, and
+  $\alpha_{i, i} = \id$. Then there
+  exists a sheaf $\mathcal{F}$
+  with isomorphisms
+  $\beta_i : \mathcal{F}|_{U_i} \to \mathcal{F}_i$
+  such that the following
+  diagram commutes:
+  \[
+    \begin{tikzcd}
+      \mathcal{F}|_{U_{i, j}}
+      \ar[r, "\id"] \ar[d, swap, "\beta_j"] & \mathcal{F}|_{U_{i, j}} \ar[d, "\beta_i"] \\
+      \mathcal{F}_i|_{U_{i, j}} \ar[r, "\alpha_{i, j}", swap]
+      & \mathcal{F}_j|_{U_{i, j}}
+    \end{tikzcd}
+  \]
+  One can define $\mathcal{F}$
+  as follows and check that it
+  satisfies the above properties:
+  \[
+    \mathcal{F}(U)
+    = \{(s_i)_{i \in I} : s_i \in \mathcal{F}(U_i) \text{ and } \alpha_{i, j}(s_j|_{U_{i, j}}) = s_i\}.
+  \]
+\end{definition}

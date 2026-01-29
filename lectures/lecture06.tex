@@ -1,0 +1,284 @@
+\chapter{Jan.~29 --- \texorpdfstring{$\OO_X$}{OX}-Modules, Part 2}
+
+\section{More on \texorpdfstring{$\OO_X$}{OX}-Modules}
+
+\begin{remark}
+  Recall that we have operations
+  $\otimes$, $\oplus$,
+  $\Sym^d$, $\wedge^d$,
+  $\Homm(\cdot, \cdot)$ on
+  $\OO_X$-modules.
+\end{remark}
+
+\begin{example}
+  The sheaf $\Homm_{\OO_X}(\mathcal{F}, \mathcal{G})$
+  is the sheafification of
+  \[
+    U \longmapsto
+    \Hom_{\OO_X}(\mathcal{F}|_U, \mathcal{G}|_U).
+  \]
+  This is again an $\OO_X$-module.
+\end{example}
+
+\begin{example}
+  We have $\mathcal{F}^\vee = \Homm_{\OO_X}(\mathcal{F}, \OO_X)$.
+\end{example}
+
+\begin{exercise}
+  The invertible sheaves on $X$
+  up to isomorphism forms a group
+  with multiplication given by
+  $\otimes$, identity $\OO_X$,
+  and inverse
+  $\mathcal{L}^{-1} = \mathcal{L}^\vee$.
+\end{exercise}
+
+\begin{remark}[Transition data]
+  Let $\mathcal{L}$ be an invertible
+  $\OO_X$-module. Then there exists an
+  open cover $\{U_i\}$ of $X$ and
+  isomorphisms
+  $\alpha_i : \mathcal{L}|_{U_i} \to \OO_{U_i}$,
+  so we get isomorphisms
+  \[
+    \alpha_{i, j}
+    = \alpha_i \circ \alpha_j^{-1}
+    : \OO_{U_{i, j}}
+    \to \OO_{U_{i, j}}.
+  \]
+  For this to be an isomorphism,
+  we must have
+  $\alpha_{i, j}(U_{i, j})(1) = g_{i, j} \in \OO_X(U_{i, j})^\times$.
+\end{remark}
+
+\begin{prop}
+  If $X$ is a variety, then there is a
+  bijection
+  \begin{align*}
+    \{\text{line bundles on } X\} / {\cong}
+    &\longrightarrow
+    \{
+      \text{invertible sheaves on } X
+    \} / {\cong} \\
+    \mathbb{L} &\longmapsto \mathcal{L}
+  \end{align*}
+\end{prop}
+
+\begin{proof}
+  To get the reverse map, fix
+  an invertible $\OO_X$-module
+  $\mathcal{L}$ with trivialization
+  data $(U_i, g_{i, j})$. Send it
+  to the line bundle with the same
+  trivialization data.
+  Check that this is well-defined
+  as an exercise.
+
+  To show that this gives an inverse,
+  it suffices to show that if
+  $\mathbb{L}$ is a line bundle
+  with trivialization data
+  $(U_i, g_{i, j})$, then the sheaf
+  $\mathcal{L}$ of sections of
+  $\mathbb{L}$ has the same
+  trivialization data.
+  The trivializations
+  \begin{align*}
+    \mathbb{L}|_{U_i}
+    &\underset{\cong}{\overset{\phi_i}{\longrightarrow}}
+    U_i \times \Affine^1
+  \end{align*}
+  give isomorphisms
+  $U_{i, j} \times \Affine^1 \to U_{i, j} \times \Affine^1$
+  by $(x, v) \mapsto (x, g_{i, j}(x) v)$.
+  We get an isomorphism
+  \begin{align*}
+    \alpha_i :
+    \mathbb{L}|_{U_i}
+    &\underset{\cong}{\overset{\phi_i}{\longrightarrow}}
+    \OO_{U_i}
+  \end{align*}
+  where $e_i = \alpha_i^{-1}(1) = [U_i \xrightarrow{x \mapsto (x, 1)} U_i \times \Affine^1 \xrightarrow{\phi_i^{-1}} \mathbb{L}|_{U_i}]$.
+  Now we have
+  \[
+    \begin{tikzcd}[row sep=small]
+      \OO_{U_{i, j}}
+      \ar[r, "\alpha_j^{-1}"]
+      & \mathcal{L}|_{U_{i, j}}
+      \ar[r, "\alpha_i"]
+      & \OO_{U_{i, j}} \\
+      1 \ar[r, mapsto]
+      & e_j = e_i g_{i, j}
+      \ar[r, mapsto] & g_{i, j}.
+    \end{tikzcd}
+  \]
+  So we get the same transition
+  functions $(U_i, g_{i, j})$
+  for $\mathcal{L}$.
+\end{proof}
+
+\begin{remark}
+  Given a morphism of rings
+  $\phi : A \to B$, we have functors
+  \[
+    \begin{tikzcd}
+      \mathrm{Mod}_B
+      \ar[r, bend left, "\Phi"]
+      & \mathrm{Mod}_A
+      \ar[l, bend left, "\Psi"]
+    \end{tikzcd}
+  \]
+  given as follows:
+  \begin{enumerate}
+    \item \emph{Extension of scalars}:
+      $\mathrm{Mod}_A \ni M \longmapsto M \otimes_A B \in \mathrm{Mod}_B$,
+      where the multiplication by $B$
+      is
+      \[
+        c (m \otimes b)
+        = m \otimes (cb).
+      \]
+      For example, if
+      $M = A^{\oplus I}$, then
+      $M \otimes_A B = B^{\oplus I}$.
+    \item \emph{Restriction of scalars}:
+      $\mathrm{Mod}_B \ni N \longmapsto N_A \in \mathrm{Mod}_A$,
+      where $N_A := N$ as
+      abelian groups with
+      \[
+        a \cdot n = \phi(a) n
+      \]
+      as the multiplication by $A$.
+  \end{enumerate}
+\end{remark}
+
+\begin{prop}
+  There is a functorial bijection
+  \begin{align*}
+    \Hom_B(M \otimes_A B, N)
+    &\longleftrightarrow
+    \Hom_A(M, N_A) \\
+    [f : M \otimes_A B \to N]
+    &\longmapsto
+    [m \mapsto f(m \otimes 1)] \\
+    [m \otimes b \mapsto b \cdot g(m)]
+    &\mathrel{\reflectbox{\ensuremath{\longmapsto}}} [g : M \to N_A]
+  \end{align*}
+  for $M \in \mathrm{Mod}_A$
+  and $N \in \mathrm{Mod}_B$.
+\end{prop}
+
+\begin{remark}
+  Given the result for rings, we
+  want a similar statement for
+  $\OO_X$-modules.
+\end{remark}
+
+\section{\texorpdfstring{$\OO_X$}{OX}-Modules and Continuous Maps}
+
+\begin{definition}
+  A \emph{morphism of ringed spaces}
+  $(X, \OO_X) \to (Y, \OO_Y)$
+  is the data of
+  \begin{enumerate}
+    \item a continuous map $f : X \to Y$,
+    \item a morphism of sheaves
+      of rings $f^\# : \OO_Y \to f_* \OO_X$.
+  \end{enumerate}
+\end{definition}
+
+\begin{example}
+  If $X \to Y$ is a morphism of
+  varieties, then
+  $\OO_Y \to f_* \OO_X$ is given
+  for $U \subseteq Y$ open by
+  \begin{align*}
+    \OO_Y(U) &\longrightarrow
+    \OO_X(f^{-1}(U)) \\
+    \varphi &\longmapsto f^* \varphi.
+  \end{align*}
+\end{example}
+
+\begin{remark}
+  Our goal will be to define
+  functors
+  \[
+    \begin{tikzcd}
+      \mathrm{Mod}_{\OO_X}
+      \ar[r, bend left, "f_*"]
+      & \mathrm{Mod}_{\OO_Y}
+      \ar[l, bend left, "f^{*}"]
+    \end{tikzcd}
+  \]
+\end{remark}
+
+\begin{remark}[Pushforward]
+  Given an $\OO_X$-module $\mathcal{F}$,
+  the sheaf pushforward
+  $f_* \mathcal{F}$
+  is naturally an $f_* \OO_X$-module.
+  Via the map
+  $f^\# : \OO_Y \to f_* \OO_X$,
+  we get an $\OO_Y$-module structure
+  on $f_* \mathcal{F}$.
+  More concretely, for
+  $U \subseteq Y$ open,
+  $s \in f_* \mathcal{F}(U) = \mathcal{F}(f^{-1}(U))$,
+  and $a \in \OO_Y(U)$, we can define
+  \[
+    a \cdot s
+    = f^\#(U)(a) \cdot s.
+  \]
+\end{remark}
+
+\begin{remark}[Pullback]
+  Given an $\OO_Y$-module
+  $\mathcal{G}$, we get an
+  $f^{-1} \OO_Y$-module
+  $f^{-1} \mathcal{G}$. By the
+  adjoint property for
+  $(f^{-1}, f_*)$, the morphism
+  $\OO_Y \to f_* \OO_X$
+  corresponds to a morphism
+  $f^{-1} \OO_Y \to \OO_X$. So we get
+  \[
+    f^* \mathcal{G} := f^{-1} \mathcal{G} \otimes_{f^{-1} \OO_Y} \OO_X
+  \]
+  is an $\OO_X$-module.
+  Thus we get a functor
+  $f^* : \mathrm{Mod}_{\OO_Y} \to \mathrm{Mod}_{\OO_X}$.
+\end{remark}
+
+\begin{prop}
+  The pair $(f^*, f_*)$ are
+  adjoint functors.
+\end{prop}
+
+\begin{proof}
+  Similar to before.
+\end{proof}
+
+\begin{example}\label{ex:pullbackofstructure}
+  Recall that if $A \to B$ is a
+  morphism of rings, then
+  $A \otimes_A B \cong B$. In
+  our setting, we get
+  \[
+    f^* \OO_Y
+    = (f^{-1} \OO_Y \widetilde{\otimes}_{f^{-1} \OO_Y} \OO_X)^+
+    \cong \OO_X^+ \cong \OO_X.
+  \]
+  Similarly, we have
+  $f^*(\OO_Y^{\oplus I}) \cong (f^* \OO_Y)^{\oplus I} \cong \OO_X^{\oplus I}$
+  (as left-adjoint functors
+  commute with coproducts).
+\end{example}
+
+\begin{remark}
+  If $\mathcal{E}$ is a locally
+  free rank $m$ $\OO_X$-module,
+  then $f^* \mathcal{E}$ is a
+  locally free rank $m$ $\OO_Y$-module,
+  (as $f^*$ can be computed locally
+  on $Y$ using Example \ref{ex:pullbackofstructure}).
+\end{remark}

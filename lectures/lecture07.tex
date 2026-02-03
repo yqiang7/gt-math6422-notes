@@ -1,0 +1,459 @@
+\chapter{Feb.~3 --- Coherent Sheaves}
+
+\section{Review of Localization}
+
+\begin{remark}
+  Let $A$ be a ring and $S \subseteq A$
+  a multiplicative system (i.e.
+  $1 \in S$, and $a, b \in S$ implies
+  $ab \in S$).
+  For example, we could take
+  $S = \langle f \rangle = (1, f, f^2, \dots)$
+  for $f \in A$ or $S = A \setminus \p$
+  for a prime ideal $\p \le A$.
+\end{remark}
+
+\begin{definition}
+  The \emph{localization} of $A$ at $S$
+  is
+  \[
+    S^{-1} A = \{ a / s : a \in A, s \in S\},
+  \]
+  where $a / s = a' / s'$
+  if and only if $t(a s' - a' s) = 0$
+  for some $t \in S$.
+\end{definition}
+
+\begin{remark}
+  The localization satisfies the
+  following universal property:
+  \[
+    \begin{tikzcd}
+      A \ar[r, "a \mapsto a / 1"] \ar[dr, "f", swap]
+      & S^{-1} A \ar[d, dashed, "\exists !"] \\
+      & T
+    \end{tikzcd}
+  \]
+  whenever $f(S)$ lands in
+  the units of $T$.
+\end{remark}
+
+\begin{definition}
+  For an $A$-module $M$, the
+  \emph{localization} of $M$ at $S$ is
+  \[
+    S^{-1} M = \{ m / s : m \in M, s \in S\},
+  \]
+  where $m / s = m' / s'$
+  if and only if
+  $t(s' m - s m') = 0$
+  for some $t \in S$.
+\end{definition}
+
+\begin{remark}
+  For $S = \langle f \rangle$, we
+  will write $S^{-1} M = M_f$.
+  For $S = A \setminus \p$,
+  we will write
+  $S^{-1} M = M_\p$.
+\end{remark}
+
+\begin{prop}\label{prop:localization-properties}
+  We have the following properties
+  for localization:
+  \begin{enumerate}
+    \item There is an isomorphism
+      \begin{align*}
+        M \otimes_A S^{-1} A
+        &\overset{\cong}{\longrightarrow} S^{-1} M \\
+        m \otimes (a / s)
+        &\longmapsto (am) / s.
+      \end{align*}
+    \item Localization gives an
+      exact functor
+      \begin{align*}
+        \mathrm{Mod}_A
+        &\longrightarrow \mathrm{Mod}_{S^{-1} A} \\
+        M &\longmapsto S^{-1} M.
+      \end{align*}
+    \item A sequence in
+      $\mathrm{Mod}_A$
+      \[
+        \begin{tikzcd}
+          0 \ar[r] & M' \ar[r] & M \ar[r] & M'' \ar[r] & 0
+        \end{tikzcd}
+      \]
+      is exact if and only if the
+      sequence
+      \[
+        \begin{tikzcd}
+          0 \ar[r] & M'_\p \ar[r] & M_\p \ar[r] & M''_\p \ar[r] & 0
+        \end{tikzcd}
+      \]
+      is exact for all
+      maximal (equivalently, prime)
+      ideals $\p \le A$.
+  \end{enumerate}
+\end{prop}
+
+\begin{example}
+  Recall that if $X$ is an affine
+  variety, then
+  \[
+    \OO_X(D(f)) \cong A(X)_f
+    \quad \text{and} \quad
+    \OO_{X, x} \cong A(X)_{\m_x},
+  \]
+  where $\m_x = I(\{x\}) \le A(X)$.
+\end{example}
+
+\section{Coherent Sheaves on Affine Varieties}
+
+\begin{remark}
+  For this section, let
+  $X$ be an affine variety and
+  $A = \OO_X(X) = A(X)$. We want a
+  functor
+  \[
+    \mathrm{Mod}_A
+    \longrightarrow \mathrm{Mod}_{\OO_X}.
+  \]
+\end{remark}
+
+\begin{theorem}\label{thm:unique-OX-module}
+  For $M \in \mathrm{Mod}_A$,
+  there exists a unique $\OO_X$-module
+  $\widetilde{M}$ such that
+  \begin{enumerate}
+    \item $\widetilde{M}(D(f)) \cong M_f$;
+    \item for $D(g) \subseteq D(f)$,
+      we have
+      \[
+        \begin{tikzcd}
+          \widetilde{M}(D(f))
+          \ar[r] \ar[d, "=",swap]
+          & \widetilde{M}(D(g)) \ar[d] \\
+          M_f
+          \ar[r, "\mathrm{natural\, map}", swap]
+          & M_g
+        \end{tikzcd}
+      \]
+  \end{enumerate}
+\end{theorem}
+
+\begin{remark}
+  How is the natural map
+  $M_f \to M_g$ defined? If
+  $D(g) \subseteq D(f)$, then we have
+  $V(g) \supseteq V(f)$, so
+  $\sqrt{(g)} \subseteq \sqrt{(f)}$.
+  Thus $g \in \sqrt{(f)}$, so
+  $g^d = fh$ for some $d > 0$ and
+  $h \in A$. So we get a map
+  \begin{align*}
+    M_f &\longrightarrow M_g \\
+    m / f^i
+    &\longmapsto 
+    mh^i / g^{d i}.
+  \end{align*}
+  Alternatively, if $D(g) \subseteq D(f)$,
+  then $D(g) = D(gf)$, so we could
+  instead consider
+  \[
+    \begin{tikzcd}
+      \widetilde{M}(D(f))
+      \ar[r] \ar[d, "=",swap]
+      & \widetilde{M}(D(fg)) \ar[d] \\
+      M_f
+      \ar[r, "m / f^i \mapsto m g^i / (fg)^i", swap]
+      & M_{fg}
+    \end{tikzcd}
+  \]
+\end{remark}
+
+\begin{remark}
+  To construct $\widetilde{M}$,
+  we need the notion of
+  \emph{sheaves on a basis}. Let
+  $(X, \OO_X)$ be a ringed space and
+  $\mathcal{P}$ a collection of
+  open sets in $X$ such that
+  \begin{enumerate}
+    \item $\mathcal{P}$ is a
+      basis for $X$;
+    \item  if $U, V \in \mathcal{P}$,
+      then $U \cap V \in \mathcal{P}$.
+  \end{enumerate}
+\end{remark}
+
+\begin{example}
+  If $(X, \OO_X)$ is an affine
+  variety, we can take $\mathcal{P} = \{D(f) : f \in A(X)\}$.
+  Also, if $(X, \OO_X)$ is a
+  general algebraic variety, then
+  we can take $\mathcal{P}$
+  to be the affine open subsets of $X$ 
+  (as $X$ is separated, the intersection
+  of two affine open subsets is
+  again affine open).
+\end{example}
+
+\begin{definition}
+  A \emph{$\mathcal{P}$-sheaf of $\OO_X$-modules}
+  $\mathcal{F}$
+  on $X$ is the data of:
+  \begin{itemize}
+    \item an $\OO_X(U)$-module
+      $\mathcal{F}(U)$ for
+      each $U \in \mathcal{P}$,
+    \item homomorphisms of abelian
+      groups $\mathcal{F}(U) \to \mathcal{F}(V)$
+      for all $U, V \in \mathcal{P}$
+      with $V \subseteq U$
+  \end{itemize}
+  satisfying the following properties:
+  \begin{itemize}
+    \item the multiplication is
+      compatible with restriction,
+    \item the sheaf axiom with respect
+      to open sets in $\mathcal{P}$.
+  \end{itemize}
+\end{definition}
+
+\begin{example}
+  If $\mathcal{F}$ is a sheaf of
+  $\OO_X$-modules, then we get
+  $\mathcal{F}^{\mathcal{P}}$,
+  a $\mathcal{P}$-sheaf of
+  $\OO_X$-modules.
+\end{example}
+
+\begin{theorem}\label{thm:P-sheaf-equivalence}
+  There is an equivalence of categories
+  \begin{align*}
+    \mathrm{Mod}_{\OO_X}
+    &\longrightarrow
+    \mathrm{Mod}_{\OO_X}^{\mathcal{P}} \\
+    \mathcal{F}
+    &\longmapsto
+    \mathcal{F}^{\mathcal{P}}.
+  \end{align*}
+  In particular,
+  $\Hom_{\OO_X}(\mathcal{F}, \mathcal{G}) \to \Hom(\mathcal{F}^{\mathcal{P}}, \mathcal{G}^{\mathcal{P}})$
+  is a bijection, and for any
+  $\mathcal{H} \in \mathrm{Mod}_{\OO_X}^{\mathcal{P}}$,
+  there exists some $\mathcal{F} \in \mathrm{Mod}_{\OO_X}$
+  such that $\mathcal{F}^{\mathcal{P}} \cong \mathcal{H}$.
+\end{theorem}
+
+\begin{proof}
+  We construct the inverse functor.
+  Take
+  $\mathcal{H} \in \mathrm{Mod}_{\OO_X}^{\mathcal{P}}$, and
+  define $\mathcal{F} \in \mathrm{Mod}_{\OO_X}$
+  by setting
+  \[
+    \mathcal{F}(U)
+    = \{(s_V)_{V \in \mathcal{P}, V \subseteq U} : s_V|_{V \cap V'} = s_V'|_{V \cap V'} \text{ for all } V, V' \in \mathcal{P} \text{ with } V, V' \subseteq U\}.
+  \]
+  One can check that this defines a
+  functor and an equivalence of categories.
+\end{proof}
+
+\begin{remark}
+  Returning to algebraic geometry,
+  let $X$ be an affine variety,
+  $A = A(X)$, and $M$ an $A$-module.
+\end{remark}
+
+\begin{prop}\label{prop:P-sheaf-from-module}
+  For $\mathcal{P} = \{D(f) : f \in A\}$,
+  the assignment $D(f) \mapsto M_f$
+  with the natural restriction maps
+  defines a $\mathcal{P}$-sheaf of $\OO_X$-modules.
+\end{prop}
+
+\begin{proof}
+  See Mustata Lemma 8.3.2.
+  The hard part is to check the
+  sheaf axiom for $\mathcal{P}$, which
+  is similar to the computation
+  that $\OO_X(D(f)) \cong A_f$
+  for an affine variety $X$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:unique-OX-module}]
+  Combining
+  Theorem \ref{thm:P-sheaf-equivalence}
+  and Proposition
+  \ref{thm:P-sheaf-equivalence},
+  we get an $\OO_X$-module
+  $\widetilde{M}$ such that
+  $\widetilde{M}(D(f)) \cong M_f$,
+  and it is unique up to isomorphism.
+\end{proof}
+
+\begin{example}
+  We have
+  $\widetilde{A} \cong \OO_X$, since
+  \[
+    \widetilde{A}(D(f))
+    \cong A_f \cong \OO_X(D(f)).
+  \]
+  Similarly, one can check that
+  $\widetilde{A^{\oplus I}} \cong \widetilde{\OO_X^{\oplus I}}$.
+\end{example}
+
+\begin{exercise}
+  For $Z \subseteq X$ closed and
+  $I(Z) \le A(X)$, we have
+  $\widetilde{I(Z)} \cong \mathcal{I}_Z$ (the ideal sheaf of $Z$).
+\end{exercise}
+
+\begin{remark}
+  We have the following:
+  \begin{enumerate}
+    \item For $x \in X$ with
+      $\p := I(\{x\}) \le A$, we have
+      $\widetilde{M}_x \cong \varinjlim_{D(f) \ni x} \widetilde{M}(D(f)) = \varinjlim_{f \in A \setminus \p} M_f \cong M_\p$.
+    \item For an $A$-module
+      homomorphism $\varphi : M \to N$,
+      we get homomorphisms
+      \[
+        \begin{tikzcd}
+          \widetilde{M}(D(f)) \ar[r]
+          \ar[d, "\cong", swap]
+          & \widetilde{N}(D(f)) \ar[d, "\cong"] \\
+          M_f \ar[r, "\mathrm{natural\, map}", swap]
+          & N_f
+        \end{tikzcd}
+      \]
+      which are
+      compatible with restriction.
+      So we get a homomorphism
+      of $\OO_X$-modules
+      $\widetilde{M} \to \widetilde{N}$.
+      One can check that this gives a
+      functor
+      $\Phi : \mathrm{Mod}_A \to \mathrm{Mod}_{\OO_X}$.
+  \end{enumerate}
+\end{remark}
+
+\begin{prop}\label{prop:properties-of-tilde-functor}
+  We have the following:
+  \begin{enumerate}
+    \item $\Phi$ is exact;
+    \item the following map
+      is a bijection:
+      \begin{align*}
+        \Hom_A(M, N)
+        &\longrightarrow
+        \Hom_{\OO_X}(\widetilde{M}, \widetilde{N}) \\
+        \varphi &\longmapsto \widetilde{\varphi}
+      \end{align*}
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  (1)  If $0 \to M' \to M \to M'' \to 0$
+  is exact, then
+  $0 \to M'_\p \to M_\p \to M''_\p \to 0$
+  is exact for every
+  $\p \le A$ maximal by
+  Proposition \ref{prop:localization-properties}(3).
+  So the sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \widetilde{M}'_x
+      \ar[r] & \widetilde{M}_x
+      \ar[r] & \widetilde{M}''_x
+      \ar[r] & 0
+    \end{tikzcd}
+  \]
+  is exact for all
+  $x \in X$. So
+  $0 \to \widetilde{M}' \to \widetilde{M} \to \widetilde{M}'' \to 0$
+  is exact.
+
+  (2) We want a map
+  $\Hom_{\OO_X}(\widetilde{M}, \widetilde{N}) \to \Hom_A(M, N)$.
+  Given an $\OO_X$-module
+  homomorphism
+  $\varphi : \widetilde{M} \to \widetilde{N}$,
+  we get
+  $f = \varphi(X) : \widetilde{M}(X) = M \to \widetilde{N}(X) = N$.
+  We want to show that
+  $\widetilde{f} = \varphi$. We have
+  \[
+    \begin{tikzcd}
+      \widetilde{M}(X)
+      \ar[r, "\varphi(X)"] \ar[d]
+      & \widetilde{N}(X) \ar[d] \\
+      \widetilde{M}(D(g))
+      \ar[r, "\varphi(D(f))", swap]
+      & \widetilde{N}(D(g))
+    \end{tikzcd}
+  \]
+  and this diagram commutes.
+  So we get $\widetilde{f}(D(g)) = \varphi(D(g))$.
+\end{proof}
+
+\begin{remark}
+  By
+  Proposition \ref{prop:properties-of-tilde-functor}(1),
+  given an $A$-module
+  homomorphism $f : M \to N$, we have
+  \[
+    \ker(\widetilde{f})
+    \cong \widetilde{\ker(f)},
+    \quad \coker(\widetilde{f})
+    \cong \widetilde{\coker(f)},
+    \quad \im(\widetilde{f})
+    \cong \widetilde{\im(f)}.
+  \]
+\end{remark}
+
+\begin{prop}
+  For $M, N \in \mathrm{Mod}_A$,
+  we have
+  \begin{enumerate}
+    \item $\widetilde{M} \otimes_{\OO_X} \widetilde{N}
+      \cong \widetilde{M \otimes_A N}$;
+    \item $\widetilde{\Hom_A(M, N)}
+      \cong \Homm_{\OO_X}(\widetilde{M}, \widetilde{N})$;
+    \item $\widetilde{\bigoplus_{i \in I} M_i}
+      \cong \bigoplus_{i \in I} \widetilde{M}_i$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  (1) We have a homomorphism
+  \[
+    \begin{tikzcd}
+    M \otimes_A N
+    \ar[r, "\cong"]
+    &
+    \Gamma(X, \widetilde{M}\, \widetilde{\otimes}_{\OO_X}\, \widetilde{N}) \ar[d] \\
+    & \Gamma(X, \widetilde{M}\, \otimes_{\OO_X}\, \widetilde{N})
+    \end{tikzcd}
+  \]
+  This gives a homomorphism
+  of $\OO_X$-modules
+  $\widetilde{M \otimes_A N} \to \widetilde{M} \otimes_{\OO_X} \widetilde{N}$.
+  Now at the stalks for
+  $x \in X$ with $\m = I(\{x\}) \le A(X)$,
+  we can see that
+  \[
+    (\widetilde{M \otimes_A N})_x
+    \cong (M \otimes_A N) \otimes_A A_\m
+    \cong M_\m \otimes_{A_\m} N_\m.
+  \]
+  Similarly, we have
+  \[
+    (\widetilde{M} \otimes_{\OO_X} \widetilde{N})_x
+    \cong \widetilde{M}_x \otimes_{\OO_{X, x}} \widetilde{N}_x
+    \cong M_\m \otimes_{A_\m} N_\m.
+  \]
+  Thus we have isomorphisms
+  at the stalks.
+\end{proof}

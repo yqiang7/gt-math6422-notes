@@ -1,0 +1,332 @@
+\chapter{Feb.~5 --- Coherent Sheaves, Part 2}
+
+\section{Coherent Sheaves on Affine Varieties, Continued}
+
+\begin{prop}
+  Let $\varphi : X \to Y$ be a morphism
+  of affine varieties, and let
+  \[
+    A = \OO_Y(Y)
+    \overset{\varphi^\#}{\longrightarrow}
+    \OO_X(X) = B
+  \]
+  be the corresponding
+  ring homomorphism on the coordinate
+  rings. Then:
+  \begin{enumerate}
+    \item For $N \in \mathrm{Mod}_B$,
+      we have $\varphi_* \widetilde{N} = \widetilde{N_A}$.
+    \item For $M \in \mathrm{Mod}_A$,
+      we have $\varphi^* \widetilde{M} = \widetilde{M \otimes_A B}$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  (1) For $f \in A = \OO_Y(Y)$,
+  the left-hand side is given on $D(f)$
+  by
+  \[
+    (\varphi_* \widetilde{N})(D(f))
+    = \widetilde{N}(\varphi^{-1}(D(f)))
+    = \widetilde{N}(D(\varphi^\# f))
+    = N_{\varphi^\# f}
+    = (N_A)_f.
+  \]
+  So we get that
+  $\varphi_* \widetilde{N} = \widetilde{N_A}$.
+
+  (2) (Hartshorne says this holds
+  by definition lol.)
+  First assume $M = A^{\oplus I}$. Then
+  \[
+    \varphi^* \widetilde{M}
+    = \varphi^*(\OO_Y^{\oplus I})
+    = (\varphi^* \OO_Y)^{\oplus I}
+    = \OO_X^{\oplus I}
+    = \widetilde{B^{\oplus I}}
+    = \widetilde{M \otimes_A B}.
+  \]
+  For an arbitrary $A$-module $M$,
+  we use the following:
+  \begin{quote}
+    \textbf{Claim:} There exists an
+    exact sequence
+    \[
+      \begin{tikzcd}
+        A^{\oplus J} \ar[r, "\alpha"]
+        & A^{\oplus I} \ar[r, "\beta"]
+        & M \ar[r]
+        & 0
+      \end{tikzcd}
+    \]
+
+    \begin{proof}[Proof of claim]
+      Choose generators $(m_i)_{i \in I}$ for
+      $M$, and set
+      $\beta(e_i) = m_i$. Choose
+      generators $(n_j)_{j \in J}$
+      for $\ker \beta$. Then we can set
+      $\alpha(f_j) = n_j$.
+    \end{proof}
+  \end{quote}
+  Apply $\cdot \otimes_A B$ (which is
+  right exact)
+  to the
+  exact sequence from the claim to
+  get
+  \[
+    \begin{tikzcd}
+      B^{\oplus J} \ar[r]
+      & B^{\oplus I} \ar[r]
+      & M \otimes_A B \ar[r]
+      & 0.
+    \end{tikzcd}
+  \]
+  Applying $\varphi^* (\, \widetilde{\cdot}\,)$
+  (note that $\widetilde{\cdot}$
+  is exact and $\varphi^*$ is right exact)
+  to the original sequence to get
+  \[
+    \begin{tikzcd}[row sep=small]
+      \varphi^*(\widetilde{A^{\oplus J}}) \ar[r]
+      & \varphi^*(\widetilde{A^{\oplus I}}) \ar[r]
+      & \varphi^* \widetilde{M} \ar[r]
+      & 0 \\
+      B^{\oplus J} \ar[u, equal]
+      & B^{\oplus I} \ar[u, equal]
+    \end{tikzcd}
+  \]
+  using the previous case.
+  Thus $\varphi^* \widetilde{M} = \coker(\widetilde{B^{\oplus J}} \to \widetilde{B^{\oplus I}}) = (\coker(B^{\oplus J} \to B^{\oplus I}))\widetilde{\ } = \widetilde{M \otimes_A B}$.
+\end{proof}
+
+\section{Quasicoherent and Coherent Sheaves}
+\begin{remark}
+  For the rest of this lecture,
+  assume $(X, \OO_X)$ is a variety
+  (not necessarily affine).
+\end{remark}
+
+\begin{definition}
+  An $\OO_X$-module $\mathcal{F}$
+  is \emph{quasicoherent}
+  if there exists an affine cover
+  $X = \bigcup_{i \in I} U_i$
+  such that $\mathcal{F}|_{U_i} \cong \widetilde{M}_i$
+  for some $\OO_X(U_i)$-module $M_i$.
+  It is \emph{coherent} if the
+  $M_i$ are finitely generated
+  $\OO_X(U_i)$-modules.
+\end{definition}
+
+\begin{remark}
+  We have $M_i \cong \widetilde{M}_i(U_i) \cong \mathcal{F}(U_i)$,
+  so we may replace the
+  $\mathcal{F}|_{U_i} \cong \widetilde{M}_i$
+  condition with one of the
+  following:
+  $\mathcal{F}|_{U_i} \cong \widetilde{\mathcal{F}(U_i)}$,
+  or $\mathcal{F}(U_i)_f \to \mathcal{F}(D_{U_i}(f))$
+  is an isomorphism for
+  all $f \in \OO_X(U_i)$.
+\end{remark}
+
+\begin{example}
+  We have the following:
+  \begin{enumerate}
+    \item If $\mathcal{E}$ is a
+      locally free sheaf of rank $r$ 
+      on $X$, then there exists an
+      open cover $X = \bigcup U_i$
+      such that $\mathcal{E}|_{U_i} \cong \OO_X^{\oplus r}|_{U_i}$.
+      Refining the cover, we may
+      assume the $U_i$ are affine,
+      so
+      \[
+        \mathcal{E}|_{U_i}
+        = \widetilde{\OO_X(U_i)^{\oplus r}}.
+      \]
+      Thus we see that
+      $\mathcal{E}$ is coherent.
+    \item For $Z \hookrightarrow X$
+      a closed embedding,
+      $\mathcal{I}_Z \subseteq \OO_X$
+      is coherent.
+    \item For $\mathcal{F}$ a
+      (quasi)coherent $\OO_X$-module
+      and $U \subseteq X$ open,
+      $\mathcal{F}|_U$ is
+      (quasi)coherent.
+
+      To see this, use that if
+      $\mathcal{F}|_{U_i} \cong \widetilde{M}_i$
+      for $M_i$ an $\OO_X(U_i)$-module
+      and $f \in \OO_X(U_i)$, then
+      \[\mathcal{F}|_{D_{U_i}(f)} \cong \widetilde{(M_{i})_f}.\]
+      Furthermore, if $M_i$
+      is finitely generated, then so
+      is $(M_i)_f$. So by
+      refining our open affine cover in
+      with principal
+      opens (which form a basis)
+      we may assume $U = \bigcup_{i, U_i \subseteq U} U_i$.
+      This gives the result.
+  \end{enumerate}
+\end{example}
+
+\begin{prop}[Key proposition]\label{prop:qc-coh-equiv}
+  Let $\mathcal{F} \in \mathrm{Mod}_{\OO_X}$.
+  The following are equivalent:
+  \begin{enumerate}
+    \item $\mathcal{F}$ is
+      quasicoherent (resp. coherent).
+    \item For any affine open set
+      $U \subseteq X$, we have
+      $\mathcal{F}|_U \cong \widetilde{\mathcal{F}(U)}$
+      (with $\mathcal{F}(U)$ finitely
+      generated in the coherent case).
+  \end{enumerate}
+\end{prop}
+
+\begin{lemma}[Affine communication]\label{lem:affine-communication}
+  If $X$ is a variety,
+  $U, V \subseteq X$ affine open
+  subsets, and $p \in U \cap V$,
+  then there exists an open set
+  $p \in W \in U \cap V$ that is a
+  principal open of both $U$ and $V$.
+\end{lemma}
+
+\begin{proof}
+  Choose a principal open of $U$
+  with $p \in W_1 = D_U(h) \subseteq U \cap V$
+  for some $h \in \OO_X(U)$,
+  and choose a principal open
+  of $V$ with $p \in W = D_V(g) \subseteq W_1$
+  for some $g \in \OO_X(V)$. Now
+  \[
+    g|_{W_1}
+    = \OO_X(W_1)
+    = \OO_X(U)_h,
+  \]
+  so $g|_{W_1} = f / h^i$ for some
+  $f \in \OO_X(U)$ and $i \ge 0$. Now
+  $D_V(g) = W = D_{W_1}(g|_{W_1}) = D_U(f h)$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition \ref{prop:qc-coh-equiv}]
+  $(2 \Rightarrow 1)$ This is clear.
+
+  $(1 \Rightarrow 2)$ Assume
+  $\mathcal{F} \in \mathrm{QCoh}_X$.
+  So there exists an open affine
+  cover $\{U_i\}$ such that
+  $\mathcal{F}|_{U_i} = \widetilde{\mathcal{F}(U_i)}$.
+  Fix $U \subseteq X$ affine open. By
+  refining the cover, we may assume
+  that $U = \bigcup_{U_i \subseteq U} U_i$.
+  Now replacing $X$ with $U$, we may
+  assume that $X = U$. Using
+  Lemma \ref{lem:affine-communication},
+  we may assume $U_i = D(f_i)$
+  for some $f_i \in \OO_X(X)$.
+
+  So now
+  $X$ is affine, $X = \bigcup_{i = 1}^r D(f_i)$,
+  and $\mathcal{F}|_{D(f_i)} \cong \widetilde{\mathcal{F}(D(f_i))}$.
+  We want to show that
+  for any $f \in A$, the natural
+  map $\mathcal{F}(X)_f \to \mathcal{F}(D(f))$
+  is an isomorphism (this would imply
+  $\mathcal{F} \cong \widetilde{\mathcal{F}(X)}$). Now
+  \[
+    \begin{tikzcd}
+      0 \ar[r]
+      & \mathcal{F}(X)_f \ar[r] \ar[d, "\alpha"]
+      & \bigoplus_i \mathcal{F}(D(f_i))_f \ar[r] \ar[d, "\beta"]
+      & \bigoplus_{i, j} \mathcal{F}(D(f_i f_j))_f \ar[d, "\gamma"] \\
+      0 \ar[r]
+      & \mathcal{F}(D(f)) \ar[r]
+      & \bigoplus_i \mathcal{F}(D(f_i f))
+      \ar[r]
+      & \bigoplus_{i, j} \mathcal{F}(D(f_i f_j f))
+    \end{tikzcd}
+  \]
+  where the first row is exact by
+  the sheaf property and using that
+  localization is exact, and the
+  second row is exact by the sheaf
+  property. Note that
+  $\beta$ and $\gamma$
+  are isomorphisms as
+  \[
+    \mathcal{F}|_{D(f_i)}
+    \cong \widetilde{\mathcal{F}(D(f_i))}
+    \quad \text{and} \quad
+    \mathcal{F}|_{D(f_i f_j)}
+    \cong \widetilde{\mathcal{F}(D(f_i f_j))}.
+  \]
+  So by the five lemma,
+  $\alpha$ is an isomorphism, and
+  thus $\mathcal{F} \cong \widetilde{\mathcal{F}(X)}$.
+\end{proof}
+
+\begin{remark}
+  For the coherent case, use the
+  fact that if $M$ is an $A$-module,
+  $A = (f_1, \dots, f_r)$,
+  and $M_{f_i}$ is finitely
+  generated for $i = 1, \dots, r$, then
+  $M$ is finitely generated.
+\end{remark}
+
+\begin{prop}
+  We have the following:
+  \begin{enumerate}
+    \item If $\varphi : \mathcal{F} \to \mathcal{G}$
+      is a morphism of
+      (quasi)coherent sheaves, then
+      $\ker \varphi,
+      \im \varphi,
+      \coker \varphi$
+      are (quasi)coherent.
+    \item If $\mathcal{F}$ and
+      $\mathcal{G}$ are
+      (quasi)coherent, then so
+      is $\mathcal{F} \otimes \mathcal{G}$.
+    \item If $\mathcal{F}_i$ is
+      quasicoherent for
+      $i \in I$, then
+      $\bigoplus_{i \in I} \mathcal{F}_i$
+      is quasicoherent.
+      Furthermore, if $\mathcal{F}_i$
+      is coherent and $|I| < \infty$,
+      then $\bigoplus_{i \in I} \mathcal{F}_i$
+      is coherent.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  (1) Choose $U \subseteq X$ affine
+  open. So we can write
+  $\mathcal{F}|_U = \widetilde{M}$
+  and $\mathcal{G}|_U = \widetilde{N}$.
+  Furthermore, $\varphi|_U = \widetilde{\alpha}$
+  for some $\OO_X(U)$-module
+  homomorphism $\alpha : M \to N$.
+  Now
+  \[
+    (\ker \varphi)|_U
+    = \ker \varphi|_U
+    = \ker \widetilde{\alpha}
+    = \widetilde{\ker \alpha}.
+  \]
+  Furthermore, if $\mathcal{F}$ and
+  $\mathcal{G}$ are coherent, then
+  $M$ and $N$ are finitely generated,
+  so $\ker \alpha$ is also
+  finitely generated.
+  One can show the same for
+  $\im \varphi$ and
+  $\coker \varphi$ similarly.
+\end{proof}

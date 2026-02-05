@@ -131,8 +131,8 @@
       \[
         \begin{tikzcd}
           \widetilde{M}(D(f))
-          \ar[r] \ar[d, "=",swap]
-          & \widetilde{M}(D(g)) \ar[d] \\
+          \ar[r] \ar[d, "=", swap]
+          & \widetilde{M}(D(g)) \ar[d, "="] \\
           M_f
           \ar[r, "\mathrm{natural\, map}", swap]
           & M_g
@@ -343,13 +343,14 @@
   We have the following:
   \begin{enumerate}
     \item $\Phi$ is exact;
-    \item the following map
+    \item $\Phi$ is fully
+      faithful, i.e. the following map
       is a bijection:
       \begin{align*}
         \Hom_A(M, N)
         &\longrightarrow
         \Hom_{\OO_X}(\widetilde{M}, \widetilde{N}) \\
-        \varphi &\longmapsto \widetilde{\varphi}
+        \varphi &\longmapsto \widetilde{\varphi}.
       \end{align*}
   \end{enumerate}
 \end{prop}
@@ -457,3 +458,10 @@
   Thus we have isomorphisms
   at the stalks.
 \end{proof}
+
+\begin{remark}
+  The functor $\Phi : \mathrm{Mod}_A \to \mathrm{Mod}_{\OO_X}$
+  is left adjoint to
+  $\mathrm{Mod}_{\OO_X} \to \mathrm{Mod}_A$
+  given by $\mathcal{F} \mapsto \mathcal{F}(X)$.
+\end{remark}

@@ -1,1 +1,320 @@
-\chapter{Jan.~27 ---}
+\chapter{Jan.~27 --- \texorpdfstring{$\OO_X$}{OX}-Modules}
+
+\section{Sheaves and Continuous Maps}
+
+\begin{remark}
+  The category $\mathrm{Sh}_X$
+  of sheaves of abelian
+  groups on a topological space $X$
+  is an abelian category, i.e.
+  it has or satisfies the following:
+  \begin{itemize}
+    \item zero object (the $\underline{0}$
+      sheaf);
+    \item $\Hom(\mathcal{F}, \mathcal{G})$
+      is an abelian group and
+      composition is bilinear;
+    \item finite biproducts exist;
+    \item kernels and cokernels exist;
+    \item the image
+      coincides with the coimage.
+  \end{itemize}
+\end{remark}
+
+\begin{remark}
+  For the rest of this section, let
+  $f : X \to Y$ be a continuous
+  map of topological spaces, $\mathcal{F}$
+  a sheaf on $X$, and $\mathcal{G}$ a
+  sheaf on $Y$.
+\end{remark}
+
+\begin{definition}
+  The \emph{pushforward} $f_* \mathcal{F}$
+  is the sheaf on $Y$ defined by
+  \[
+    V \longmapsto \mathcal{F}(f^{-1}(V)).
+  \]
+\end{definition}
+
+\begin{example}
+  We have the following:
+  \begin{itemize}
+    \item If $i : \{p\} \hookrightarrow X$ and
+    $A$ is an abelian group, then
+    $i_* \underline{A}$ is the skyscraper sheaf
+    on $X$ at $p$.
+    \item If $X$ is a variety and
+      $i : Z \hookrightarrow X$
+      with $Z$ a closed subvariety, then
+      \[
+        i_* \OO_Z(U)
+        = \{\varphi : U \cap Z \to k : \varphi \text{ is regular}\}.
+      \]
+  \end{itemize}
+\end{example}
+
+\begin{definition}
+  Let $\widetilde{f^{-1}} \mathcal{G}(U) = \varinjlim_{V \supseteq f(U)} \mathcal{G}(V)$,
+  which is a presheaf.
+  The \emph{pullback} is
+  $f^{-1} \mathcal{G} := (\widetilde{f^{-1}} \mathcal{G})^+$.
+\end{definition}
+
+\begin{example}
+  Let $f : \{p\} \hookrightarrow X$.
+  Then $\widetilde{f^{-1}} \mathcal{G} \cong \underline{\mathcal{G}_p}$,
+  which is a sheaf, so
+  $f^{-1} \mathcal{G} \cong \widetilde{f^{-1}} \mathcal{G} \cong \underline{\mathcal{G}_p}$.
+\end{example}
+
+\begin{example}
+  If $i : U \hookrightarrow X$ is the
+  inclusion of an open set, then
+  $i^{-1} \mathcal{F} \cong \mathcal{F}|_U$.
+\end{example}
+
+\begin{remark}
+  The pushforward $f_*$ and pullback $f^{-1}$ are functors:
+  \[
+    \begin{tikzcd}
+      \mathrm{Sh}_X
+      \ar[r, bend left, "f_*"]
+      & \mathrm{Sh}_Y
+      \ar[l, bend left, "f^{-1}"]
+    \end{tikzcd}
+  \]
+  How are $f_*$ and $f^{-1}$ related?
+  There are natural maps
+  $f^{-1} f_* \mathcal{F} \to \mathcal{F}$ and
+  $\mathcal{G} \to f_* f^{-1} \mathcal{G}$
+  induced by:
+  \begin{enumerate}
+    \item For $U \subseteq X$, define
+      \begin{align*}
+        \widetilde{f^{-1}} f_* \mathcal{F}(U)
+        = \varinjlim_{V \supseteq f(U) \text{ open}} \mathcal{F}(f^{-1}(V))
+        &\longrightarrow \mathcal{F}(U) \\
+        s &\longmapsto s|_U.
+      \end{align*}
+    \item For $V \subseteq Y$, define
+      \[
+        \mathcal{G}(V)
+        \longrightarrow
+        \varinjlim_{V \supseteq V' \supseteq f(f^{-1}(V)) \text{ open}} \mathcal{G}(V')
+        = (f_* \widetilde{f^{-1}} \mathcal{G})(V).
+      \]
+      Note that $V \supseteq f(f^{-1}(V))$,
+      so we can add the
+      $V \supseteq V' \supseteq f(f^{-1}(V))$ condition.
+  \end{enumerate}
+  Another way to think about this is
+  via adjoints.
+\end{remark}
+
+\begin{prop}
+  For $\mathcal{F} \in \mathrm{Sh}_X$ and
+  $\mathcal{G} \in \mathrm{Sh}_Y$,
+  there exist functorial bijections
+  \[
+    \Hom_{\mathrm{Sh}_X}(f^{-1} \mathcal{G}, \mathcal{F})
+    \longrightarrow
+    \Hom_{\mathrm{Sh}_Y}(\mathcal{G}, f_* \mathcal{F}),
+  \]
+  i.e. $(f^{-1}, f_*)$ is an adjoint pair.
+\end{prop}
+
+\begin{proof}
+  Given $\phi : f^{-1} \mathcal{G} \to \mathcal{F}$, using map (2) from above we get
+  \[
+    \begin{tikzcd}
+      \mathcal{G}
+      \ar[r, "(2)"]
+      & f_* f^{-1} \mathcal{G}
+      \ar[r, "f_* \phi"]
+      & f_* \mathcal{F}.
+    \end{tikzcd}
+  \]
+  Similarly, given
+  $\psi : \mathcal{G} \to f_* \mathcal{F}$, using map (1) from above we get
+  \[
+    \begin{tikzcd}
+      f^{-1} \mathcal{G}
+      \ar[r, "f^{-1} \psi"]
+      & f^{-1} f_* \mathcal{F}
+      \ar[r, "(1)"]
+      & \mathcal{F}.
+    \end{tikzcd}
+  \]
+  One can (tediously) check that this
+  gives a bijection.
+\end{proof}
+
+\begin{remark}
+  The following are consequences of
+  adjointness:
+  \begin{itemize}
+    \item $f_*$ is left exact, i.e.
+      given an exact sequence
+      \[
+        \begin{tikzcd}
+          0 \ar[r] & \mathcal{F}' \ar[r] & \mathcal{F} \ar[r] & \mathcal{F}'' \ar[r] & 0
+        \end{tikzcd}
+      \]
+      in $\mathrm{Sh}_X$, we get an exact
+      sequence
+      \[
+        \begin{tikzcd}
+          0 \ar[r] & f_* \mathcal{F}' \ar[r] & f_* \mathcal{F} \ar[r] & f_* \mathcal{F}''.
+        \end{tikzcd}
+      \]
+    \item $f^{-1}$ is right exact
+      (defined similarly with the left
+      $0$ missing).
+  \end{itemize}
+  One can also directly check these
+  properties from the definitions.
+\end{remark}
+
+\section{Sheaves of \texorpdfstring{$\OO_X$}{OX}-Modules}
+
+\begin{remark}
+  To use tools from commutative algebra,
+  we want to consider modules.
+  For the
+  rest of this section, let $X$ be a
+  topological space with a sheaf of rings
+  $\OO_X$ (e.g. $X$ a variety with
+  $\OO_X$ the sheaf of regular functions,
+  or $M$ a complex manifold with $\OO_M$
+  the sheaf of holomorphic functions).
+\end{remark}
+
+\pagebreak
+
+\begin{definition}
+  A \emph{(pre)sheaf of $\OO_X$-modules}
+  is a (pre)sheaf $\mathcal{F}$
+  on $X$ such that for each $U \subseteq X$,
+  $\mathcal{F}(U)$ has the structure of
+  an $\OO_X(U)$-module compatible
+  with restriction, i.e. such that
+  \[
+    (a \cdot s)|_V = a|_V \cdot s|_V
+  \]
+  for $V \subseteq U \subseteq X$ open,
+  $a \in \OO_X(U)$, and $s \in \mathcal{F}(U)$.
+\end{definition}
+
+\begin{remark}
+  We often say just ``$\OO_X$-module'' to mean a
+  ``sheaf of $\OO_X$-modules.''
+\end{remark}
+
+\begin{definition}
+  A \emph{morphism} of (pre)sheaves of $\OO_X$-modules
+  $\phi : \mathcal{M} \to \mathcal{N}$
+  is a morphism of presheaves such that
+  $\mathcal{M}(U) \to \mathcal{N}(U)$ is a morphism of $\OO_X(U)$-modules
+  for all $U \subseteq X$.
+\end{definition}
+
+\begin{example}
+  We have the following:
+  \begin{enumerate}
+    \item $\OO_X$ has the structure of an
+      $\OO_X$-module (similar to how a
+      ring $A$ has the structure of an
+      $A$-module).
+    \item Let $X$ be a variety and
+      $p : \EE \to X$ a vector bundle.
+      Let $\mathcal{E}$ be the sheaf of
+      sections of $p$, with
+      \[
+        [f \cdot s : U \to p^{-1}(U)]
+        \in \mathcal{E}(U)
+      \]
+      as the product of
+      $f \in \OO_X(U)$ and
+      $[s : U \to p^{-1}(U)] \in \mathcal{E}(U)$.
+      Then $\mathcal{E}$ is an $\OO_X$-module.
+    \item[2'.] Let $\EE = \mathbbm{1}_X$,
+      then $\mathcal{E}(U) \cong \OO_X(U)$
+      as $\OO_X(U)$-modules. As the
+      isomorphism is compatible
+      with restriction, we have
+      $\mathcal{E} \cong \OO_X$.
+    \item Let $\mathcal{F}_1, \mathcal{F}_2$,
+      be (pre)sheaves of $\OO_X$-modules.
+      Then so
+      is $\mathcal{F}_1 \oplus \mathcal{F}_2$.
+    \item[2''.] If $\EE$ is a trivial
+      vector bundle of rank $e$, then
+      $\mathcal{E} \cong \OO_X^{\oplus e}$.
+    \item If $\mathcal{F}$ is a presheaf
+      of $\OO_X$-modules, then
+      $\mathcal{F}^+$ is naturally
+      a sheaf of $\OO_X$-modules (use the
+      definition of $\mathcal{F}^+$ in the
+      proof).
+    \item If $\varphi : \mathcal{F} \to \mathcal{G}$
+      is a morphism of sheaves of
+      $\OO_X$-modules, then
+      $\ker \varphi, \im \varphi, \coker \varphi$
+      are sheaves of $\OO_X$-modules
+      (use that $\ker \varphi, \widetilde{\im}\, \varphi, \widetilde{\coker}\, \varphi$ are presheaves of $\OO_X$-modules and then use (4)).
+
+      Furthermore, the category
+      $\mathrm{Mod}_{\OO_X}$ of sheaves of
+      $\OO_X$-modules is an abelian.
+    \item We can define the usual
+      constructions on
+      $\OO_X$-modules:
+      $\otimes$, $\Sym^d$, $\wedge^d$, etc.
+  \end{enumerate}
+\end{example}
+
+\begin{example}
+  Let $\mathcal{F}, \mathcal{G}$ be
+  $\OO_X$-modules. Then their
+  tensor product $\mathcal{F} \otimes \mathcal{G}$
+  is the sheafification of
+  \[
+    U \longmapsto \mathcal{F}(U) \otimes_{\OO_X(U)} \mathcal{G}(U).
+  \]
+\end{example}
+
+\begin{definition}
+  An $\OO_X$-module
+  $\mathcal{F}$ is \emph{locally free}
+  of rank $e$ if for any $p \in X$,
+  there exists $p \in U \subseteq X$ open
+  such that $\mathcal{F}|_U \cong \OO_X^{\oplus e}$.
+\end{definition}
+
+\begin{example}
+  Let $X$ be a variety and
+  $p : \EE \to X$ a vector bundle of rank $e$.
+  For $p \in X$, there exists
+  $p \in U \subseteq X$ open such that
+  \[
+    \begin{tikzcd}
+      p^{-1} \ar[r, "\cong"] \ar[d, "p", swap] & X \times \Affine^e \ar[dl, "\mathrm{pr}_1"]  \\
+      X
+    \end{tikzcd}
+  \]
+  Then $\mathcal{E}|_U \cong$ sheaf of
+  sections of $X \times \Affine^e$
+  $\cong \OO_X^{\oplus e}$.
+\end{example}
+
+\begin{remark}[Transition functions]
+  Let $e = 1$ for simplicity, and
+  $\mathcal{E}$ a locally free $\OO_X$-module
+  of rank $e$. Then there exists an
+  open cover $\{U_i\}$ of $X$ with
+  isomorphisms $\alpha_i : \mathcal{E}|_{U_i} \to \OO_{U_i}^{\oplus e}$.
+  So on $U_{i, j} = U_i \cap U_j$, we get
+  isomorphisms
+  $\alpha_{i, j} = \alpha_i \circ \alpha_j^{-1} : \OO_{U_{i, j}}^{\oplus e} \to \OO_{U_{i, j}}^{\oplus e}$.
+\end{remark}

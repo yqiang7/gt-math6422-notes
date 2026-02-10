@@ -1,0 +1,183 @@
+\chapter{Feb.~10 --- Coherent Sheaves, Part 3}
+
+\section{Quasicoherent Sheaves, Continued}
+
+\begin{prop}\label{prop:pushforward-pullback}
+  Let $f : X \to Y$ be a morphism of
+  varieties. Then
+  \begin{enumerate}
+    \item If $\mathcal{G} \in \mathrm{QCoh}_Y$
+      (resp. $\mathrm{Coh}_Y$), then $f^* \mathcal{G} \in \mathrm{QCoh}_X$
+      (resp. $\mathrm{Coh}_X$).
+    \item If $\mathcal{F} \in \mathrm{QCoh}_X$, then $f_* \mathcal{F} \in \mathrm{QCoh}_Y$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  (1) Fix $\mathcal{G} \in \mathrm{QCoh}_Y$
+  and $x \in X$. There exist affine opens
+  $x \in U \subseteq X$ and $f(x) \in V \subseteq Y$
+  such that $f(U) \subseteq V$.
+  Write $g = f|_U : U \to V$,
+  then $(f^* \mathcal{G})|_U = g^* (\mathcal{G}|_V)$.
+  Now letting $A = \OO_Y(V)$, $B = \OO_X(U)$,
+  $M = \mathcal{G}(V)$,
+  we see that
+  \[
+    f^* \mathcal{G}|_U
+    = g^*(\mathcal{G}|_V)
+    = g^* \widetilde{M}
+    = \widetilde{M \otimes_A B}.
+  \]
+  So $f^* \mathcal{G}$ is quasicoherent.
+  The coherent version follows from
+  the fact that if $M$ is a finitely
+  generated $A$-module, then
+  $M \otimes_A B$ is a finitely generated
+  $B$-module.
+
+  (2) Fix $\mathcal{F} \in \mathrm{QCoh}_X$.
+  We can check quasicoherence locally,
+  so we can reduce to the case where
+  $Y$ is affine (cover $Y$ by affine opens
+  $U_i$ and replace $f$ with $f^{-1}(U_i) \to U_i$).
+  Choose an affine cover $X = U_1 \cup \dots \cup U_r$,
+  and note that $U_i \cap U_j$ is again
+  affine for a variety.
+  Write $\alpha_i : U_i \hookrightarrow X$
+  and $\alpha_{i, j} : U_{i, j} \hookrightarrow X$.
+  As $\mathcal{F}$ is a sheaf,
+  we have an exact sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \mathcal{F}
+      \ar[r] & \bigoplus_i (\alpha_i)_* \mathcal{F}|_{U_i}
+      \ar[r] & \bigoplus_{i, j} (\alpha_{i, j})_* \mathcal{F}|_{U_{i, j}}.
+    \end{tikzcd}
+  \]
+  Applying $f_*$, which is left exact,
+  we get an exact sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & f_* \mathcal{F}
+      \ar[r] & \bigoplus_i(f \circ \alpha_i)_* \mathcal{F}|_{U_i}
+      \ar[r] & \bigoplus_{i, j} (f \circ \alpha_{i, j})_* \mathcal{F}|_{U_{i, j}}.
+    \end{tikzcd}
+  \]
+  Note that the last two terms
+  are both quasicoherent (e.g.
+  $\mathcal{F}|_{U_i}$ is
+  quasicoherent and $f \circ \alpha_i$
+  is a morphism of affine varieties, so
+  $(f \circ \alpha_i)_* \mathcal{F}|_{U_i}$
+  is quasicoherent).\footnote{If $f : X \to Y$ is a morphism of affine varieties, and $A := \OO_Y(Y)$, $B := \OO_X(X)$, then $f_* \widetilde{N} = \widetilde{N_A}$ for
+  $N \in \mathrm{Mod}_B$ and $f^* \widetilde{M}$ for $M \in \mathrm{Mod}_A$. This shows that pushforwards and pullbacks of quasicoherent sheaves on \emph{affine} varieties are again quasicoherent.}
+\end{proof}
+
+\begin{remark}
+  The coherent version of Proposition
+  \ref{prop:pushforward-pullback}(2) fails:
+  For
+  \[i : \Affine^1 \setminus \{0\} \longhookrightarrow \Affine^1,\]
+  the
+  pushforward
+  $i_* \OO_{\Affine^1 \setminus \{0\}}$
+  is not coherent (but $\OO_{\Affine^1 \setminus \{0\}}$ is coherent).
+\end{remark}
+
+\begin{remark}
+  If $X \to Y$ is \emph{projective},
+  i.e. there exists a factorization
+  \[
+    \begin{tikzcd}
+      X \ar[r, hook] \ar[dr] & Y \times \PP^n
+      \ar[d, "\mathrm{pr}_1"] \\
+                      & Y
+    \end{tikzcd}
+  \]
+  then we do get a coherent version for
+  the pushfoward $f_* \mathcal{F}$.
+  One can prove this via
+  sheaf cohomology.
+\end{remark}
+
+\section{Morphisms to Projective Space}
+
+\begin{remark}
+  Recall that there is a bijection
+  \[
+    \{\LL \to X \text{ with } s_0, \dots, s_n \in \Gamma(X, \LL) \text{ nowhere vanishing}\} / {\cong}
+    \longleftrightarrow
+    \{\text{morphisms } X \to \PP^n\}.
+  \]
+  We want to rephrase this using the
+  bijection
+  \[
+    \{\mathcal{L} \text{ invertible sheaves of } \OO_X\text{-modules}\}
+    \longleftrightarrow
+    \{
+      \text{line bundles } \LL \to X
+    \}
+  \]
+  and determine when $X \to \PP^n$ is
+  injective or a closed embedding.
+\end{remark}
+
+\begin{remark}
+  Let $X$ be a variety and $\mathcal{L}$
+  an invertible $\OO_X$-module.
+  For $x \in X$, we have
+  \[
+    \mathcal{L}(x)
+    := \mathcal{L}_x / \m_x \mathcal{L}_x
+    \cong \OO_{X, x} / \m_x
+    \cong k,
+  \]
+  where $\m_x \subseteq \OO_{X, x}$ is a
+  maximal ideal.
+\end{remark}
+
+\begin{definition}
+  We say $s_0, \dots, s_n \in \Gamma(X, \mathcal{L})$
+  \emph{generate} $\mathcal{L}$ if
+  \[
+    s_0(x), \dots, s_n(x)
+    \in \mathcal{L}(x) \cong k
+  \]
+  generate $\mathcal{L}(x)$
+  as a $k$-vector space
+  (i.e. at least one of $s_0(x), \dots, s_n(x)$ is nonzero)
+  for all $x \in X$.
+\end{definition}
+
+\begin{prop}
+  The following are equivalent:
+  \begin{enumerate}
+    \item $s_0, \dots, s_n \in \Gamma(X, \mathcal{L})$
+      generate $\mathcal{L}$;
+    \item the morphism
+      $\varphi : \OO_X^{\oplus (n + 1)} \to \mathcal{L}$
+      given by $e_i \mapsto s_i$ is
+      surjective;
+    \item for every $U \subseteq X$ open
+      affine,
+      $s_0|_U, \dots, s_n|_U$ generate
+      $\mathcal{L}(U)$ as an
+      $\OO_X(U)$-module.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  By commutative algebra (in particular
+  Nakayama's lemma),
+  $s_0(x), \dots, s_n(x)$ span
+  $\mathcal{L}(x)$ (1) if and only if
+  $(s_0)_x, \dots, (s_n)_x$ generate $\mathcal{L}_x$ as an $\OO_{X, x}$-module.
+  This happens if and only if
+  $\varphi_x$ is surjective, which happens
+  if and only if $\varphi$ is surjective (2).
+  This happens if and only if
+  $\varphi(U)$ is surjective for all
+  $U \subseteq X$ open affine (3)
+  (note that $\coker(\widetilde{M} \to \widetilde{N} = (\coker(M \to N))^{\sim}$).
+\end{proof}

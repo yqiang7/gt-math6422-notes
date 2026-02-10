@@ -289,7 +289,9 @@
   $\mathcal{F}$ is \emph{locally free}
   of rank $e$ if for any $p \in X$,
   there exists $p \in U \subseteq X$ open
-  such that $\mathcal{F}|_U \cong \OO_X^{\oplus e}$.
+  such that $\mathcal{F}|_U \cong \OO_U^{\oplus e}$.
+  If $e = 1$, then we say that
+  $\mathcal{F}$
 \end{definition}
 
 \begin{example}
@@ -299,13 +301,13 @@
   $p \in U \subseteq X$ open such that
   \[
     \begin{tikzcd}
-      p^{-1} \ar[r, "\cong"] \ar[d, "p", swap] & X \times \Affine^e \ar[dl, "\mathrm{pr}_1"]  \\
-      X
+      p^{-1}(U) \ar[r, "\cong"] \ar[d, "p", swap] & U \times \Affine^e \ar[dl, "\mathrm{pr}_1"]  \\
+      U
     \end{tikzcd}
   \]
   Then $\mathcal{E}|_U \cong$ sheaf of
-  sections of $X \times \Affine^e$
-  $\cong \OO_X^{\oplus e}$.
+  sections of $U \times \Affine^e$
+  $\cong \OO_U^{\oplus e}$.
 \end{example}
 
 \begin{remark}[Transition functions]

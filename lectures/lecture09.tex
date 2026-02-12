@@ -150,11 +150,13 @@
   for all $x \in X$.
 \end{definition}
 
-\begin{prop}
+\begin{prop}\label{prop:generate}
   The following are equivalent:
   \begin{enumerate}
     \item $s_0, \dots, s_n \in \Gamma(X, \mathcal{L})$
       generate $\mathcal{L}$;
+    \item $(s_0)_x, \dots, (s_n)_x$ generate $\mathcal{L}_x$ as an $\OO_{X, x}$-module
+      for all $x \in X$;
     \item the morphism
       $\varphi : \OO_X^{\oplus (n + 1)} \to \mathcal{L}$
       given by $e_i \mapsto s_i$ is
@@ -172,12 +174,12 @@
   Nakayama's lemma),
   $s_0(x), \dots, s_n(x)$ span
   $\mathcal{L}(x)$ (1) if and only if
-  $(s_0)_x, \dots, (s_n)_x$ generate $\mathcal{L}_x$ as an $\OO_{X, x}$-module.
+  $(s_0)_x, \dots, (s_n)_x$ generate $\mathcal{L}_x$ as an $\OO_{X, x}$-module (2).
   This happens if and only if
   $\varphi_x$ is surjective, which happens
-  if and only if $\varphi$ is surjective (2).
+  if and only if $\varphi$ is surjective (3).
   This happens if and only if
   $\varphi(U)$ is surjective for all
-  $U \subseteq X$ open affine (3)
+  $U \subseteq X$ open affine (4)
   (note that $\coker(\widetilde{M} \to \widetilde{N} = (\coker(M \to N))^{\sim}$).
 \end{proof}

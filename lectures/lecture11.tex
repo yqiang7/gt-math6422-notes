@@ -1,0 +1,376 @@
+\chapter{Feb.~17 --- Divisors}
+
+\section{Divisors, Continued}
+\begin{prop}
+   We have the following:
+   \begin{enumerate}
+     \item If $U \subseteq X$ is affine open,
+       then
+       we have an isomorphism
+       \[
+         \OO_X(U)_{\mathcal{I}_Z(U)}
+         \overset{\cong}{\longrightarrow}
+         \OO_{X, Z}
+       \]
+       when $Z \cap U \ne \varnothing$.
+     \item $\dim \OO_{X, Z} = \codim_X Z$.
+     \item $\OO_{X, Z}$ is a local ring.
+     \item Let $\m_Z$ be the maximal
+       ideal of $\OO_{X, Z}$.
+       If $X$ is smooth, then
+       $\OO_{X, Z}$ is regular, i.e.
+       \[
+         \dim \OO_{X, Z}
+         = \dim \m_Z / \m_Z^2,
+       \]
+       where the right-hand side is the
+       dimension as a vector space over
+       $\OO_{X, Z} / \m_Z$.
+   \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  (1) The proof is the same as when
+  $Z = \{x\}$.
+
+  (2) We can reduce to the case where
+  $X$ is affine. Then we have a bijection
+  \[
+    \begin{tikzcd}
+      \{\text{prime ideals $\p \le A$ such that $\p \cap (A \setminus I_Z) = \varnothing$}\} \ar[d]
+    \ar[r, "\q \mapsto \q \OO_{X, Z}"]
+    &
+    \{\text{prime ideals of $\OO_{X, Z}$}\} \ar[l] \\
+    \{\text{closed irreducible subvarieties $Z \subseteq Y \subseteq X$}\} \ar[u]
+    \end{tikzcd}
+  \]
+  where $A = \OO_X(X)$.
+  This proves the claim.
+
+  (3) We use (1). Since
+  $\mathcal{I}_Z(U) \subseteq \OO_X(U)$
+  is prime, $\OO_{X, Z}$ is a local
+  ring with maximal ideal
+  \[
+    \m_Z := \mathcal{I}_Z(U) \OO_{X, Z}
+    = \{(\varphi, U) \in \OO_{X, Z} : \varphi|_{Z \cap U} = 0\} \subseteq \OO_{X, Z}.
+  \]
+
+  (4) In Algebraic Geometry I, we have
+  seen that this holds when $Z$ is a point.
+  Choose $x \in Z$, then
+  \[
+    \OO_{X, Z} \cong (\OO_{X, x})_{\{\varphi \in \OO_{X, x}\, :\, \varphi|_Z = 0\}}.
+  \]
+  As $\OO_{X, x}$ is regular, so is
+  $\OO_{X, Z}$ by commutative algebra.
+\end{proof}
+
+\begin{remark}
+  For the rest of this
+  lecture, assume that $X$ is a smooth
+  irreducible variety (so that the local
+  rings are regular and we can talk about
+  the function field of $X$).
+\end{remark}
+
+\begin{remark}
+  Let $E \subseteq X$ be a prime divisor.
+  Then $\OO_{X, E}$ is a regular local ring
+  of dimension $1$. By results from
+  commutative algebra,
+  $\OO_{X, E}$ is a
+  \emph{discrete valuation ring} (DVR).
+  In particular, this implies that
+  $\OO_{X, E}$ is an integral domain
+  which is a UFD with a unique irreducible
+  element up to multiplication by units.
+
+  So there exist an irreducible
+  element $\pi \in \OO_{X, E}$ such that
+  for any $0 \ne f \in \Frac(\OO_{X, E}) = K(X)$,
+  \[
+    f = u \pi^d
+  \]
+  for some $u \in \OO_{X, E}^\times$ and
+  $d \in \Z$ (with $d \ge 0$ if and only if
+  $f \in \OO_{X, E}$).
+  Such a $\pi$ is called a \emph{uniformizer}.
+
+  We will write $\ord_E(f) = d$ when
+  $f = u \pi^d$, which we view as the
+  multiplicity of vanishing of $f$ along $E$.
+\end{remark}
+
+\begin{remark}
+  Note the following:
+  \begin{itemize}
+    \item $\ord_E(fg) = \ord_E(f) + \ord_E(g)$.
+    \item $\ord_E(f + g) \ge \min\{\ord_E(f), \ord_E(g)\}$.
+  \end{itemize}
+  Along with some other properties,
+  the above implies that $\ord_E$ is a
+  \emph{valuation} on $K(X)$.
+\end{remark}
+
+\begin{example}
+  Consider $0 \in \Affine^1$. Then we have
+  \[
+    \OO_{\Affine^1, 0}
+    \cong \left\{\frac{f}{g} : f, g \in k[x],\, g(0) \ne 0\right\}.
+  \]
+  For $\varphi \in \OO_{\Affine^1, 0}$,
+  we can write
+  \[
+    \varphi = u x^m
+  \]
+  such that $u \in \OO_{\Affine^1, 0}^\times = \{f / g : f, g \in k[x],\, f(0), g(0)  \ne 0\}$.
+  So $\ord_0 \varphi = m$.
+\end{example}
+
+\begin{remark}
+  We can also think of
+  $\OO_{X, E}
+    = \{\varphi \in K(X) : \ord_E(\varphi) \ge 0 \}$.
+\end{remark}
+
+\begin{definition}
+  For $0 \ne \varphi \in K(X)$, its
+  \emph{divisor of zeros and poles} is
+  \[
+    \divv(\varphi) = \divv_X(\varphi)
+    := \sum_{\substack{E \subseteq X \\ \text{prime}}} \ord_E(\varphi) E.
+  \]
+\end{definition}
+
+\begin{prop}
+  The divisor of zeros and poles
+  $\divv(\varphi)$ is a divisor, i.e. we have
+  $\ord_E(\varphi) = 0$ for all but finitely
+  many prime divisors $E \subseteq X$.
+\end{prop}
+
+\begin{proof}
+  For an open affine $\varnothing \ne U \subseteq X$.
+  Since $X \setminus U$ contains at most
+  finitely many prime divisors, it suffices
+  to show that $\divv_U(\varphi)$
+  is a divisor. Write
+  $\varphi = f / g$ with
+  $f, g \in \OO_X(U) = A$. Since
+  \[
+    \divv_U(\varphi) = \divv_U(f) - \divv_U(g),
+  \]
+  it suffices to consider the case when
+  $\varphi \in \OO_X(U)$. Now for
+  $E \subseteq X$ prime with
+  $E \cap U \ne \varnothing$, we have
+  \begin{align*}
+    \ord_E(\varphi) > 0
+    &\iff \varphi \in \m_E \subseteq \OO_{X, E} \\
+    &\iff \varphi \text{ vanishes on } E \cap U \\
+    &\iff E \subseteq V(\varphi).
+  \end{align*}
+  As $V(\varphi)$ contains finitely many
+  prime divisors,
+  we get that $\divv_U(\varphi)$
+  is a divisor.
+\end{proof}
+
+\begin{example}
+  Let $f \in k[x_1, \dots, x_n] \in \OO_{\Affine^n}(\Affine^n)$.
+  We can write
+  \[
+    f = cf_1^{a_1} \cdots f_r^{a_r}
+  \]
+  with $f_i$ irreducible and  $a_i \ge 0$.
+  Then we have
+  \[
+    \divv_{\Affine^n}(f) = \sum_{i = 1}^r a_i V(f_i).
+  \]
+  This follows since $\ord_{V(f_i)} f_i = 1$,
+  which in turns follows from
+  $\OO_{\Affine^n, V(f_i)} \cong k[x_1, \dots, x_n]_{(f_i)}$,
+  which has maximal ideal
+  $(f_i)$ and hence uniformizer $f_i$.
+\end{example}
+
+\begin{prop}[Algebraic Hartog's lemma]
+  For $0 \ne \varphi \in K(X)$, we have
+  $\divv \varphi \ge 0$ (i.e.
+  $\ord_E \varphi \ge 0$ for all prime
+  divisors $E \subseteq X$)
+  if and only if $\varphi \in \OO_X(X)$.
+\end{prop}
+
+\begin{proof}
+  It suffices to show the statement on
+  an affine cover. So we may assume that
+  $X$ is affine. Write $A = \OO_X(X)$.
+  Hartog's lemma in commutative algebra
+  implies that
+  \[
+    A = \bigcap_{\substack{\p \le A \text{ prime} \\ \text{height $1$}}} A_\p
+    \subseteq \Frac(A).
+  \]
+  Thus for $\varphi \in \Frac(A) \cong K(X)$,
+  we have
+  $\varphi \in A$ if and only if
+  $\varphi \in A_\p$ for all height $1$
+  prime ideals $\p \le A$, which happens
+  if and only if $\ord_E(\varphi) \ge 0$
+  for all prime divisors $E \subseteq X$, i.e.
+  $\divv_X(\varphi) \ge 0$.
+\end{proof}
+
+\section{Class Groups}
+\begin{definition}
+  A divisor $D \in \Div X$ is \emph{principal}
+  if $D = \divv_X(\varphi)$ for some
+  $0 \ne \varphi \in K(X)$.
+\end{definition}
+
+\begin{example}
+  Any divisor on $\Affine^n$ is principal
+  by the previous examples (this is
+  also true when $\Affine^n$ is replaced
+  by an affine variety $X$ such that
+  $\OO_X(X)$ is a UFD).
+\end{example}
+
+\begin{remark}
+  Note that $\PDiv X = \{\divv \varphi : 0 \ne \varphi \in K(X)\} \subseteq \Div X$
+  is a subgroup.
+\end{remark}
+
+\begin{definition}
+  We say that $D_1, D_2 \in \Div X$ are
+  \emph{linearly equivalent} if
+  $D_1 - D_2$ is principal. The
+  \emph{class group} of $X$ is
+  \[
+    \Cl(X) = \Div(X) / \PDiv(X)
+    = \text{group of divisors up to $\sim$}.
+  \]
+\end{definition}
+
+\begin{example}
+  We have the following:
+  \begin{enumerate}
+    \item $\Cl(\Affine^n) = 0$.
+    \item $\Cl(\PP^n) = \Z[H]$, where
+      $H \subseteq \PP^n$ is a hyperplane.
+
+      To see this, recall that we have
+      a bijection
+      \[
+        \{\text{prime divisors in $\PP^n$}\}
+        \longleftrightarrow
+        \{\text{irreducible hypersurfaces}\}.
+      \]
+      Consider $\deg : \Div(\PP^n) \to \Z$
+      which sends
+      $\sum a_i E_i = \sum a_i \deg E_i$,
+      which is clearly surjective. For
+      $\varphi \in K(\PP^n)$, write
+      $\varphi = f / g$ where
+      $f, g \in k[x_0, \dots, x_n]$
+      are homogeneous of the same degree.
+      So
+      \[
+        f = f_1^{a_1} \cdots f_r^{a_r}
+        \quad\text{and}\quad
+        g = g_1^{b_1} \cdots g_s^{b_s}
+      \]
+      with $f_i, g_i$ homogeneous and
+      $a_i, b_i \in \Z_{\ge 0}$, and
+      $\sum a_i \deg f_i = \sum b_i \deg g_i$.
+      Now
+      \[
+        \divv \varphi
+        = \sum_{i = 1}^r a_i V(f_i)
+        - \sum_{i = 1}^s b_i V(g_i).
+      \]
+      So $\deg \varphi = 0$.
+      This shows that
+      $\PDiv(\PP^n) \subseteq \ker \deg$.
+      One can show the reverse inclusion as well,
+      so $\PDiv(\PP^n) = \ker \deg$.
+      Thus we have
+      $\Cl(\PP^n) = \Div(\PP^n) / \PDiv(\PP^n) \cong \Z$.
+  \end{enumerate}
+\end{example}
+
+\section{Cartier Divisors}
+
+\begin{definition}
+  A divisor $D$ on $X$ is \emph{Cartier}
+  if it is locally principal, i.e. at
+  each $x \in X$, there exists an open
+  neighborhood $x \in U_x \subseteq X$
+  and $0 \ne \varphi_x \in K(X)$ such that
+  $\divv_{U_x}(\varphi_x) = D|_{U_x}$.
+\end{definition}
+
+\begin{example}
+  Principal divisors are Cartier
+  (in fact, they are globally principal).
+\end{example}
+
+\begin{example}
+  Let $H = V(x_0) \subseteq \PP^n$.
+  Note $H \nsim 0$, so
+  $H$ is not principal. But on
+  $U_i = \{x_i \ne 0\} \subseteq \PP^n$,
+  \[
+    H|_{U_i} = \divv_{U_i}(x_0 / x_i),
+  \]
+  so $H$ is Cartier (alternatively,
+  $\PP^n$ has an open cover by the $U_i$,
+  and each $\Cl(U_i) = 0$).
+\end{example}
+
+\begin{prop}\label{prop:cartier}
+  Every divisor $D$ on $X$ is Cartier.
+\end{prop}
+
+\begin{proof}
+  If $D_1, D_2$ are Cartier, then so is
+  $D_1 + D_2$. So it suffices to consider
+  the case when $D = E$ for some prime
+  divisor $E$ on $X$. Now fix $x \in X$.
+  If $x \notin E$, then set
+  $U_x = X \setminus E$ and $\varphi_x = 1$.
+  Now assume $x \in E$. Since
+  $\OO_{X, x}$ is a regular local ring,
+  the Auslander-Buchsbaum theorem
+  implies that $\OO_{X, x}$ is a UFD.
+  Now we have a bijection
+  \[
+    \{\text{prime ideals of $\OO_{X, x}$}\}
+    \longleftrightarrow
+    \{\text{irreducible closed subvarieties } x \in Y \subseteq X\}.
+  \]
+  Write $J \subseteq \OO_{X, x}$
+  for the prime ideal corresponding to $E$.
+  As $J$ is a height $1$ prime ideal and
+  $\OO_{X, x}$ is a UFD, there exists
+  $f \in \OO_{X, x}$ such that $J = (f)$.
+  So there exists an isomorphism
+  \[
+    \varphi : (\OO_{X, x})_{(f)}
+    \overset{\cong}{\longrightarrow}
+    \OO_{X, E}
+  \]
+  such that $\varphi(f) \OO_{X, E} = \m_E$.
+  So $\ord_E(f) = 1$. One then checks that
+  $\divv_{U_x}(f) = E|_{U_x}$ for some
+  $U_x$.
+\end{proof}
+
+\begin{remark}
+  Proposition \ref{prop:cartier}
+  crucially uses our assumption
+  that $X$ is smooth. It may fail in
+  general.
+\end{remark}

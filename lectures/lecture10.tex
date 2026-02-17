@@ -190,11 +190,11 @@
     \left[\sum {a_i x_i}\right]
     \longmapsto \left[\sum a_i s_i\right].
   \]
-  So we get that $f$ separates tangent
+  So $f$ separates tangent
   vectors at $p$ if and only if
   $\m_{f(p)} / \m_{f(p)}^2 \to \m_p / \m_p^2$
   is surjective. Since
-  $f \hookrightarrow \PP^n$ is injective
+  $f : X \hookrightarrow \PP^n$ is injective
   and a closed map (as $X$ is complete),
   we get $X \hookrightarrow f(X) \subseteq \PP^n$ is a
   homeomorphism (we know it is a bijection,
@@ -307,10 +307,10 @@
 
 \pagebreak
 
-\begin{remark}[Local rings]
+\begin{definition}
   For a closed irreducible subset
-  $Z \subseteq X$, we can define a local
-  ring
+  $Z \subseteq X$, the
+  \emph{local ring at $Z$} is
   \begin{align*}
     \OO_{X, Z}
     &= \{
@@ -324,4 +324,19 @@
   if there exists $W \subseteq U \cap V$
   open with $Z \cap W \ne \varnothing$
   such that $\varphi|_W = \psi|_W$.
+\end{definition}
+
+\begin{remark}
+  We consider open sets intersecting
+  $Z$ (and not those containing $Z$) because
+  otherwise there not be many such $U$.
+  For example, if $X = \PP^n$ and
+  $Z$ is a hyperplane, then we can only have
+  $U = X$.
+\end{remark}
+
+\begin{remark}
+  This construction
+  works for any sheaf on $X$,
+  not just $\OO_X$.
 \end{remark}

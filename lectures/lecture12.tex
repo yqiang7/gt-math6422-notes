@@ -1,0 +1,397 @@
+\chapter{Feb.~19 --- Divisors, Part 2}
+
+\section{Cartier Divisors, Continued}
+
+\begin{example}
+  Consider $X = V(xy - z^2)$.
+  Note that this is singular. Also, all
+  of the local rings for this particular
+  variety are still DVRs, so we can
+  still talk about divisors. The prime
+  divisors are
+  \[
+    D_1 = V(x, z)
+    \quad\text{and}\quad
+    D_2 = V(y, z).
+  \]
+  One can compute that
+  $\divv_X(x) = 2D_1$,
+  $\divv_X(y) = 2D_2$, and
+  $\divv_X(z) = D_1 + D_2$.
+  So $D_1$ is not Cartier.
+\end{example}
+
+\begin{example}
+  Consider $X = V(xy - zw)$, which is
+  also singular. Then
+  $D = V(x, z)$ is a prime divisor, and
+  one can check that $mD$ is not
+  Cartier for all $m \ne \Z \setminus \{0\}$.
+\end{example}
+
+\section{Divisors and Invertible Sheaves}
+
+\begin{definition}
+  For $D \in \Div X$, define
+  $\OO_X(D) \in \mathrm{Mod}_{\OO_X}$
+  such that for $U \subseteq X$ open,
+  \[
+    \OO_X(D)(U)
+    = \{
+      \varphi \in K(X) :
+      \divv_U(\varphi) + D|_U \ge 0
+    \}
+  \]
+\end{definition}
+
+\begin{remark}
+  If $D \ge 0$, then one can think of this
+  as saying that ``the poles of $\varphi$
+  are $\le D$.''
+\end{remark}
+
+\begin{remark}
+  Note that $\OO_X(D) \subseteq
+  \underline{K(X)}$ is a subsheaf.
+\end{remark}
+
+\begin{example}
+  Let $H = V(x_1) \subseteq \Affine^n$.
+  Then
+  \begin{align*}
+    \OO_{\Affine^n}(H)(\Affine^n)
+    &= \{
+      \varphi \in k[x_1, \dots, x_n]
+      : \ord_{H}(\varphi) \ge -1
+      \text{ and }
+      \ord_E(\varphi) \ge 0
+      \text{ for all prime $H \ne E
+      \subseteq X$}
+    \} \\
+    &= \frac{1}{x_1} k[x_1, \dots, x_n]
+    \subseteq k(x_1, \dots, x_n).
+  \end{align*}
+\end{example}
+
+\begin{prop}
+  If $D$ is principal and
+  $D = \divv_X(g)$, then
+  \[
+    \OO_X(D) = \frac{1}{g} \OO_X
+    \subseteq \underline{K(X)}.
+  \]
+\end{prop}
+
+\begin{proof}
+  Fix $U \subseteq X$ open. For
+  $\varphi \in K(X)$, we have
+  $\varphi \in \OO_X(D)(U)$ if and only if
+  \[
+    \divv_U(\varphi)
+    + D|_U
+    = \divv_U(\varphi) + \divv_U(g)
+    \ge 0,
+  \]
+  if and only if $\divv_U(\varphi g) \ge 0$,
+  if and only if $\varphi g \in \OO_X(U)$,
+  if and only if $\varphi = \psi / g$ for
+  some $\varphi \in \OO_X(U)$.
+  So we have
+  $\OO_X(D)(U) = (1 / g) \OO_X(U)$.
+\end{proof}
+
+\begin{corollary}
+  For any $D \in \Div X$, $\OO_X(D)$ is an
+  invertible $\OO_X$-module.
+\end{corollary}
+
+\begin{proof}
+  Since $D$ is necessarily Cartier (recall
+  the smoothness assumption),
+  there exists an open cover
+  $X = U_1 \cup \cdots \cup U_r$
+  and $g_i \in K(X)^\times$ such that
+  $D|_{U_i} = \divv_{U_i}(g_i)$. Now
+  \[
+    \OO_X(D)|_{U_i}
+    = \OO_{U_i}(D|_{U_i})
+    = \frac{1}{g_i} \OO_{U_i}.
+  \]
+  Now we have an isomorphism
+  \begin{align*}
+    \alpha : \OO_X(D)|_{U_i}
+    = \frac{1}{g_i} \OO_{U_i}
+    &\longrightarrow \OO_{U_i} \\
+    f &\longmapsto f g_i.
+  \end{align*}
+  So $\OO_X(D)$ is an invertible
+  $\OO_X$-module with trivialization
+  data $(U_i, g_{i, j} = g_i / g_j)$.
+\end{proof}
+
+\begin{example}
+  If $H = V(x_0) \subseteq \PP^n$, then we
+  have
+  \[
+    H|_{U_i} = \divv_{U_i}(x_0 / x_i),
+  \]
+  so $\OO_{\PP^n}(H)$ is the invertible
+  sheaf with transition data
+  $(U_i, x_j / x_i)$.
+  So $\OO_{\PP^n}(H) \cong \OO_{\PP^n}(1)$.
+\end{example}
+
+\begin{prop}\label{prop:divisor-invertible-sheaf}
+  The map
+  \begin{align*}
+    \Div X &\longrightarrow \Pic X \\
+    D &\longmapsto \OO_X(D)
+  \end{align*}
+  is a surjective homomorphism
+  with kernel $\PDiv X$.
+  In particular, $\Cl(X) \cong \Pic X$, and
+  $D_1 \sim D_2$ if and only if
+  $\OO_X(D_1) \cong \OO_X(D_2)$.
+\end{prop}
+
+\begin{proof}
+  We first check that this map is a
+  group homomorphism. Fix
+  $D_1, D_2 \in \Div X$. Choose an open cover
+  $\{U_i\}$ of $X$ such that there exist
+  $g_i^1, g_i^2 \in K(X)^\times$ with
+  \[
+    D_1|_{U_i} = \divv_{U_i}(g_i^1)
+    \quad \text{and} \quad
+    D_2|_{U_i} = \divv_{U_i}(g_i^2).
+  \]
+  So we have $(D_1 + D_2)|_{U_i}
+  = \divv_{U_i}(g_i^1 g_i^2)$.
+  Then we have:
+  \begin{center}
+    \begin{tabular}{c|c}
+      invertible sheaf & transition data \\
+      \hline
+      $\OO_X(D_1)$ & $g_i^1 / g_j^1$ \\
+      $\OO_X(D_2)$ & $g_i^2 / g_j^2$ \\
+      $\OO_X(D_1 + D_2)$ & $g_i^1 g_i^2 / g_j^1 g_j^2$
+    \end{tabular}
+  \end{center}
+  So we see that $\OO_X(D_1 + D_2) \cong
+  \OO_X(D_1) \otimes \OO_X(D_2)$.
+
+  Now we check the kernel.
+  If $D \sim 0$, then $D = \divv_X g$
+  for some $g \in K(X)^\times$. So
+  \[
+    \OO_X(D) = \frac{1}{g} \OO_X \cong \OO_X.
+  \]
+  Conversely, assume that there exists an
+  isomorphism
+  $\beta : \OO_X \to \OO_X(D)$.
+  Set $f = \beta(1)$. Since
+  $1 \OO_X = \OO_X$,
+  \[
+    f \OO_X = \OO_X(D).
+  \]
+  So $f \OO_{U_i} = (1 / g_i) \OO_{U_i}$,
+  so $f g_i \in \OO_X(U_i)^\times$.
+  Then
+  \[\divv_{U_i} f =
+  \divv_{U_i}(1 / g_i) = -D|_{U_i}.\]
+  So $\divv_X f = -D$, and thus
+  $D$ is principal.
+
+  Finally, we check surjectivity.
+  Fix an invertible sheaf
+  $\mathcal{L} \in \Pic X$, say with
+  trivialization data
+  $(U_i, g_{i, j})_{i \in I}$. Fix an element
+  $0 \in I$ and set $g_0 = 1$,
+  $g_i = g_{i, 0}$ for $i \in I \setminus \{0\}$.
+  Then
+  \[
+    g_i / g_j
+    = g_{i, 0} / g_{j, 0}
+    = g_{i, j} \in \OO_X(U_{i, j})^\times.
+  \]
+  Let $D^i = \divv_{U_i}(g_i) \in \Div(U_i)$.
+  Note that
+  \[
+    D^i_{U_{i, j}}
+    - D^j_{U_{i, j}}
+    = \divv_{U_{i, j}}(g_i / g_j)
+    = \divv_{U_{i, j}}(g_{i, j}) = 0,
+  \]
+  so the $D^i$ glue to a divisor
+  $D \in \Div X$ such that
+  $D|_{U_i} = \divv_{U_i}(g_i)$.
+  So $\OO_X(D) \cong \mathcal{L}$.
+\end{proof}
+
+\begin{remark}
+  Proposition \ref{prop:divisor-invertible-sheaf}
+  implies the following:
+  \begin{itemize}
+    \item $\Pic(\Affine^n) \cong \Cl(\Affine^n) = 0$.
+    \item $\Pic(\PP^n) \cong \Cl(\PP^n)
+      \cong \Z$,
+      and $\Pic(\PP^n) = \langle \OO_{\PP^n}(1) \rangle$.
+  \end{itemize}
+\end{remark}
+
+\section{Effective Cartier Divisors}
+
+\begin{remark}
+  Fix $D = \sum a_i D_i \in \Div X$
+  such that the $D_i$ are distinct
+  prime divisors.
+\end{remark}
+
+\begin{definition}
+  A divisor $D$ is called \emph{effective}
+  if $a_i \ge 0$ for all $i$, and
+  we write $D \ge 0$.
+\end{definition}
+
+\begin{remark}
+  If $D \ge 0$, then we have
+  \[
+    \OO_X(-D)
+    \subseteq \OO_X
+    \subseteq \underline{K(X)},
+  \]
+  and $\OO_X(-D)$ is a coherent ideal
+  sheaf. We write
+  $\OO_D := \OO_X / \OO_X(-D)$.
+\end{remark}
+
+\begin{example}
+  Let $H = V(x_1) \subseteq \Affine^n$.
+  Then
+  $\OO_{\Affine^n}(-H) = x_1 \OO_{\Affine^n}$,
+  and
+  \[
+    \OO_H = (k[x_1, \dots, x_n] / (x_1))^\sim
+    = i_* \OO_H,
+  \]
+  where $i : H \hookrightarrow \Affine^n$
+  is the inclusion. In general, we have
+  \begin{enumerate}
+    \item $\Supp(\OO_D) = \bigcup_{i = 1}^r E_i$,
+      where $D = \sum_{i = 1}^r b_i E_i$
+      with $b_i > 0$ and
+      $E_i$ distinct primes.
+
+      To see this, we can write
+      $(\OO_D)_x = \OO_{X, x} / \OO_X(-D)_x$,
+      which is zero if and only if
+      $x \notin \bigcup_{i = 1}^r E_i$.
+      We will call this locus the
+      \emph{support} of $D$.
+    \item If $b_1 = \cdots = b_r = 1$, then
+      \[
+        \OO_X(-D)
+        = \mathcal{I}_{E_1 \cup \cdots \cup E_r}.
+      \]
+      Thus $\OO_D = i_* \OO_{E_1 \cup \cdots \cup E_r}$, where,
+      where $i : E_1 \cup \cdots \cup E_r \hookrightarrow X$ is the inclusion.
+  \end{enumerate}
+\end{example}
+
+\section{Effective Divisors and Zero Loci of Sections}
+
+\begin{remark}
+  Fix an invertible sheaf
+  $\mathcal{L}$ on $X$. Fix trivialization
+  data
+  \[
+    (U_i, \alpha_i : \mathcal{L}|_{U_i}
+    \overset{\cong}{\longrightarrow} \OO_{U_i}).
+  \]
+\end{remark}
+
+\pagebreak
+
+\begin{prop}
+  For $0 \ne s \in \Gamma(X, \mathcal{L})$,
+  there exists a divisor $D \in \Div X$
+  such that
+  \begin{enumerate}
+    \item $D|_{U_i} = \divv_{U_i}(\alpha_i(s))$,
+    \item $D \ge 0$,
+    \item $\OO_X(D) \cong \mathcal{L}$.
+  \end{enumerate}
+  Write $V(s) := D$ for this
+  divisor.
+\end{prop}
+
+\begin{proof}
+  (1) It suffices to show
+  $\divv_{U_{i, j}}(\alpha_i(s))
+  = \divv_{U_{i, j}}(\alpha_j(s))$, and
+  this holds as
+  $\alpha_i(s) / \alpha_j(s) \in \OO_X(U_{i, j})^\times$.
+
+  (2) Use that $\alpha_i(s) \in \OO_X(U_i)$.
+
+  (3) Left as an exercise. One
+  works with transition functions.
+\end{proof}
+
+\begin{remark}
+  We get a bijection
+  \begin{align*}
+    \{
+      \text{$1$-dimensional subspaces in
+      $\Gamma(X, \mathcal{L})$}
+    \}
+    &\longleftrightarrow
+    \{
+      \text{effective Cartier divisors
+      $D$ such that
+    $\OO_X(D) \cong \mathcal{L}$}
+    \} \\
+    ks &\longmapsto V(s) \\
+    \mathcal{L} \cong \OO_X(D) \ni 1
+    &\mathrel{\reflectbox{\ensuremath{\longmapsto}}}
+    D.
+  \end{align*}
+  If $\mathcal{L} \cong \OO_X(D_0)$,
+  then there is another bijection with the
+  effective Cartier divisors $D \sim D_0$.
+\end{remark}
+
+\begin{example}
+  Let $X = \PP^n$ and
+  $\mathcal{L} = \OO(m)$ for $m \ge 1$.
+  Then $\mathcal{L} \cong \OO(mH)$
+  for a hyperplane $H$, and
+  \begin{align*}
+    \{
+      \text{effective Cartier divisors
+      $D \sim mH$}
+    \}
+    &=
+    \left\{
+      \sum a_i H_i :
+      \substack{\displaystyle a_i \ge 0,\, H_i
+      \text{ irreducible hypersurfaces} \\
+  \displaystyle \text{with }\sum a_i \deg H_i = m}
+    \right\} \\
+    &= \{\text{hypersurfaces of degree
+    $m$ in $\PP^n$ counting multiplicities}\}.
+  \end{align*}
+\end{example}
+
+\begin{remark}
+  If $s_0, \dots, s_n \in
+  \Gamma(X, \mathcal{L})$
+  globally generate $\mathcal{L}$,
+  \begin{align*}
+    f : X &\longrightarrow \PP^n \\
+    x &\longmapsto [s_0(x) : \cdots : s_n(x)],
+  \end{align*}
+  and $H_a = V(\sum a_i x_i) \subseteq \PP^n$ is a hyperplane,
+  then $f^{-1}(H_a) = V(\sum a_i s_i)$.
+\end{remark}

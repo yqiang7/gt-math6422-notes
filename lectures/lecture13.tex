@@ -1,0 +1,379 @@
+\chapter{Feb.~24 --- Differentials}
+
+\section{Review of Tangent Spaces}
+
+\begin{definition}
+  For a variety $X$ and $x \in X$,
+  the \emph{tangent space} of $X$ at $x$ is
+  \[
+    T_{X, x}
+    = (\m_x / \m_x^2)^\vee.
+  \]
+  We say that $X$ is \emph{smooth} at
+  $x$ if $\dim_x X = \dim_k T_{X, x}$.
+\end{definition}
+
+\begin{remark}
+  Our goals will be:
+  \begin{enumerate}
+    \item Define $\Omega_X \in \Coh(X)$
+      such that $\Omega_X(U)$ gives the
+      ``algebraic $1$-forms on $U$.''
+    \item Define $T_X := \Omega_X^\vee$.
+    \item Show that there is a natural
+      isomorphism $T_X(x) \cong T_{X, x}$.
+    \item Construct a relative version
+      $\Omega_{X / Y}$ for a morphism
+      $X \to Y$.
+  \end{enumerate}
+\end{remark}
+
+\section{Differentials}
+
+\begin{remark}
+  Let $\phi : A \to B$ be a morphism
+  of rings, e.g.
+  $k \to k[x_1, \dots, x_n] / I$.
+\end{remark}
+
+\begin{definition}
+  For a $B$-module $M$, an
+  \emph{$A$-derivation} is a map
+  $D : B \to M$ such that
+  \begin{enumerate}
+    \item $D$ is $A$-linear,
+    \item (Leibniz rule)
+      $D(b_1 b_2) = b_1 D(b_2) + D(b_1) b_2$.
+  \end{enumerate}
+\end{definition}
+
+\begin{remark}
+  Using (2), condition
+  (1) can be reformulated as
+  the following:
+  \begin{enumerate}
+    \item[1'.] $D$ is additive and
+      $D(a \cdot 1) = 0$ for all $a \in A$.
+  \end{enumerate}
+\end{remark}
+
+\begin{example}
+  Let $A = k$ and $B = k[x_1, \dots, x_n]$.
+  We can define
+  \begin{align*}
+    D : k[x_1, \dots, x_n]
+    &\longrightarrow \bigoplus_{i = 1}^n k[x_1, \dots, x_n] dx_i \\
+    f &\longmapsto df = \sum \frac{\partial f}{\partial x_i} dx_i.
+  \end{align*}
+  One can check that $D$ is a $k$-derivation
+  (but $D$ is not $k[x_1, \dots, x_n]$-linear).
+\end{example}
+
+\begin{prop}
+  There exists a derivation
+  $B \to \Omega_{B / A}$ such that for
+  any derivation $D : B \to M$, there exists
+  unique a $B$-module homomorphism such that
+  the following diagram commutes:
+  \[
+    \begin{tikzcd}
+      B \ar[r, "d"] \ar[dr, "D", swap]
+      & \Omega_{B / A} \ar[d, dashed, "\exists !"] \\
+      & M
+    \end{tikzcd}
+  \]
+  Here $\Omega_{B / A}$ is called the
+  \emph{module of K\"ahler differentials}.
+\end{prop}
+
+\begin{proof}
+  Let $\Omega_{B / A}$ be the $B$-module
+  with generators $(db)_{b \in B}$
+  and relations
+  \begin{enumerate}
+    \item $d(b_1 b_2) = b_1 d(b_2) + b_2 d(b_1)$ for $b_1, b_2 \in B$,
+    \item $d(b_1 + b_2) = db_1 + db_2$
+      for $b_1, b_2 \in B$
+      and $d(\phi(a)) = 0$ for $a \in A$.
+  \end{enumerate}
+  Then one can check
+  $B \to \Omega_{B / A}$ given by
+  $b \mapsto db$ is a derivation
+  satisfying the universal property.
+\end{proof}
+
+\begin{remark}
+  If $(b_i)_{i \in I}$ generate $B$
+  as an $A$-module, then the $db_i$
+  generate $\Omega_{B / A}$ as a $B$-module.
+\end{remark}
+
+\begin{example}
+  We have the following:
+  \begin{enumerate}
+    \item[0.] $\Omega_{A / A} = 0$.
+    \item For $K \subseteq L$ a finite
+      field extension, $\Omega_{L / K} = 0$
+      if and only if $L / K$ is separable.
+    \item Let $B = A[x_1, \dots, x_n]$.
+      We know that $dx_i$ for
+      $1 \le i \le n$ generate
+      $\Omega_{B / A}$. We claim that the
+      $dx_i$ are also linearly
+      independent over $B$.
+
+      To see this, fix $1 \le i \le n$ and
+      consider the
+      derivation $D_i : B \to B$ given by
+      $f \mapsto \partial f / \partial x_i$.
+      Then
+      \[
+        D_i(x_j) =
+        \begin{cases}
+          1 & \text{if $j = i$} \\
+          0 & \text{otherwise}.
+        \end{cases}
+      \]
+      By the universal property we have a
+      diagram
+      \[
+        \begin{tikzcd}
+          & \Omega_{B / A} \ar[d, dashed] \\
+          B \ar[ur] \ar[r, "D_i", swap] & B
+        \end{tikzcd}
+      \]
+      so the $dx_i$ are independent over
+      $B$. Thus we have
+      $\Omega_{B / A} = B dx_1 \oplus \cdots \oplus B dx_n$.
+  \end{enumerate}
+\end{example}
+
+\begin{prop}
+  If $S \subseteq B$ is a multiplicative
+  system, then there is a canonical isomorphism
+  \begin{align*}
+    \Omega_{S^{-1} B / A}
+    &\overset{\cong}{\longrightarrow} S^{-1} \Omega_{B / A} \\
+    d(b / s) &\longmapsto \frac{1}{s} db - \frac{b}{s^2} ds.
+  \end{align*}
+\end{prop}
+
+\begin{proof}
+  Given an $A$-derivation
+  $S^{-1} B \to M$, we get an $A$-derivation
+  by composition:
+  \[
+    B \longrightarrow S^{-1} B \longrightarrow M
+  \]
+  So there exists
+  a unique $B$-module homomorphism
+  $D$ such that the following
+  diagram commutes:
+  \pagebreak
+  \[
+    \begin{tikzcd}
+      B \ar[d] \ar[r] & \Omega_{B / A} \ar[d, "D", dashed] \ar[dr] \\
+      S^{-1} B \ar[r] \ar[rr, bend right, "S^{-1} D", swap] & M & S^{-1} \Omega_{B / A} \ar[l, dashed, "\phi"]
+    \end{tikzcd}
+  \]
+  Note that the universal property of
+  localization,
+  we get a unique map $S^{-1} D$ that
+  fits into the above diagram. Then
+  one can check that the map
+  \begin{align*}
+    S^{-1} D : S^{-1} B &\longrightarrow S^{-1} \Omega_{B / A} \\
+    \frac{b}{s} &\longmapsto \frac{1}{s} db - \frac{b}{s^2} ds
+  \end{align*}
+  makes the diagram commute and is
+  an $A$-derivation, so
+  $S^{-1} \Omega_{B / A} \cong \Omega_{S^{-1} B / A}$.
+\end{proof}
+
+\begin{prop}\label{prop:properties-differentials}
+  We have the following:
+  \begin{enumerate}
+    \item For $A$-algebras $B_1$ and
+      $B_2$, we have
+      $\Omega_{B_1 \otimes_A B_2} \cong \Omega_{B_1 / A} \otimes_A \Omega_{B_2 / A}$.
+    \item If we have ring homomorphisms
+      $A \overset{\phi}{\longrightarrow} B \overset{\psi}{\longrightarrow} C$, then
+      the sequence
+      \[
+        \begin{tikzcd}
+          \Omega_{B / A} \otimes_B C \ar[r]
+          & \Omega_{C / A} \ar[r] &
+          \Omega_{C / B} \ar[r] & 0
+        \end{tikzcd}
+      \]
+      is exact, where the
+      first map $\Omega_{B / A} \otimes_B C \to \Omega_{C / A}$ is given by
+      $db \otimes c \mapsto c d\psi(b)$.
+    \item If $I \le B$ is an ideal, then
+      there exists an exact sequence
+      \[
+        \begin{tikzcd}
+          I / I^2 \ar[r]
+          & \Omega_{B / A} \otimes (B / I) \ar[r]
+          & \Omega_{(B / I) / A} \ar[r]
+          & 0
+        \end{tikzcd}
+      \]
+      where the first map
+      $I / I^2 \to \Omega_{B / A} \otimes (B / I)$ is given by
+      $\overline{b} \mapsto db \otimes 1$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  See Mustata's notes.
+\end{proof}
+
+\begin{example}\label{example:affine-variety-differentials}
+  Let $X \subseteq \Affine^n$ be an affine
+  variety, $C = \OO_X(X) = k[x_1, \dots, x_n] / I(X)$,
+  $B = k[x_1, \dots, x_n]$, and $A = k$.
+  Let $I = I(X)$. Then
+  Proposition \ref{prop:properties-differentials}(3) gives an exact sequence
+  \[
+    \begin{tikzcd}
+      I / I^2 \ar[r]
+      & \bigoplus_{i = 1}^n Bdx_i \otimes_B C \ar[r]
+      & \Omega_{C / k} \ar[r] & 0
+    \end{tikzcd}
+  \]
+  Thus we see that $\Omega_{C / k}$ is
+  given by
+  \[
+    \Omega_{C / k}
+    = \frac{\bigoplus_{i = 1}^n C dx_i}{(df : f \in I)}.
+  \]
+  If $I = (f_1, \dots, f_r)$, then we just get
+  \[
+    \Omega_{C / k}
+    = \frac{\bigoplus_{i = 1}^n C dx_i}{(df_1, \dots, df_r)}.
+  \]
+\end{example}
+
+\begin{example}
+  If $X = V(x^2 - y^3)$, then
+  $C = \OO_X(X) = k[x, y] / (x^2 - y^3)$,
+  and Example \ref{example:affine-variety-differentials} gives
+  \[
+    \Omega_{C / k}
+    = \frac{Cdx \oplus C dy}{(2xdx - 3y^2 dy)}.
+  \]
+\end{example}
+
+\begin{prop}
+  Given a variety $X$, there exists a
+  coherent sheaf $\Omega_X$,
+  called the \emph{sheaf of differentials},
+  such that
+  \begin{enumerate}
+    \item for $U \subseteq X$ open
+      affine, there exists an isomorphism
+      $\Omega_X(U) \cong \Omega_{\OO_X(U) / k}$,
+    \item for $V \subseteq U \subseteq X$
+      open affine, the following diagram
+      commutes:
+      \[
+        \begin{tikzcd}
+          \Omega_X(U) \ar[r] \ar[d] & \Omega_{\OO_X(U) / k} \ar[d, "df \mapsto d(f|_U)"] \\
+          \Omega_X(V) \ar[r] & \Omega_{\OO_X(V) / k}
+        \end{tikzcd}
+      \]
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  For $U \subseteq X$ open affine,
+  set $\mathcal{G}_U := \widetilde{\Omega_{\OO_X(U) / k}} \in \Coh(U)$.
+  Now for $V \subseteq U \subseteq X$
+  open affine,
+  \[
+    \Omega_{\OO_X(U) / k} \longrightarrow \Omega_{\OO_X(V) / k}
+  \]
+  induces a morphism
+  $\phi_{V, U} : \mathcal{G}_U|_V
+    \to \mathcal{G}_V$. If $V = D_U(f)$,
+    then
+    \[
+      \mathcal{G}_U|_V
+      = ((\Omega_{\OO_X(U) / k})_f)^\sim
+      \quad \text{and} \quad
+      \mathcal{G}_V
+      = \widetilde{\Omega_{\OO_X(V) / k}}.
+    \]
+    These are isomorphic by the
+    localization property of differentials.
+    So by the affine communication
+    lemma, we get that $\phi_{V, U}$ is
+    an isomorphism for all $V \subseteq U \subseteq X$ open affine.
+
+    Using this, we can glue the
+    $\mathcal{G}_U$ for $U \subseteq X$
+    open affine to construct
+    $\mathcal{G} =: \Omega_{X / k}$.
+\end{proof}
+
+\begin{remark}
+  Similarly, for a morphism of varieties
+  $f : X \to Y$, we can define
+  \[
+    \Omega_{X / Y} \in \Coh(X)
+  \]
+  such that for any open affines
+  $U \subseteq X$ and $V \subseteq Y$
+  with $f(U) \subseteq V$, we have
+  \[
+    \Omega_{X / Y}|_U
+    \cong (\Omega_{\OO_X(U) / \OO_Y(V)})^\sim.
+  \]
+\end{remark}
+
+\begin{remark}
+  Note that $\Omega_X \cong \Omega_{X / \{\mathrm{pt}\}}$.
+\end{remark}
+
+\begin{example}
+  We have the following:
+  \begin{enumerate}
+    \item $\Omega_{\Affine^n} \cong (\Omega_{k[x_1, \dots, x_n] / k})^\sim \cong (\bigoplus_{i = 1}^n k[x_1, \dots, x_n] dx_i)^\sim \cong \bigoplus_{i = 1}^n \OO_{\Affine^n}$.
+    \item To compute $\Omega_{\PP^n}$, note
+      that there is a short exact sequence
+      (called the \emph{Euler sequence})
+      \[
+        \begin{tikzcd}
+          0 \ar[r] & \Omega_{\PP^n} \ar[r] & \OO_{\PP^n}(-1)^{\oplus (n + 1)} \ar[r] & \OO_{\PP^n} \ar[r] & 0
+        \end{tikzcd}
+      \]
+      On $U_i \subseteq \PP^n$, this
+      corresponds to
+      \[
+        \begin{tikzcd}[row sep=tiny]
+          \Omega_{\PP^n}(U_i)
+          \ar[r] & \bigoplus_{i = 1}^{n + 1} \OO_{\PP^n}(-1)(U_i)
+          \ar[r] & \OO_{\PP^n}(U_i) \ar[r] & 0 \\
+          d(x_j / z_i)
+          \ar[r, mapsto]
+                 & e_j - (z_j / z_i) e_i \\
+                 & e_j \ar[r, mapsto] & z_j / z_i.
+        \end{tikzcd}
+      \]
+      One can check that these maps glue
+      and that the sequence is exact.
+  \end{enumerate}
+\end{example}
+
+\begin{prop}
+  For a variety $X$ and $x \in X$,
+  \begin{enumerate}
+    \item $\dim \Omega_X(x) = \dim_k T_{X, x}$;
+    \item $X$ is smooth if and only if
+      $\Omega_X$ is locally free.
+  \end{enumerate}
+  In particular, when
+  (2) holds, $T_X = \Omega_X^\vee$ is a
+  locally free sheaf.
+\end{prop}

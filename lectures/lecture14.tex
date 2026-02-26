@@ -1,0 +1,115 @@
+\chapter{Feb.~26 --- Differentials, Part 2}
+
+\section{Tangent Sheaf}
+
+\begin{prop}\label{prop:differentials-affine-variety}
+  We have the following:
+  \begin{enumerate}
+    \item For $X \subseteq \Affine^n$
+      closed, we have
+      \[\Omega_X(X) = \frac{\bigoplus_{i = 1}^n A dx_i}{(df_1, \dots, df_r)},\]
+      where $A = \OO_X(X) = k[x_1, \dots, x_n] / I(X)$
+      and $I(X) = (f_1, \dots, f_r) \le k[x_1, \dots, x_n]$. 
+    \item For $x \in X$,
+      we have $(\Omega_X)_x = \Omega_{\OO_{X, x} / k}$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  (1) This was the discussion in
+  Example \ref{example:affine-variety-differentials}.
+
+  (2) We may assume that $X$ is affine.
+  Let $I := I_X(\{x\}) \le \OO_X(X)$.
+  Then
+  \[
+    (\Omega_X)_x
+    \cong (\widetilde{\Omega_{\OO_X(X) / k}})_x
+    \cong (\Omega_{\OO_X(X) / k})_I
+    = \Omega_{\OO_{X, x} / k},
+  \]
+  which is the desired claim.
+\end{proof}
+
+\begin{prop}
+  For a variety $X$ and $x \in X$,
+  \begin{enumerate}
+    \item
+      $T_{X, x}^\vee \cong \Omega_X(x)$,
+      in particular
+      $\dim \Omega_X(x) = \dim_k T_{X, x}$;
+    \item $X$ is smooth if and only if
+      $\Omega_X$ is locally free.
+  \end{enumerate}
+  In particular, when
+  (2) holds, $T_X = \Omega_X^\vee$ is a
+  locally free sheaf.
+\end{prop}
+
+\begin{proof}
+  (1) We will only show the
+  dimension statement.
+  As both are local statements,
+  we may assume that $x = 0 \in X \subseteq \Affine^n$
+  where $X$
+  is closed. Write $A = \OO_X(X)$
+  and $I_X = (f_1, \dots, f_r) \le k[x_1, \dots, x_n]$.
+  Then
+  \[
+    \Omega_X(0)
+    = \frac{\Omega_X(X)}{(\overline{x}_1, \dots, \overline{x}_n) \Omega_X(X)}
+    = \frac{\bigoplus_{i = 1}^n k dx_i}{(\sum_j (\partial f_i / \partial x_j)(0) dx_j)}.
+  \]
+  by Proposition
+  \ref{prop:differentials-affine-variety}.
+  As $T_{X, 0} = V(f_1^{\mathrm{lin}}, \dots, f_r^{\mathrm{lin}})$,
+  we see that $\dim \Omega_X(0) = \dim T_{X, 0}$.
+
+  (2) We may assume that $X$ is connected.
+  If $X$ is smooth, then $X$ is irreducible,
+  so
+  \[
+    n := \dim X
+    = \codim_X\{x\} = \dim T_{X, x}
+    = \dim \Omega_X(x)
+  \]
+  for all $x \in X$. Thus a homework
+  problem implies that $\Omega_X$ is
+  free.
+
+  Conversely, assume $\Omega_X$
+  is free. Set $n = \rank \Omega_X$,
+  then for $x \in X^{\mathrm{sm}}$,
+  we have $\codim_X\{x\} = \dim \Omega_X(x) = n$.
+  Now $X^{\mathrm{sm}}$ is dense in $X$,
+  so $X$ is of pure dimension $n$.
+  So for all $x \in X$, we have
+  \[
+    n = \dim X = \codim_X\{x\}
+    \le \dim T_{x, x} = \dim \Omega_X(x)
+    = n,
+  \]
+  hence $\dim T_{X, x} = n$, so $X$
+  is smooth.
+\end{proof}
+
+\begin{definition}
+  For a variety $X$, its \emph{tangent
+  sheaf} is $T_X := \Omega_X^\vee$.
+\end{definition}
+
+\begin{remark}
+  If $X$ is smooth, then $T_X$ is
+  locally free.
+\end{remark}
+
+\begin{conjecture}[Zariski-Lipman]
+  If $T_X$ is locally free, then
+  $X$ is smooth.
+\end{conjecture}
+
+\begin{remark}
+  In general, $\mathcal{F}$ being
+  locally free does not imply that
+  $\mathcal{F}^\vee$ is locally free.
+\end{remark}

@@ -1,0 +1,394 @@
+\chapter{Mar.~3 --- Differential Forms}
+
+\section{Differential Forms}
+
+\begin{definition}
+  For a variety $X$ and
+  $0 \le p \le \dim X$,
+  \[
+    \Omega_X^p := \wedge^p \Omega_X
+  \]
+  is the space of \emph{$p$-forms}
+  on $X$. If $X$ is smooth and
+  irreducible, its \emph{canonical bundle}
+  is
+  \[
+    \omega_X := \wedge^{\dim X} \Omega_X
+    = \det(\Omega_X).
+  \]
+\end{definition}
+
+\begin{remark}
+  If $M$ is a smooth compact oriented
+  manifold, the \emph{de Rham cohomology}
+  is given by
+  \[
+    H_{\mathrm{dR}}^k(M, \R)
+    = \frac{\text{closed $k$-forms}}{\text{exact $k$-forms}}.
+  \]
+  Then Poincar\'e duality says that
+  (here $n = \dim X$)
+  \begin{align*}
+    H_{\mathrm{dR}}^k(M, \R) \times H_{\mathrm{dR}}^{n - k}(M, \R)
+    &\longrightarrow H_{\mathrm{dR}}^n(M, \R) \cong \R \\
+    ([\alpha], [\beta]) &\longmapsto [\alpha \wedge \beta]
+  \end{align*}
+  is a perfect pairing, i.e. the following
+  map is an isomorphism:
+  \begin{align*}
+    H_{\mathrm{dR}}^k(M, \R) &\longrightarrow H_{\mathrm{dR}}^{n - k}(M, \R)^\vee \\
+    [\alpha] &\longmapsto ([\beta] \mapsto [\alpha \wedge \beta])
+  \end{align*}
+  The canonical bundle $\omega_X$ will be an
+  analogue of
+  $H_{\mathrm{dR}}^n(M, \R) \cong \R$ in
+  algebraic geometry.
+\end{remark}
+
+\section{Canonical Divisor}
+\begin{definition}
+  The \emph{canonical divisor} of a smooth
+  irreducible variety $X$ is a divisor
+  $K_X$ such that $\omega_X \cong \OO_X(K_X)$ (note that technically
+  $K_X$ is only defined up to linear
+  equivalence).
+\end{definition}
+
+\begin{example}
+  How do we compute the canonical divisor
+  $K_X$?
+  \begin{enumerate}
+    \item First consider $\Affine^n$.
+      In this case $\Omega_{\Affine^n} = \OO_{\Affine^n}^{\oplus n}$,
+      so $\det(\Omega_{\Affine^n}) = \OO_{\Affine^n}$.
+      So $K_{\Affine^n} = 0$ (alternatively
+      one can note that $\Cl(\Affine^n) = 0$,
+      so there every divisor is $0$ up
+      to linear equivalence).
+    \item Next consider $\PP^n$. We
+      need to use the following tools:
+      \begin{enumerate}[i)]
+        \item The Euler short exact sequence
+          $0 \longrightarrow \Omega_{\PP^n} \longrightarrow \OO_{\PP^n}(-1)^{\oplus (n + 1)} \longrightarrow \OO_{\PP^n} \longrightarrow 0$.
+        \item If $0 \longrightarrow \mathcal{E} \longrightarrow \mathcal{F} \longrightarrow \mathcal{G} \longrightarrow 0$ is a short exact sequence of locally free sheaves
+          of ranks $e, f, g$ on $X$, then
+          $\det(\mathcal{F}) \cong \det(\mathcal{E}) \otimes \det(\mathcal{G})$.
+
+          \pagebreak
+          To see this, note that given
+          a short exact sequence of
+          free $R$-modules
+          \[
+            \begin{tikzcd}
+              0 \ar[r] & E \ar[r] & F \ar[r] & G \ar[r] & 0
+            \end{tikzcd}
+          \]
+          of ranks $e, f, g$ for some
+          ring $R$,
+          we can define a map
+          \begin{align*}
+            \det(E) \otimes \det(G) &\longrightarrow \det(F) \\
+            (v_1 \wedge \cdots \wedge v_e) \otimes (\overline{w}_1 \wedge \cdots \wedge \overline{w}_g) &\longmapsto v_1 \wedge \cdots \wedge v_e \wedge w_1 \wedge \cdots \wedge w_g,
+          \end{align*}
+          where we think of $G = F / E$.
+          One can check that this is
+          well-defined, is an isomorphism
+          (it is enough to check this on
+          a basis), and commutes with
+          localization. This induces a
+          morphism
+          \[
+            \det(\mathcal{F})|_U
+            \longrightarrow
+            \det(\mathcal{E})|_U \otimes \det(\mathcal{G})|_U
+          \]
+          on $U \subseteq X$ open affine
+          which trivializes
+          $\mathcal{E}, \mathcal{F}, \mathcal{G}$.
+          Since the map commutes
+          with localization, these morphisms
+          glue to give an isomorphism
+          $\det(\mathcal{F}) \to \det(\mathcal{E}) \otimes \det(\mathcal{G})$.
+        \item For $\mathcal{L}_1, \dots, \mathcal{L}_r$
+          invertible sheaves, we have
+          \[
+            \det(\mathcal{L}_1 \oplus \cdots \oplus \mathcal{L}_r)
+            \cong \mathcal{L}_1 \otimes \cdots \otimes \mathcal{L}_r.
+          \]
+          One can prove this as above
+          by defining a map on affine opens
+          and showing that it commutes with
+          localization, or by checking the
+          transition data.
+      \end{enumerate}
+      Using these three properties, we see
+      that
+      \[
+        \omega_{\PP^n}
+        = \det \Omega_{\PP^n}
+        = \det(\OO_{\PP^n}(-1)^{\oplus (n + 1)})
+        \otimes \det(\OO_{\PP^n})
+        = \OO_{\PP^n}(-n - 1).
+      \]
+      Hence we see that $K_{\PP^n} = -(n + 1) H$
+      with $H \subseteq \PP^n$ a
+      hyperplane.
+  \end{enumerate}
+\end{example}
+
+\section{Exact Sequences of Differentials}
+\begin{prop}\label{prop:exact-sequences-differentials}
+  We have the following:
+  \begin{enumerate}
+    \item For a morphism of varieties
+      $f : X \to Y$, there is an exact sequence
+      \[
+        \begin{tikzcd}
+          f^* \Omega_Y
+          \ar[r] & \Omega_X
+          \ar[r] & \Omega_{X / Y}
+          \ar[r] & 0
+        \end{tikzcd}
+      \]
+    \item For $i : Z \hookrightarrow X$
+      a closed embedding, there is an
+      exact sequence
+      (where $\mathcal{I} = \mathcal{I}_Z \subseteq \OO_X$)
+      \[
+        \begin{tikzcd}
+          \mathcal{I} / \mathcal{I}^2
+          \ar[r] & i^* \Omega_X
+          \ar[r] & \Omega_Z
+          \ar[r] & 0
+        \end{tikzcd}
+      \]
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  (1) For $U \subseteq X$ open affine with
+  $f(U) \subseteq V$ open affine, set
+  \[
+    A = k \longhookrightarrow B = \OO_Y(V)
+    \longhookrightarrow C = \OO_X(U).
+  \]
+  From this, we get an exact sequence
+  \[
+    \begin{tikzcd}
+      \Omega_{B / A} \otimes_B C
+      \ar[r] & \Omega_{C / A}
+      \ar[r] & \Omega_{C / B}
+      \ar[r] & 0
+    \end{tikzcd}
+  \]
+  Then use that this sequence is natural
+  (i.e. for another row $A' \hookrightarrow B' \hookrightarrow C'$ with the
+  appropriate arrows, there is another
+  row in the exact sequence which
+  commutes)
+  and commutes with localization
+  to get an exact sequence of coherent
+  sheaves.
+
+  (2) Reduce to the corresponding
+  ring theoretic statement.
+\end{proof}
+
+\begin{remark}
+  In Proposition \ref{prop:exact-sequences-differentials}(2),
+  we abusively write
+  $\mathcal{I} / \mathcal{I}^2$ for
+  $i_*(\mathcal{I} / \mathcal{I}^2)$, since
+  for $X$ affine,
+  $A = \OO_X(X)$, and $I = I(Z) \le A$,
+  we have that $I / I^2$ is naturally
+  an $A / I$-module as $\mathrm{Ann}(I / I^2) \subseteq I$.
+  Thus
+  \[
+    i^*(\mathcal{I} / \mathcal{I}^2)
+    = (I / I^2 \otimes_A A / I)^\sim
+    = \widetilde{I / I^2}.
+  \]
+  More generally, there is an equivalence
+  of categories
+  \[
+    \begin{tikzcd}
+      \Coh_Z \ar[r, shift left=1, "i_*"] & \text{coherent sheaves $\mathcal{F}$ on $X$ with $\mathrm{Ann}(\mathcal{F}) \subseteq \mathcal{I}$} \ar[l, shift left=1, "i^*"]
+    \end{tikzcd}
+  \]
+\end{remark}
+
+\begin{example}
+  For $i : \{p\} \hookrightarrow \PP^1$,
+  we have an exact sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \mathcal{I}_{\{p\}}
+      \ar[r] & \OO_{\PP^1}
+      \ar[r] & i_* \OO_{\{p\}}
+      \ar[r] & 0
+    \end{tikzcd}
+  \]
+\end{example}
+
+\begin{remark}
+  If $Z, X$ are smooth varieties of
+  pure dimension, then
+  \begin{itemize}
+    \item Mustata 6.3.21 implies
+      that $\mathcal{I} / \mathcal{I}^2$ is a locally free $\OO_X$-module of rank $\dim X - \dim Z$.
+    \item We call
+      $N_{Z / X} = \Hom_{\OO_Z}(\mathcal{I} / \mathcal{I}^2, \OO_Z)$ the
+      \emph{normal bundle}.
+    \item We have a short exact sequence:
+      \[
+        \begin{tikzcd}
+          0 \ar[r] & \mathcal{I} / \mathcal{I}^2
+          \ar[r] & i^* \Omega_X
+          \ar[r] & \Omega_Z
+          \ar[r] & 0
+        \end{tikzcd}
+      \]
+      To see this, note that locally
+      on $U \subseteq X$ open affine
+      trivializing the locally free sheaves,
+      we get an exact sequence
+      \[
+        \begin{tikzcd}
+          \OO_U^{\dim X - \dim Z}
+          \ar[r, "\alpha"] & \OO_U^{\dim X}
+          \ar[r, "\beta"] & \OO_U^{\dim Z}
+          \ar[r] & 0
+        \end{tikzcd}
+      \]
+      We want to check that we get
+      a short exact sequence if we add a
+      $0$ on the left, i.e. that $\ker \alpha = 0$.
+      For $x \in U$, we can apply
+      the right exact functor
+      $- \otimes \OO_U / \m_x\ (\cong k)$ to get
+      \[
+        \begin{tikzcd}
+          k^{\dim X - \dim Z}
+          \ar[r] & k^{\dim X}
+          \ar[r] & k^{\dim Z}
+          \ar[r] & 0
+        \end{tikzcd}
+      \]
+      which is short exact by dimension
+      reasons. So we see that
+      \[
+        (\ker \alpha)_x
+        \subseteq \m_x^{\dim X - \dim Z}
+        \subseteq \OO_U^{\dim X - \dim Z}.
+      \]
+      As this holds for all $x \in U$,
+      we get $\ker \alpha = 0$. So the
+      original sequence is short exact.
+  \end{itemize}
+\end{remark}
+
+\begin{corollary}
+  If $i : Z \hookrightarrow X$ is a closed
+  embedding of smooth irreducible varieties,
+  then
+  \[
+    \omega_Z
+    = \det(\Omega_Z)
+    \cong \det(i^* \Omega_X) \otimes \det(N_{Z / X})
+    = i^* \omega_X \otimes \det(N_{Z / X}).
+  \]
+\end{corollary}
+
+\section{Graded Modules}
+
+\begin{remark}
+  On an affine variety $X$, there is a
+  bijection
+  \begin{align*}
+    \{\text{finitely generated $A(X)$-modules}\} / {\cong}
+    &\longleftrightarrow
+    \{\text{coherent sheaves on $X$}\} / {\cong} \\
+    M &\longmapsto \widetilde{M} \\
+    \mathcal{F}(X)
+    &\mathrel{\reflectbox{\ensuremath{\longmapsto}}}
+    \mathcal{F}.
+  \end{align*}
+  Now we want a similar correspondence
+  for a closed subvariety
+  $X \subseteq \PP^n$ with
+  $S(X) = k[x_0, \dots, x_n] / I(X)$ and
+  graded $S(X)$-modules, though we will
+  only get a bijection up to some further
+  equivalence.
+\end{remark}
+
+\begin{remark}
+  Let $X \subseteq \PP^n$ be a closed
+  subvariety and $S = \bigoplus_{d \in \N} S_d$
+  its homogeneous coordinate ring.
+\end{remark}
+
+\begin{definition}
+  A \emph{graded $S$-module} $M$ is an
+  $S$-module with a direct sum decomposition
+  \[
+    M = \bigoplus_{e \in \Z} M_e
+  \]
+  as abelian groups, such that
+  $S_d \cdot M_e \subseteq M_{d + e}$.
+  A \emph{morphism} of graded $S$-modules
+  \[
+    \phi : M \longrightarrow N
+  \]
+  is a morphism of $S$-modules which
+  respects the grading, i.e.
+  $\phi(M_d) \subseteq N_d$ for all
+  $d \in \Z$.
+\end{definition}
+
+\begin{example}
+  We have the following:
+  \begin{enumerate}
+    \item If $M, N$ are graded $S$-modules,
+      then so are $M \oplus N$ and
+      $M \otimes_S N$, with
+      \[
+        (M \oplus N)_d
+        = M_d \oplus N_d \quad \text{and} \quad
+        (M \otimes_S N)_d = \bigoplus_{e + f = d} (M_e \otimes_{S_0} N_f).
+      \]
+    \item For $m \in \Z$, let $S(m)$
+      be the graded $S$-module such that
+      $S(m)_d = S_{m + d}$.
+    \item If $\phi : M \to N$ is a
+      morphism of graded $S$-modules, then
+      $\ker \phi$, $\im \phi$, $\coker \phi$ are
+      graded $S$-modules.
+  \end{enumerate}
+\end{example}
+
+\begin{exercise}
+  If $M$ is a finitely generated
+  graded $S$-module, then show that
+  there exists
+  an exact sequence of graded
+  $S$-modules of the form
+  \[
+    \begin{tikzcd}
+      \bigoplus_{i = 1}^s S(a_i)
+      \ar[r, "\alpha"] & \bigoplus_{j = 1}^r S(b_j)
+      \ar[r, "\beta"] & M \ar[r] & 0
+    \end{tikzcd}
+  \]
+  Hint: Choose generators $m_1, \dots, m_r \in M$
+  that are homogeneous, set
+  $b_j = - \deg m_j$,
+  and let $\beta(e_j) = m_j$.
+\end{exercise}
+
+\begin{remark}
+  Next time, we will define
+  $\widetilde{M} \in \QCoh_X$, and we will
+  see that $\widetilde{S(m)} \cong \OO_X(m)$.
+\end{remark}

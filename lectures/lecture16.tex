@@ -1,0 +1,389 @@
+\chapter{Mar.~5 --- Coherent Sheaves on Projective Varieties}
+
+\section{Coherent Sheaves on Projective Varieties}
+
+\begin{remark}
+  Let $X \subseteq \PP^n$ be a projective
+  variety (i.e. a closed subvariety), and
+  let \[S = S(X) = k[x_0, \dots, x_n] / I(X),\]
+  which is a graded ring.
+  Recall the notion of a graded $S$-module
+  (Definition \ref{def:graded-module}).
+\end{remark}
+
+\begin{example}
+  Trivially, $S$ is a graded $S$-module.
+\end{example}
+
+\begin{example}
+  If $M$ is a graded $S$-module, then
+  $M(m)$ is the graded $S$-module with
+  \[
+    M(m)_d = M_{d + m}.
+  \]
+\end{example}
+
+\begin{remark}
+  $\mathrm{Gr}\text{-}\mathrm{Mod}_S$
+  is an abelian category.
+\end{remark}
+
+\begin{remark}
+  We want a correspondence
+  \[
+    \begin{tikzcd}
+    \text{(finitely generated) graded $S$-modules}
+    \ar[r, shift left = 1] & \text{(coherent) quasicoherent sheaves on $X$} \ar[l, shift left = 1]
+    \end{tikzcd}
+  \]
+  To begin with, we want $S$ to correspond
+  to $\OO_X$.
+\end{remark}
+
+\begin{example}
+  Let $X = \PP^n$, then $S = k[x_0, \dots, x_n]$.
+  Note that
+  \[
+    \OO_{\PP^n}(D(x_i))
+    = k[x_0 / x_i, \dots, x_n / x_i]
+    = ((k[x_0, \dots, x_n])_{x_i})_0
+    = \left\{
+      \frac{f}{x_i^d} : f \in k[x_0, \dots, x_n]_d
+    \right\}
+  \]
+  Note that $k[x_0, \dots, x_n]_{x_i}$
+  is naturally graded. More generally,
+  for $f \in S^+$ of homogeneous
+  degree $d$, let
+  \[
+    S_{(f)}
+    := (S_f)_0
+    = \text{degree $0$ part of $S_f$}
+    = \left\{
+      \frac{g}{f^i} \in S_f : g \in S_{di},\,
+      i \in \N
+    \right\}.
+  \]
+  Then there is a homomorphism
+  \begin{align*}
+    \phi : S_{(f)} &\longrightarrow \OO_X(D(f)) \\
+    g / f^i &\longmapsto (x \mapsto g(x) / f^i(x)),
+  \end{align*}
+  which we claim is an isomorphism.
+  To see this, consider $Y = C(X) \subseteq \Affine^{n + 1}$, which
+  satisfies $A(Y) = S$.
+  Now observe that we have a commutative
+  diagram
+  \[
+    \begin{tikzcd}
+      S_{(f)} \ar[r, "\phi"] \ar[d, hook] & \OO_X(D_X(f)) \ar[d, hook] \\
+      S_f \ar[r, "\cong"] & \OO_Y(D_Y(f))
+    \end{tikzcd}
+  \]
+  Thus $\phi$ is injective. Furthermore,
+  if $\psi \in \OO_X(D(f))$, we get
+  \[
+    \psi = g / f^i, \quad g \in S(X).
+  \]
+  Then $g(\lambda x) = \lambda^{d i} g(x)$
+  for all $x \in X$ such that $g(x) \ne 0$.
+  So $g \in S_{di}$ (assuming the previous
+  condition holds on a dense subset of
+  $X$, e.g. if $g$ is nonzero on every
+  irreducible component).
+\end{example}
+
+\begin{remark}
+  Fix $M \in \mathrm{Gr}\text{-}\mathrm{Mod}_S$
+  and $f \in S^+$ homogeneous of degree $d$.
+  We want an $\OO_X$-module. Note that
+  \[
+    M_{(f)}
+    := \text{degree $0$ part of $M_f$}
+    = \left\{
+      \frac{m}{f^i} \in M_f : m \in M_{di},\,
+      i \in \N
+    \right\}
+  \]
+  is an $S_{(f)}$-module. Then we can set
+  \begin{itemize}
+    \item $\widetilde{M}(D(f)) = M_{(f)}$;
+    \item For $f, g \in S^+$ homogeneous,
+      we have natural maps
+      $M_{(f)} \to M_{(fg)}$ and $M_{(g)} \to M_{(fg)}$,
+      which we can view as the restriction
+      maps
+      $\widetilde{M}(D(f)) \to \widetilde{M}(D(fg))$ and
+      $\widetilde{M}(D(g)) \to \widetilde{M}(D(fg))$.
+  \end{itemize}
+\end{remark}
+Then we claim
+that $\widetilde{M}$ is a
+sheaf of $\OO_X$-modules on the
+basis $\{D(f) : f \in S^+ \text{ homogeneous}\}$,
+hence it induces $\widetilde{M} \in \mathrm{Mod}_{\OO_X}$. The
+proof is similar to the affine case.
+
+\begin{prop}
+  $\widetilde{S(m)}$ is an invertible
+  sheaf. In particular, it is quasicoherent.
+\end{prop}
+
+\begin{proof}
+  Write $X = D(x_0) \cup \cdots \cup D(x_n)$.
+  Now we have an isomorphism
+  \begin{align*}
+    \widetilde{S(m)}(D(x_i))
+    = (S_{x_i})_m
+    &\overset{\cong}{\longrightarrow}
+    (S_{x_i})_0 \\
+    r &\longmapsto x_i^{-m} r \\
+    x_i^m r &\mathrel{\reflectbox{\ensuremath{\longmapsto}}} r.
+  \end{align*}
+  Note that $D(x_i)$ has a basis by
+  $\{D(x_i g) : g \in S^+ \text{ homogeneous}\}$,
+  and
+  \begin{align*}
+    \widetilde{S(m)}(D(x_i g))
+    = (S_{x_i g})_m
+    &\overset{\cong}{\longrightarrow}
+    (S_{x_i g})_0 \\
+    r &\longmapsto x_i^{-m} r
+  \end{align*}
+  As this isomorphism is compatible
+  with the previous one, we get that
+  $\widetilde{S(m)}|_{D(x_i)} \cong \OO_{D(x_i)}$.
+  So we see that
+  $\widetilde{S(m)}$ is an invertible sheaf.
+\end{proof}
+
+\begin{remark}
+  We have $\OO_X(m) \cong \widetilde{S(m)}$.
+  To see this, note that we have an
+  isomorphism
+  \begin{align*}
+    \alpha_i : \widetilde{S(m)}|_{D(x_i)}
+    &\longrightarrow
+    \OO_{D(x_i)} \\
+    x_i^m  &\longmapsto 1.
+  \end{align*}
+  Now observe that we have the composition
+  \[
+    \begin{tikzcd}[row sep=tiny]
+      \OO_{D(x_i x_j)} \ar[r, "\alpha_j^{-1}"]
+      & \widetilde{S(m)}|_{D(x_i x_j)} \ar[r, "\alpha_i"]
+      & \OO_{D(x_i x_j)} \\
+      1 \ar[r, mapsto] & x_j^m = (x_i^m)(x_j / x_i)^m
+      \ar[r, mapsto] & (x_j / x_i)^m
+    \end{tikzcd}
+  \]
+  so the transition functions are
+  $g_{i, j} = (x_j / x_i)^m$. Thus
+  we see that $\widetilde{S(m)} \cong \OO_X(m)$.
+\end{remark}
+
+\begin{remark}
+  Consider the map
+  $\mathrm{Gr}\text{-}\mathrm{Mod}_S \to \mathrm{Mod}_{\OO_X}$
+  given by the construction
+  $M \mapsto \widetilde{M}$ above. Then:
+  \begin{enumerate}
+    \item This is a functor.
+    \item This is exact (localization
+      is exact and the $D(f)$ form a basis).
+    \item If $M_i \in \mathrm{Gr}\text{-}\mathrm{Mod}_S$
+      for $i \in I$, then
+      $\widetilde{\bigoplus_{i \in I} M_i} \cong \bigoplus_{i \in I} \widetilde{M}_i$
+      (localization commutes with
+      direct sums).
+  \end{enumerate}
+\end{remark}
+
+\begin{prop}
+  For $M \in \mathrm{Gr}\text{-}\mathrm{Mod}_S$,
+  $\widetilde{M}$ is quasicoherent.
+  Furthermore, if $M$ is finitely generated,
+  then $\widetilde{M}$ is coherent.
+\end{prop}
+
+\begin{proof}
+  We have an exact sequence
+  \[
+    \begin{tikzcd}
+      \bigoplus_i S(-a_i) \ar[r]
+      & \bigoplus_j S(-b_j) \ar[r]
+      & M \ar[r] & 0
+    \end{tikzcd} \tag{$*$}
+  \]
+  Applying $M \mapsto \widetilde{M}$
+  (which is exact and commutes with direct sums),
+  we get an exact sequence
+  \[
+    \begin{tikzcd}
+      \bigoplus_i \OO_X(-a_i) \ar[r]
+      & \bigoplus_j \OO_X(-b_j) \ar[r]
+      & \widetilde{M} \ar[r] & 0
+    \end{tikzcd}
+  \]
+  This gives that $\widetilde{M}$ is
+  quasicoherent. If $M$ is finitely
+  generated, then we can choose the
+  direct sums in $(*)$ to be finite, hence
+  $\widetilde{M}$ is coherent in this case.
+\end{proof}
+
+\begin{remark}
+  We have $\widetilde{M} \otimes \OO_X(m) \cong \widetilde{M(m)}$.
+  To see this, we can note that
+  \[
+    (\widetilde{M} \otimes \OO_X(m))(D(x_i))
+    = (M_{x_i})_0 \otimes_{(S_{x_i})_0} (S_{x_i})_m
+    \cong (M_{x_i})_m
+    = \widetilde{M(m)}(D(x_i)).
+  \]
+  Alternatively, shifting the exact sequence
+  $\bigoplus_i S(-a_i) \to \bigoplus_j S(-b_j) \to M \to 0$ by $m$
+  (which preserves exactness),
+  \[
+    \begin{tikzcd}
+      \bigoplus_i S(m - a_i) \ar[r]
+      & \bigoplus_j S(m - b_j) \ar[r]
+      & M(m) \ar[r] & 0.
+    \end{tikzcd}
+  \]
+  Applying $M \mapsto \widetilde{M}$, we get
+  that
+  \[
+    \widetilde{M(m)}
+    = \coker\Big(\bigoplus_{i} \OO_X(m - a_i) \to \bigoplus_j \OO_X(m - b_j) \Big)
+    = \widetilde{M} \otimes \OO_X(m).
+  \]
+\end{remark}
+
+\begin{remark}
+  When is $\widetilde{M} = 0$? Clearly
+  this is true if $M = 0$,
+  but there are more examples.
+  Observe that
+  we can write
+  $s / x_i^d = x_i^c s / x_i^{d + c} \in M_{x_i}$,
+  so if $x_i^c s = 0$ for some $c > 0$, then
+  $s / x_i^d$ is zero in $\widetilde{M}(D(x_i))$.
+
+  In particular, if there exists $c > 0$
+  such that $M_i = 0$ for all $i \ge c$,
+  then $\widetilde{M}(D(x_i)) = 0$, so
+  $\widetilde{M} = 0$.
+\end{remark}
+
+\begin{corollary}
+  If $\alpha : M \to M'$ is a morphism of graded
+  $S$-modules and $M_i \to M_i'$ is an
+  isomorphism for $i \gg 0$, then
+  $\widetilde{M} \to \widetilde{M}'$
+  is an isomorphism.
+\end{corollary}
+
+\begin{proof}
+  Consider the exact sequence of graded
+  modules
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \ker \alpha \ar[r] & M \ar[r, "\alpha"] & M' \ar[r] & \coker \alpha \ar[r] & 0
+    \end{tikzcd}
+  \]
+  Now $\ker \alpha_i = 0 = \coker \alpha_i$
+  for $i \gg 0$. So we get an exact sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & 0 \ar[r] & \widetilde{M} \ar[r] & \widetilde{M}' \ar[r] & 0 \ar[r] & 0
+    \end{tikzcd}
+  \]
+  Hence $\widetilde{M} \to \widetilde{M}'$
+  is an isomorphism.
+\end{proof}
+
+\section{Graded Modules from Coherent Sheaves}
+
+\begin{remark}
+  How do we get a functor
+  $\Phi : \QCoh_X \to \mathrm{Gr}\text{-}\mathrm{Mod}_S$?
+\end{remark}
+
+\begin{example}
+   For $X = \PP^n$, we want
+   \[
+     \Phi(\OO_{\PP^n})
+     = k[x_0, \dots, x_n]
+     = \bigoplus_{d \in \N} k[x_0, \dots, x_n]_d
+     = \bigoplus_{d \in \N} \Gamma(\PP^n, \OO_{\PP^n}(d)).
+   \]
+\end{example}
+
+\begin{definition}
+  For $\mathcal{F} \in \QCoh_X$, set
+  (below $\mathcal{F}(m) = \mathcal{F} \otimes \OO_X(m)$)
+  \[
+    \Gamma_*(X, \mathcal{F}) = \bigoplus_{m \in \Z} \Gamma(X, \mathcal{F}(m)).
+  \]
+\end{definition}
+
+\begin{remark}
+  For $M \in \mathrm{Gr}\text{-}\mathrm{Mod}_S$,
+  we have a morphism of abelian groups
+  \[
+    M \longrightarrow
+    \Gamma_*(X, \widetilde{M})
+  \]
+  given by the natural maps
+  $M_i \to \Gamma(X, \widetilde{M(i)}) \subseteq \Gamma_*(X, \widetilde{M})$.
+  In particular, we get
+  \[
+    S \longrightarrow \Gamma_*(X, \OO_X).
+  \]
+  Using this, we can get a map
+  \[
+    \begin{tikzcd}
+    S_m \times \Gamma(X, \mathcal{F}(n))
+    \ar[r] & \Gamma(X, \OO_X(m)) \times \Gamma(X, \mathcal{F}(n)) \ar[d] \\
+    & \Gamma(X, \mathcal{F}(m + n))
+    \end{tikzcd}
+  \]
+  which we can think of as a
+  multiplication. Thus
+  $\Gamma_*(X, \mathcal{F})$ has the
+  structure of a graded $S$-module.
+\end{remark}
+
+\begin{prop}
+  For $\mathcal{F} \in \QCoh_X$,
+  there exists a natural isomorphism
+  \[
+    \mathcal{F}
+    \overset{\cong}{\longrightarrow}
+    \widetilde{\Gamma_*(X, \mathcal{F})}.
+  \]
+\end{prop}
+
+\begin{proof}
+  See Mustata 11.1.18.
+\end{proof}
+
+\begin{remark}
+  The functors
+  $(\sim, \Gamma_*)$
+  form an adjoint pair.
+\end{remark}
+
+\begin{corollary}
+  If $\mathcal{F} \in \Coh_X$, then
+  there exists a finitely generated
+  $S$-module $M$ such that
+  $\mathcal{F} = \widetilde{M}$.
+\end{corollary}
+
+\begin{proof}
+  Set $N = \Gamma_*(X, \mathcal{F})$
+  and choose $M \subseteq N$ finitely generated
+  with $\widetilde{M} \cong \mathcal{F}$.
+\end{proof}

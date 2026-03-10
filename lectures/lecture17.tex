@@ -1,0 +1,434 @@
+\chapter{Mar.~10 --- Sheaf Cohomology}
+
+\section{Motivation for Sheaf Cohomology}
+\begin{theorem}\label{thm:coh}
+  If $\mathcal{G}$ is a coherent sheaf
+  on a projective variety $X$, then
+  $\Gamma(X, \mathcal{G})$ is a finite
+  dimensional $k$-vector space.
+\end{theorem}
+
+\begin{remark}
+  Theorem \ref{thm:coh} will be a kind of
+  motivating theorem for sheaf cohomology.
+  We will try to give a simple proof.
+  To do this, we use the following strategy:
+  \begin{enumerate}
+    \item There is a closed embedding
+      $i : X \hookrightarrow \PP^n$.
+      Now $\Gamma(X, \mathcal{G}) = \Gamma(\PP^n, i_*\mathcal{G})$.
+      Note that $i_* \mathcal{G}$ is
+      coherent since $i$ is a closed
+      embedding. So we reduce to the case
+      $X = \PP^n$.
+    \item When $\mathcal{G} = \bigoplus_{i = 1}^r \OO_{\PP^n}(a_i)$,
+      Theorem \ref{thm:coh} holds as
+      \[
+        \Gamma\Big(\PP^n, \bigoplus_{i = 1}^r \OO_{\PP^n}(a_i)\Big)
+        = \bigoplus_{i = 1}^r k[x_0, \dots, x_n]_{a_i}.
+      \]
+    \item We want to reduce to Case (2).
+      By a homework problem, there is a
+      surjection
+      \[
+        \begin{tikzcd}
+          \mathcal{F}
+          = \bigoplus_{i = 1}^r \OO_{\PP^n}(a_i)
+          \ar[r, two heads] & \mathcal{G}
+          \ar[r] & 0
+        \end{tikzcd}
+      \]
+      for some $a_1, \dots, a_r$. Set
+      $\mathcal{E} = \ker(\mathcal{F} \to \mathcal{G})$, then
+      we get a short exact sequence
+      \[
+        \begin{tikzcd}
+          0 \ar[r] & \mathcal{E} \ar[r] & \mathcal{F}
+          \ar[r] & \mathcal{G} \ar[r] & 0
+        \end{tikzcd}
+      \]
+      Now we get an exact sequence
+      \[
+        \begin{tikzcd}
+          0 \ar[r] & \Gamma(\PP^n, \mathcal{E})
+          \ar[r] & \Gamma(\PP^n, \mathcal{F})
+          \ar[r] & \Gamma(\PP^n, \mathcal{G})
+        \end{tikzcd}
+      \]
+      as taking global sections is left
+      exact. Note that $\Gamma(\PP^n, \mathcal{F})$
+      is finite dimensional. Though we do
+      not always get surjectivity onto
+      $\Gamma(\PP^n, \mathcal{G})$, we
+      can construct functors
+      \begin{align*}
+        \QCoh_X \longrightarrow \mathrm{Vect}_k \\
+        \mathcal{F} \longmapsto H^i(X, \mathcal{F})
+      \end{align*}
+      for $i \ge 0$ such that:
+      \begin{enumerate}[(i)]
+        \item $H^0(X, \mathcal{F}) \cong \Gamma(X, \mathcal{F})$,
+        \item $H^i(X, \mathcal{F}) = 0$ for
+          $i > \dim X$,
+        \item given a short exact sequence
+          $0 \to \mathcal{E} \to \mathcal{F} \to \mathcal{G} \to 0$
+          in $\QCoh_X$, there is a long
+          exact sequence
+          \[
+            \begin{tikzcd}
+              H^i(X, \mathcal{E}) \ar[r] & H^i(X, \mathcal{F})
+              \ar[r] & H^i(X, \mathcal{G})
+              \ar[r] & H^{i + 1}(X, \mathcal{E})
+              \ar[r] & \cdots
+            \end{tikzcd}
+          \]
+        \item $H^i(\PP^n, \bigoplus_{j = 1}^r \OO_{\PP^n}(a_j))$
+          is a finite dimensional $k$-vector space.
+      \end{enumerate}
+      Then to prove the theorem, it suffices
+      to show that
+      for any coherent sheaf $\mathcal{G}$
+      on $\PP^n$ and $i \ge 0$,
+      \[H^i(\PP^n, \mathcal{G})\]
+      is a finite
+      dimensional $k$-vector space.
+      The theorem follows from this by
+      property (i).
+
+      Assuming we have $H^i$ satisfying
+      (i)-(iv), we can prove the above
+      claim via downwards induction.
+      As the base case, note that for
+      $i > n$, we have
+      $H^i(\PP^n, \mathcal{G}) = 0$ for
+      all quasicoherent sheaves $\mathcal{G}$ on $\PP^n$ by (ii).
+      For the inductive step, assume
+      the claim holds for all coherent
+      $\mathcal{G}$
+      and $i > i_0$. Consider
+      \[
+        \begin{tikzcd}
+          0 \ar[r] & \mathcal{E} \ar[r] & \mathcal{F} = \bigoplus_{j = 1}^r \OO_{\PP^n}(a_j)
+          \ar[r] & \mathcal{G} \ar[r] & 0
+        \end{tikzcd}
+      \]
+      and the corresponding long exact
+      sequence (by (iii))
+      \[
+        \begin{tikzcd}
+          H^{i_0}(\PP^n, \mathcal{E}) \ar[r] & H^{i_0}(\PP^n, \mathcal{F})
+          \ar[r] & H^{i_0}(\PP^n, \mathcal{G})
+          \ar[r] & H^{i_0 + 1}(\PP^n, \mathcal{E})
+            \ar[r] & \cdots
+        \end{tikzcd}
+      \]
+      Note that $H^{i_0}(X, \mathcal{F})$
+      is finite dimensional by (iv)
+      and $H^{i_0 + 1}(X, \mathcal{E})$ is finite dimensional
+      by the inductive hypothesis.
+      So
+      $H^{i_0}(X, \mathcal{G})$ is finite dimensional, and by induction
+      we get the full result.
+  \end{enumerate}
+  Thus our goal is to give a definition
+  of $H^i$, which we will do
+  using the Cech complex.
+\end{remark}
+
+\section{Homological Algebra}
+
+\begin{definition}
+  Let $R$ be a ring. A \emph{cochain complex}
+  of $R$-modules is a sequence of
+  $R$-modules
+  \[
+    A = A^\bullet
+    := (A^0 \overset{\partial}{\longrightarrow} A^1 \overset{\partial}{\longrightarrow} A^2 \overset{\partial}{\longrightarrow} \cdots)
+  \]
+  with morphisms
+  $\partial^i : A^i \to A^{i + 1}$ such
+  that $\partial^{i + 1} \circ \partial^i = 0$.
+\end{definition}
+
+\begin{definition}
+  Let $A^\bullet$ be a cochain complex.
+  The \emph{cohomology} of $A^\bullet$ is
+  \[
+    H^i(A^\bullet)
+    = \frac{\ker \partial^i}{\im \partial^{i - 1}}.
+  \]
+  We call $Z^i(A^\bullet) = \ker \partial^i$ the
+  \emph{cocycles} and $B^i(A^\bullet) = \im \partial^{i - 1}$ the
+  \emph{coboundaries}.
+\end{definition}
+
+\begin{definition}
+  A \emph{morphism of cochain complexes}
+  $A^\bullet \to B^\bullet$ is the data of
+  morphisms $\phi^i : A^i \to B^i$ such that
+  the following diagram commutes for
+  all $i$:
+  \[
+    \begin{tikzcd}
+      A^i \ar[r, "\partial"] \ar[d, swap, "\phi^i"] & A^{i + 1} \ar[d, "\phi^{i + 1}"] \\
+      B^i \ar[r, "\partial"] & B^{i + 1}
+    \end{tikzcd}
+  \]
+\end{definition}
+
+\begin{remark}
+  Given a morphism of cochain
+  complexes $A^\bullet \to B^\bullet$,
+  there are induced maps
+  \[
+    Z^i(A^\bullet) \to Z^i(B^\bullet)
+    \quad \text{and} \quad
+    B^i(A^\bullet) \to B^i(B^\bullet).
+  \]
+  In particular, we get an induced
+  map on cohomology
+  $H^i(A^\bullet) \to H^i(B^\bullet)$.
+\end{remark}
+
+\begin{definition}
+  A \emph{short exact sequence of cochain complexes}
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & A^\bullet \ar[r, "\phi"] & B^\bullet \ar[r, "\psi"] & C^\bullet \ar[r] & 0
+    \end{tikzcd}
+  \]
+  is given by morphisms $\phi$ and $\psi$
+  such that
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & A^i \ar[r, "\phi^i"] & B^i \ar[r, "\psi^i"] & C^i \ar[r] & 0
+    \end{tikzcd}
+  \]
+  is exact for all $i \ge 0$.
+\end{definition}
+
+\begin{remark}
+  The category of cochain complexes
+  of $R$-modules is an abelian category.
+\end{remark}
+
+\begin{prop}\label{prop:long}
+  Given a short exact sequence of
+  cochain complexes
+  $0 \to A^\bullet \to B^\bullet \to C^\bullet \to 0$, we get a long exact
+  sequence
+  in cohomology
+  \[
+    \begin{tikzcd}
+      H^i(A^\bullet) \ar[r] & H^i(B^\bullet) \ar[r] & H^i(C^\bullet) \ar[r] & H^{i + 1}(A^\bullet) \ar[r] & \cdots
+    \end{tikzcd}
+  \]
+\end{prop}
+
+\begin{proof}
+  The difficulty is to define
+  the map $H^{i - 1}(C^\bullet) \to H^i(A^\bullet)$.
+  Consider the diagram
+  \[
+    \begin{tikzcd}
+      & H^{i - 1}(A) \ar[r] \ar[d] & H^{i - 1}(B) \ar[r] \ar[d] & H^{i - 1}(C) \ar[d] \\
+      & A^i / B^i(A) \ar[r] \ar[d, swap, "\partial"] & B^i / B^i(B) \ar[r] \ar[d, swap, "\partial"] & C^i / B^i(C) \ar[r] \ar[d, swap, "\partial"] & 0 \\
+      0 \ar[r] & Z^i(A) \ar[r] \ar[d] & Z^i(B)
+      \ar[r] \ar[d] & Z^i(C) \ar[d] \\
+             & H^i(A) \ar[r] & H^i(B) \ar[r] & H^i(C)
+    \end{tikzcd}
+  \]
+  The snake lemma then gives a map
+  $H^{i - 1}(C) \to H^i(A)$.
+\end{proof}
+
+\section{Cech Cohomology}
+
+\begin{definition}
+  Let $X$ be a topological space,
+  $\mathcal{F}$ a sheaf of abelian groups
+  on $X$, and $\mathcal{U} = \{U_i\}_{i = 0}^n$
+  an open cover of $X$.
+  For $I \subseteq \{0, \dots, n\}$, denote
+  $U_I = \bigcap_{i \in I} U_i$. For
+  $p \ge 0$, set
+  \[
+    C^p(\mathcal{U}, X)
+    = \prod_{\substack{I \subseteq \{0, \dots, n\} \\ |I| = p + 1}}
+    \mathcal{F}(U_I).
+  \]
+  Then the \emph{Cech complex} is the
+  cochain complex
+  \[
+    C^\bullet(\mathcal{U}, \mathcal{F})
+    = [
+    C^0(\mathcal{U}, \mathcal{F}) \overset{d^0}{\longrightarrow} C^1(\mathcal{U}, \mathcal{F}) \overset{d^1}{\longrightarrow} \cdots
+    ]
+  \]
+  with $d^p : C^p(\mathcal{U}, \mathcal{F}) \to C^{p + 1}(\mathcal{U}, \mathcal{F})$ given by
+  $(s_I)_I \mapsto (s_J)_J$, where
+  $J = \{i_0 < i_1 < \cdots < i_{p + 1}\}$
+  and
+  \[
+    s_J = \sum (-1)^k s_{J \setminus \{i_k\}}|_{U_J}.
+  \]
+\end{definition}
+
+\begin{exercise}
+  Check that the Cech complex is in
+  fact a cochain complex, i.e. that
+  $d^{i + 1} \circ d^i = 0$.
+\end{exercise}
+
+\begin{definition}
+  The \emph{Cech cohomology} is
+  given by $H^i(\mathcal{U}, \mathcal{F}) = H^i(C^\bullet(\mathcal{U}, \mathcal{F}))$.
+\end{definition}
+
+\begin{example}
+  We compute $H^0(\mathcal{U}, \mathcal{F})$.
+  We have
+  \begin{align*}
+    H^0(\mathcal{U}, \mathcal{F})
+    &= \ker(C^0(\mathcal{U}, \mathcal{F}) \to C^1(\mathcal{U}, \mathcal{F})) \\
+    &= \ker\Big(
+      \prod_{i \in I} \mathcal{F}(U_i)
+      \to \prod_{0 \le i < j \le n} \mathcal{F}(U_{i, j})
+    \Big)
+    \cong \mathcal{F}(X)
+    = \Gamma(X, \mathcal{F})
+  \end{align*}
+  where the isomorphism is by the sheaf
+  axiom.
+\end{example}
+
+\begin{example}
+  Let $X = \PP^1$ and
+  $\mathcal{U} = (U_0, U_1)$ be the
+  standard open cover.
+  \begin{enumerate}[(i)]
+    \item Let $\mathcal{F} = \OO_X$. Then
+      we have
+      \begin{align*}
+        C^\bullet(\mathcal{U}, \OO_X)
+        = [\OO_{\PP^1}(U_0) \oplus \OO_{\PP^1}(U_1)
+        \to \OO_{\PP_{1}}(U_0 \cap U_1)]
+        = [k[y / x] \oplus k[x / y] \to k[x / y, y / x]],
+      \end{align*}
+      where the map $\alpha : k[y / x] \oplus k[x / y] \to k[x / y, y / x]$ is given by
+      $(f, g) \mapsto f - g$. Thus
+      \[
+        H^0(\mathcal{U}, \OO_{\PP^1})
+        = \ker \alpha \cong k \cong \Gamma(\PP^1, \OO_{\PP^1}).
+      \]
+      As the map $\alpha$ is surjective,
+      we have that
+      \[
+        H^1(\mathcal{U}, \OO_{\PP^1})
+        = \coker \alpha = 0.
+      \]
+    \item Let $\mathcal{F} = \Omega_{\PP^1}$.
+      Then we have the cochain complex
+      \begin{align*}
+        C^\bullet(\mathcal{U}, \Omega_{\PP^1})
+        &= [\Omega_{\PP^1}(U_0) \oplus \Omega_{\PP^1}(U_1) \to \Omega_{\PP^1}(U_{0, 1})] \\
+        &= [k[y / x] d(y / x) \oplus k[x / y] d(x / y) \to d(y / x) k[x / y, y / x]].
+      \end{align*}
+      If we set $s = y / x$, then the above
+      becomes
+      \[
+        C^\bullet(\mathcal{U}, \OO_{\PP^1})
+        = [k[s] ds \oplus k[s^{-1}] ds^{-1} \to k[s^{\pm 1}] ds],
+      \]
+      where the map $\beta : k[s] ds \oplus k[s^{-1}] ds^{-1} \to k[s^{\pm 1}] ds$ is given by
+      \[
+        (f(s) ds, g(s^{-1}) ds^{-1})
+        \longmapsto f(s) ds - g(s^{-1})\bigg({-\frac{1}{s^2}}\bigg) ds.
+      \]
+      Thus we see that
+      \begin{align*}
+        H^0(\mathcal{U}, \Omega_{\PP^1})
+        &= \ker \beta = 0 \\
+        H^1(\mathcal{U}, \Omega_{\PP^1})
+        &= \coker \beta
+        = \Span\{\overline{(1 / s) ds}\}
+        \cong k.
+      \end{align*}
+  \end{enumerate}
+\end{example}
+
+\begin{example}
+  Let $X$ be a variety and
+  $\mathcal{F} = \OO_X^*$ (this is a
+  sheaf of groups under multiplication). Fix an open cover
+  $\mathcal{U} = \{U_i\}_{i = 0}^n$ of $X$.
+  Consider
+  \[
+    H^1(\mathcal{U}, \OO_X^*)
+    = \{
+      (g_{i, j})_{i, j}
+      : g_{i, j} \in \OO_X^*(U_{i, j})
+      \text{ and } g_{i, j} g_{j, k} g_{i, k}^{-1} = 1
+    \} / {\sim},
+  \]
+  where $(g_{i, j})_{i, j} \sim (g'_{i, j})_{i, j}$
+  if there exists $h_i \in \OO_X^*(U_i)$
+  such that $h_i^{-1} g_{i, j} h_j = g'_{i, j}$. Thus
+  \[
+    H^1(\mathcal{U}, \OO_X^*)
+    \cong \{\text{line bundles } \mathbb{L} \to X \text{ such that } \mathbb{L}_{U_i} \cong \mathbbm{1}_{U_i}\} / {\cong}.
+  \]
+  In fact, the above
+  is an isomorphism of groups.
+\end{example}
+
+\begin{remark}
+  From now on, we will assume that
+  $X$ is a variety, $\mathcal{F}$
+  is a quasicoherent sheaf on $X$, and that
+  $\mathcal{U} = \{U_i\}_{i = 0}^n$ is an
+  open affine cover of $X$.
+\end{remark}
+
+\begin{prop}
+  We have the following:
+  \begin{enumerate}
+    \item $H^i(\mathcal{U}, \mathcal{F}) = 0$ for $i > n$, where
+      $n = |\mathcal{U}| - 1$.
+    \item Given a short exact sequence
+      $0 \to \mathcal{E} \to \mathcal{F} \to \mathcal{G} \to 0$
+      in $\QCoh_X$, there is an induced
+      long exact sequence
+      on Cech cohomology:
+      \[
+        \begin{tikzcd}
+          H^i(\mathcal{U}, \mathcal{E}) \ar[r] & H^i(\mathcal{U}, \mathcal{F})
+          \ar[r] & H^i(\mathcal{U}, \mathcal{G})
+          \ar[r] & H^{i + 1}(\mathcal{U}, \mathcal{E}) \ar[r] & \cdots
+        \end{tikzcd}
+      \]
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  (1) We have $C^p(\mathcal{U}, \mathcal{F}) = 0$ for $p > n$.
+  
+  (2) Since the $U_I$ are affine, we get a
+  short exact sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \mathcal{E}(U_I) \ar[r] & \mathcal{F}(U_I) \ar[r] & \mathcal{G}(U_I) \ar[r] & 0
+    \end{tikzcd}
+  \]
+  for any $I \subseteq \{0, \dots, n\}$.
+  So we get an induced short exact sequence
+  of Cech complexes
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & C^\bullet(\mathcal{U}, \mathcal{E}) \ar[r] & C^\bullet(\mathcal{U}, \mathcal{F}) \ar[r] & C^\bullet(\mathcal{U}, \mathcal{G}) \ar[r] & 0
+    \end{tikzcd}
+  \]
+  This gives a long exact sequence on
+  Cech cohomology by Proposition
+  \ref{prop:long}.
+\end{proof}

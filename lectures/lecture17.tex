@@ -407,6 +407,15 @@
           \ar[r] & H^{i + 1}(\mathcal{U}, \mathcal{E}) \ar[r] & \cdots
         \end{tikzcd}
       \]
+    \item Given a closed embedding
+      $i : Z \hookrightarrow X$ and a
+      quasicoherent sheaf $\mathcal{G}$ on
+      $Z$, there is an isomorphism
+      \[
+        H^i(\{U_i \cap Z\}_{i = 0}^n, \mathcal{G})
+        \cong H^i(\mathcal{U}, i_* \mathcal{G}).
+      \]
+    \item $H^0(\mathcal{U}, \mathcal{F}) = \Gamma(X, \mathcal{F})$.
   \end{enumerate}
 \end{prop}
 
@@ -431,4 +440,9 @@
   This gives a long exact sequence on
   Cech cohomology by Proposition
   \ref{prop:long}.
+
+  (3) We have
+  $\mathcal{G}(U_I \cap Z) = (i_* \mathcal{G})(U_I)$,
+  so we get
+  $C^\bullet(\mathcal{U} \cap Z, \mathcal{G}) \cong C^\bullet(\mathcal{U}, i_* \mathcal{G})$.
 \end{proof}

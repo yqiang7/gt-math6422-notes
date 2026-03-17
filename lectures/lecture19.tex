@@ -1,0 +1,351 @@
+\chapter{Mar.~17 --- Sheaf Cohomology, Part 3}
+
+\section{Examples of Sheaf Cohomology}
+
+\begin{remark}
+  We want to
+  compute $H^i(\PP^n, \OO_{\PP^n}(m))$
+  and use it to give applications.
+\end{remark}
+
+\begin{example}
+  We have already seen
+  in Example \ref{ex:pp1} that
+  \[
+    H^i(\PP^1, \OO_{\PP^1})
+    =
+    \begin{cases}
+      k & \text{if } i = 0, \\
+      0 & \text{if } i > 0,
+    \end{cases}
+  \]
+  and that (note that we have
+  $\Omega_{\PP^1} \cong \OO_{\PP^1}(-2)$)
+  \[
+    H^i(\PP^1, \OO_{\PP^1}(-2))
+    = \begin{cases}
+      k & \text{if } i = 1, \\
+      0 & \text{otherwise}.
+    \end{cases}
+  \]
+\end{example}
+
+\begin{example}
+  We have seen in homework that
+  $H^0(\PP^n, \OO_{\PP^n}(m)) = \Gamma(\PP^n, \OO_{\PP^n}(m)) = k[x_0, \dots, x_n]_m$.
+\end{example}
+
+\begin{example}
+  Let $X = \PP^n$,
+  $\mathcal{U} = \{U_i\}_{i = 0}^n$ for
+  $U_i = D(x_i)$, and
+  $S = \bigoplus_{m \ge 0} S_m = \bigoplus_{m \ge 0} k[x_0, \dots, x_n]_m$.
+  We want to compute $H^i$ of the complex
+  \[
+    \begin{tikzcd}
+      \prod_i \OO_{\PP^n}(m)(U_i)
+      \ar[r] & \prod_{i < j} \OO_{\PP^n}(m)(U_{i, j})
+      \ar[r] & \cdots \ar[r] &
+      \OO_{\PP^n}(m)(U_{0, \dots, n})
+    \end{tikzcd}
+  \]
+  We know that for $U_{i_0, \dots, i_r} = D(x_{i_0} \cdots x_{i_r})$,
+  we have
+  \[
+    \OO_{\PP^n}(m)(U_{i_0, \dots, i_r})
+    = (S_{x_{i_0} \cdots x_{i_r}})_m.
+  \]
+  To make this simpler, write
+  $\mathcal{F} = \bigoplus_{m \in \Z} \OO_X(m)$.
+  Now
+  \[
+    H^i(X, \mathcal{F})
+    = \bigoplus_{m \in \Z} H^i(X, \OO_X(m)),
+  \]
+  and
+  observe that $\mathcal{F}(U_{i_0, \dots, i_r}) = S_{x_{i_0} \cdots x_{i_r}}$.
+  So we have
+  \[
+    C^\bullet(\mathcal{U}, \mathcal{F})
+    = \left[
+      \prod_i S_{x_i}
+      \longrightarrow
+      \prod_{i < j} S_{x_i x_j}
+      \longrightarrow \cdots
+      \longrightarrow
+      S_{x_0 \cdots x_n}
+    \right].
+  \]
+  Then we want to compute
+  $H^i(C^\bullet(\mathcal{U}, \mathcal{F}))$
+  and keep track of the grading. For
+  $i = 0$,
+  \[
+    H^0(X, \mathcal{F})
+    = \ker\bigg(
+      \prod_i S_{x_i} \longrightarrow \prod_{i < j} S_{x_i x_j}\bigg)
+      = S,
+  \]
+  so $H^0(\PP^n, \OO_{\PP^n}(m)) = S_m$.
+  In particular,
+  $H^0(\PP^n, \OO_{\PP^n}(m)) = 0$ for $m < 0$.
+  For $i = n$,
+  \[
+    H^n(X, \mathcal{F})
+    = \coker\bigg(
+      \prod_i S_{x_0 \cdots \widehat{x}_i \cdots x_n}
+      \longrightarrow
+      S_{x_0 \cdots x_n}
+    \bigg)
+    = \bigoplus_{a_i < 0} k \overline{x_0^{a_0} \cdots x_n^{a_n}}.
+  \]
+  So $H^n(X, \OO_{\PP^n}(m)) = \bigoplus_{a_i < 0, \sum a_i = m} k \overline{x_0^{a_0} \cdots x_n^{a_n}}$.
+  In particular,
+  $H^n(X, \OO_{\PP^n}(m)) = 0$ for
+  $m \ge -n$ and
+  \[
+    H^n(X, \OO_{\PP^n}(-n - 1))
+    = k \overline{x_0^{-1} \cdots x_n^{-1}}.
+  \]
+  Observe that there is a perfect pairing
+  \begin{align*}
+    H^0(X, \OO_{\PP^n}(m))
+    \times H^n(X, \OO_{\PP^n}(-m - n - 1))
+    &\longrightarrow H^n(X, \OO_{\PP^n}(-n - 1)) \cong k \\
+    (x_0^{a_0} \cdots x_n^{a_n}, \overline{x_0^{b_0} \cdots x_n^{b_n}})
+    &\longmapsto
+    \overline{x_0^{a_0 + b_0} \cdots x_n^{a_n + b_n}}.
+  \end{align*}
+  where $a_i \ge 0$ and
+  $\sum a_i = m$, and
+  $b_i < 0$ and $\sum b_i = -m - n - 1$.
+  Note that
+  \[
+    \overline{x_0^{a_0 + b_0} \cdots x_n^{a_n + b_n}}
+    =
+    \begin{cases}
+      \overline{x_0^{-1} \cdots x_n^{-1}} & \text{if } a_i + b_i = -1 \text{ for all } i, \\
+      0 & \text{otherwise}.
+    \end{cases}
+  \]
+  This says that
+  $H^n(X, \OO_{\PP^n}(-m) \otimes \omega_{\PP^n}) \cong H^0(X, \OO_{\PP^n}(m))^\vee$,
+  which is a special case of \emph{Serre duality}.
+
+  Now for the middle cohomology, we
+  claim that $H^i(X, \OO_{\PP^n}(m)) = 0$
+  for $0 < i < n$.
+  For this, it suffices to show that
+  $H^i(X, \mathcal{F}) = 0$ for $0 < i < n$.
+  We argue by induction.
+  Consider the short exact sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r]
+      & S(-1) \ar[r, "\times x_n"]
+      & S \ar[r]
+      & S / x_n S \ar[r] & 0
+    \end{tikzcd}
+  \]
+  Then taking $M \mapsto \widetilde{M}$
+  gives a short exact sequence
+  \[
+    \begin{tikzcd}
+    0 \ar[r] & \OO_X(-1)
+    \ar[r] & \OO_X \ar[r] &
+    i_* \OO_H \ar[r] & 0
+    \end{tikzcd}
+  \]
+  with $H = V(x_n) \cong \PP^{n - 1} \hookrightarrow \PP^n$.
+  Set $\mathcal{F}_H = i_* (\bigoplus_{m \in \Z} \OO_H(m))$.
+  Applying $- \otimes \mathcal{F}$
+  gives
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \mathcal{F}(-1)
+      \ar[r, "\times x_n"]
+     & \mathcal{F} \ar[r]
+      & \mathcal{F}_H \ar[r] & 0
+    \end{tikzcd}
+  \]
+  This gives a long exact sequence
+  \[
+    \begin{tikzcd}
+    H^0(X, \mathcal{F}(-1))
+    \ar[r, "\times x_n", hook] & H^0(X, \mathcal{F})
+    \ar[r, two heads] & H^0(X, \mathcal{F}_H)
+    \ar[r] & \cdots \\
+    \ar[r] & H^i(X, \mathcal{F}(-1))
+    \ar[r, "\times x_n"] & H^i(X, \mathcal{F})
+    \ar[r] & H^i(X, \mathcal{F}_H)
+    \ar[r] & \cdots \\
+    \ar[r] & H^{n - 1}(X, \mathcal{F}(H))
+    \ar[r, "\delta", hook] & H^n(X, \mathcal{F}(-1))
+    \ar[r, "\times x_n"] & H^n(X, \mathcal{F})
+    \ar[r] & H^n(X, \mathcal{F}_H)
+    \end{tikzcd}
+  \]
+  Note that $H^i(X, \mathcal{F}_H) = 0$
+  for $1 \le i < n - 1$ by induction.
+  One can check that $\delta$ is
+  multiplication by $1 / x_n$, so it
+  is injective.
+  Thus for $0 < i < n$,
+  we have an isomorphism
+  (note that $\mathcal{F}(-1) \cong \mathcal{F}$)
+  \[
+    H^i(X, \mathcal{F}(-1))
+    \overset{\times x_n}{\longrightarrow}
+    H^i(X, \mathcal{F}).
+  \]
+  So $H^i(X, \mathcal{F})$, viewed
+  as an $S$-module, satisfies that
+  $x_n : H^i(X, \mathcal{F}) \to H^i(X, \mathcal{F})$ is an isomorphism.
+  Now
+  \[
+    H^i(X, \mathcal{F})_{x_n}
+    \cong H^i(C^\bullet(\mathcal{U}, \mathcal{F}))_{x_n}
+    \cong H^i(C^\bullet(\{U_i \cap U_n\}_{i = 0}^n, \mathcal{F}|_{U_n})) = 0
+  \]
+  as $\{U_i \cap U_n\}_{i = 0}^n$ is
+  an open cover of $U_n$, and $U_n$ is
+  an affine variety. So
+  $H^i(X, \mathcal{F}) = 0$ for $0 < i < n$.
+  This then implies that
+  $H^i(\PP^n, \OO_{\PP^n}(m)) = 0$ for
+  $0 < i < n$. From the duality perspective,
+  we have
+  \[
+    H^i(X, \OO_{\PP^n}(m))
+    \cong H^{n - i}(X, \OO_{\PP^n}(m)^\vee \otimes \omega_{\PP^n})^\vee.
+  \]
+\end{example}
+
+\section{Applications to Coherent Sheaves}
+
+\begin{remark}
+  For this section, let
+  $X \hookrightarrow \PP^n$ be a projective
+  variety and $\mathcal{F}$ a
+  quasicoherent sheaf on $X$.
+\end{remark}
+
+\begin{prop}
+  $H^i(X, \mathcal{F}) = 0$ for
+  $i > \dim X$.
+\end{prop}
+
+\begin{proof}
+  Let $r = \dim X$, and choose
+  hyperplanes $H_0, \dots, H_r$ on
+  $X$ such that
+  $X \cap (H_0 \cap \cdots \cap H_r) = \varnothing$.
+  So
+  \[
+    X = U_0 \cup \cdots U_r
+  \]
+  with $U_i = X \setminus H_i$. As the
+  $U_i$ are affine, we get
+  $H^i(X, \mathcal{F})
+    = H^i(C^\bullet(\{U_i\}_{i = 0}^r, \mathcal{F}))
+    = 0$
+  for $i > r$.
+\end{proof}
+
+\begin{prop}
+  If $\mathcal{F}$ is coherent,
+  then $H^i(X, \mathcal{F})$ is a
+  finite dimensional $k$-vector space.
+\end{prop}
+
+\begin{proof}
+  See the reduction given in Section
+  \ref{sec:motivation}, where the only
+  missing part was that
+  $H^i(\PP^n, \OO_{\PP^n}(m))$
+  is finite dimensional for $i \ge 0$ and
+  $m \in \Z$.
+\end{proof}
+
+\begin{theorem}[Serre vanishing]\label{thm:serre-vanishing}
+  If $\mathcal{F}$ is a coherent,
+  there exists $m_0 = m_0(\mathcal{F})$
+  such that
+  \[
+    H^i(X, \mathcal{F}(m))
+    = 0
+  \]
+  for $i > 0$ and $m \ge m_0$.
+\end{theorem}
+
+\begin{proof}
+  Note that $i_*(\mathcal{F}(m)) \cong (i_* \mathcal{F})(m)$, and
+  we have
+  \[
+    H^i(X, \mathcal{F}(m))
+    \cong H^i(\PP^n, i_* \mathcal{F}(m)),
+  \]
+  so we may reduce to the case
+  $X = \PP^n$. Then there is a
+  short exact sequence of coherent sheaves
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \mathcal{E} \ar[r] &
+      \bigoplus_{i = 1}^r \OO_X(a_i)
+      \ar[r] & \mathcal{F} \ar[r] & 0
+    \end{tikzcd}
+  \]
+  Twisting by $\OO_X(m)$ gives
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \mathcal{E}(m) \ar[r] &
+      \bigoplus_{i = 1}^r \OO_X(m + a_i)
+      \ar[r] & \mathcal{F}(m) \ar[r] & 0
+    \end{tikzcd}
+  \]
+  So we get a long exact sequence
+  on cohomology
+  \[
+    \begin{tikzcd}
+      H^i(\PP^n, \bigoplus_{i = 1}^r \OO_X(m + a_i))
+      \ar[r] & H^i(\PP^n, \mathcal{F}(m)) \ar[r] &
+      H^{i + 1}(\PP^n, \mathcal{E}(m))
+      \ar[r] & \cdots
+    \end{tikzcd}
+  \]
+  Now $H^{i + 1}(\PP^n, \mathcal{E}(m)) = 0$
+  by induction and
+  $H^i(\PP^n, \bigoplus_{i = 1}^r \OO_X(m + a_i)) = 0$
+  for $m > -n - 1 - a_i$. So we see that
+  $H^i(\PP^n, \mathcal{F}(m)) = 0$
+  for $i > 0$ and $m \gg 0$.
+\end{proof}
+
+\begin{remark}
+  The coherent assumption in
+  Theorem \ref{thm:serre-vanishing} is
+  necessary: Let $X = \PP^n$
+  and $\mathcal{F} = \bigoplus_{m \in \Z} \OO_{\PP^n}(m)$.
+\end{remark}
+
+\begin{remark}
+  We can get a cohomological
+  characterization of ampleness. One
+  can check that for an invertible sheaf
+  $\mathcal{L}$ on a projective
+  variety $X$, the following
+  are equivalent:
+  \begin{enumerate}
+    \item $\mathcal{L}$ is ample;
+    \item $\mathcal{F} \otimes \mathcal{L}^{\otimes m}$
+      is globally generated for any
+      coherent sheaf $\mathcal{F}$ and $m \gg 0$ (dependent on $\mathcal{F}$);
+    \item $H^i(X, \mathcal{F} \otimes \mathcal{L}^{\otimes m}) = 0$
+      for any coherent $\mathcal{F}$ on
+      $X$, $i > 0$, and $m \gg 0$
+      (dependent on $\mathcal{F}$).
+  \end{enumerate}
+  Note that in general (not necessarily
+  for a projective variety), the
+  definition of ampleness is given by (2).
+\end{remark}

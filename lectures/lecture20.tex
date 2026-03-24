@@ -1,0 +1,345 @@
+\chapter{Mar.~19 --- Sheaf Cohomology, Part 4}
+
+\section{More Examples of Sheaf Cohomology}
+
+\begin{remark}
+  Last time, we computed that for
+  $X = \PP^n$ and $m \in \Z$,
+  \begin{enumerate}
+    \item $H^0(X, \OO_X(m)) = k[x_1, \dots, x_n]_m$,
+    \item $H^i(X, \OO_X(m)) = 0$ for
+      $i \ne 0, n$,
+    \item there is a perfect pairing
+      \[H^i(X, \OO_X(m)) \times H^{n - i}(X, \OO_X(-m - n - 1)) \longrightarrow H^n(X, \OO_X(-n - 1)) \cong k.\]
+  \end{enumerate}
+  We can also write
+  $\omega_{\PP^n}$ for $\OO_{\PP^n}(-n - 1)$
+  (and $\omega_{\PP^n} \otimes \OO_{\PP^m}(m)^\vee)$
+  for $\OO_{\PP^n}(-m - n - 1)$). We can make an
+  isomorphism
+  $H^n(X, \omega_{\PP^n}) \cong k$ by choosing
+  the Cech cocycle class
+  \[
+    \frac{x_0^n}{x_1 \cdots x_n}
+    d(x_1 / x_0) \wedge \cdots \wedge d(x_n / x_0)
+  \]
+  uniquely determined by $U_0, \dots, U_n$.
+  For example, $[x_0 : \cdots : x_n] \mapsto [a_0 x_0 : \cdots : a_n x_n]$
+  fixes this class.
+\end{remark}
+
+\begin{example}
+  Let $D$ be a degree $d$ hypersurface
+  in $\PP^n$ with $n \ge 2$. We have a
+  short exact sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \mathcal{I}_D(m)
+      \ar[r] & \OO_{\PP^n}(m) \ar[r] & \OO_D(m) \ar[r] & 0
+    \end{tikzcd}
+  \]
+  Note that $\mathcal{I}_D \cong \OO_{\PP^n}(-D) \cong \OO_{\PP^n}(-d)$.
+  We get a long exact sequence on cohomology
+  \[
+    \begin{tikzcd}
+      \cdots \ar[r] & H^i(\PP^n, \OO_{\PP^n}(m - d)) \ar[r] & H^i(\PP^n, \OO_{\PP^n}(m)) \ar[r] & H^i(D, \OO_D(m)) \\ & \ar[r] & H^{i + 1}(\PP^n, \OO_{\PP^n}(m - d)) \ar[r] & \cdots
+    \end{tikzcd}
+  \]
+  From this we can conclude that:
+  \begin{enumerate}
+    \item $i = 0$: We have
+      \[
+        H^0(D, \OO_D(m))
+        \cong \coker(H^0(\PP^n, \OO_{\PP^n}(m - d)) \overset{\times f}{\longrightarrow} H^0(\PP^n, \OO_{\PP^n}(m)))
+        \cong S_m / f S_{m - d}
+      \]
+      with $S = k[x_0, \dots, x_n]$.
+    \item $0 < i < n - 1$:
+      $H^i(D, \OO_D(m)) = 0$
+      since $H^i(\PP^n, \OO_{\PP^n}(m)) = H^{i + 1}(\PP^n, \OO_{\PP^n}(m - d)) = 0$.
+    \item $i = n - 1$:
+      $H^{n - 1}(D, \OO_D(m)) = \ker(H^n(\PP^n, \OO_{\PP^n}(m - d)) \twoheadrightarrow H^n(\PP^n, \OO_{\PP^n}(m)))$.
+  \end{enumerate}
+\end{example}
+
+\begin{example}
+  Let $C$ be a smooth degree $d$ plane curve
+  in $\PP^2$. Then $H^0(C, \OO_C) = k$ and
+  \begin{align*}
+    \dim H^1(C, \OO_C)
+    &= \dim \ker(H^2(\PP^2, \OO_{\PP^2}(-d)) \to H^2(\PP^2, \OO_{\PP^2}))
+    = \dim H^n(\PP^2, \OO_{\PP^2}(-d)) \\
+    &= \dim H^0(\PP^2, \OO_{\PP^2}(d - 3))
+    = \binom{2 + d - 3}{2} = \binom{d - 1}{2}
+    = \frac{(d - 1)(d - 2)}{2}.
+  \end{align*}
+  Note that if $k = \C$, then
+  $(d - 1)(d - 2) / 2$ is the genus of the
+  Riemann surface
+  $C^{\mathrm{an}} \subseteq \PP^{n, \mathrm{an}}_\C$.
+\end{example}
+
+\begin{example}
+  $H^\bullet(X, \OO_X)$ can have
+  ``middle'' cohomology: The
+  \emph{Kunneth formula} says that
+  \[
+    H^i(X \times Y, p_1^* \mathcal{F} \otimes p_2^* \mathcal{G})
+    = \bigoplus_{j + k = i}
+    H^j(X, \mathcal{F}) \otimes H^k(Y, \mathcal{G}).
+  \]
+  For example, we can take
+  $X = Y = C$ to be a smooth degree
+  $d$ plane curve and
+  $\mathcal{F} = \mathcal{G} = \OO_C$,
+  with
+  \[
+    p_1^* \mathcal{F}
+    \otimes p_2^* \mathcal{G}
+    \cong \OO_{C \times C}.
+  \]
+\end{example}
+
+\begin{theorem}[Serre duality]
+  If $X$ is a smooth projective
+  variety of pure dimension $n$ and
+  $\mathcal{F}$ is a locally free sheaf on
+  $X$, then
+  $H^i(X, \mathcal{F}) \cong H^{n - i}(X, \mathcal{F}^\vee \otimes \omega_X)^\vee$.
+\end{theorem}
+
+\begin{exercise}
+  Check that Serre duality
+  holds for $\PP^n$ and hypersurfaces.
+\end{exercise}
+
+\begin{remark}
+  Serre duality implies in particular that
+  $H^n(X, \mathcal{F}) \cong H^0(X, \mathcal{F}^\vee \otimes \omega_X)$.
+\end{remark}
+
+\section{Invariants from Sheaf Cohomology}
+
+\begin{definition}
+  Let $X$ be a projective variety and
+  $\mathcal{F}$ a coherent sheaf on $X$.
+  Thus $H^i(X, \mathcal{F})$ is
+  a finite-dimensional $k$-vector space.
+  Then we define:
+  \begin{enumerate}
+    \item $h^i(X, \mathcal{F}) = \dim H^i(X, \mathcal{F})$,
+    \item the \emph{Euler characteristic}
+      \[
+        \chi(X, \mathcal{F})
+        = \sum_{i \ge 0} (-1)^i \dim H^i(X, \mathcal{F})
+        \in \Z.
+      \]
+  \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+  If $0 \longrightarrow \mathcal{E} \longrightarrow \mathcal{F} \longrightarrow \mathcal{G} \longrightarrow 0$ is a short exact sequence of coherent sheaves
+  on a projective variety $X$, then 
+  \[
+    \chi(X, \mathcal{F})
+    = \chi(X, \mathcal{E}) + \chi(X, \mathcal{G}).
+  \]
+\end{lemma}
+
+\begin{proof}
+  Take the long exact sequence on cohomology
+  \[
+    \begin{tikzcd}
+      H^i(X, \mathcal{E}) \ar[r] & H^i(X, \mathcal{F}) \ar[r] & H^i(X, \mathcal{G}) \ar[r] & H^{i + 1}(X, \mathcal{E})
+      \ar[r] & \cdots
+    \end{tikzcd}
+  \]
+  Then by linear algebra,
+  $\sum_i (-1)^i h^i(X, \mathcal{F}) = \sum_i (-1)^i h^i(X, \mathcal{E}) + \sum_i (-1)^i h^i(X, \mathcal{G})$.
+\end{proof}
+
+\begin{example}
+  We have
+  \[\chi(\PP^n, \OO_{\PP^n}(m)) = \dim H^0(\PP^n, \OO_{\PP^n}(m)) + (-1)^n \dim H^0(\PP^n, \OO_{\PP^n}(-m - n - 1)).\]
+  Then we see that:
+  \begin{itemize}
+    \item If $m \ge -n$, this is
+      $h^0(\PP^n, \OO_{\PP^n}(m)) = \binom{n + m}{n} = ((m + 1) \cdots (m + n)) / n!$.
+    \item If $m \le - n - 1$, this is
+      \begin{align*}
+        (-1)^n
+        h^0(\PP^n, \OO_{\PP^n}(-m - n - 1))
+        = (-1)^n \binom{-m - 1}{n}
+        &= (-1)^n \frac{(-m - 1) \cdots (-m - n)}{n!} \\
+        &= \frac{(m + 1) \cdots (m + n)}{n!}.
+      \end{align*}
+  \end{itemize}
+  Thus $\chi(\PP^n, \OO_{\PP^n}(m)) = ((m + 1) \cdots (m + n)) / n!$ for all $m \in \Z$.
+\end{example}
+
+\begin{theorem}\label{thm:hilbertpolynomial}
+  If $\mathcal{F}$ is a coherent
+  sheaf on a projective variety $X$, then
+  \[
+    P_m(\mathcal{F})
+    = \chi(X, \mathcal{F}(m))
+  \]
+  is a polynomial of degree $\dim \Supp \mathcal{F}$.
+\end{theorem}
+
+\begin{lemma}\label{lem:polynomial}
+  If $\phi : \Z \to \Z$ is a function such
+  that there exists $Q \in \Q[t]$ with
+  \[
+    \phi(m) - \phi(m - 1) = Q(m)
+  \]
+  for all $m \in \Z$, then
+  there exists $P \in \Q[t]$ such that
+  $\phi(m) = P(m)$ for all $m \in \Z$.
+  Furthermore, we have $\deg P = \deg Q + 1$.
+\end{lemma}
+
+\begin{proof}
+  See the notes from Algebraic Geometry I.
+\end{proof}
+
+\begin{definition}
+  Let $A$ be a Noetherian ring and
+  $M$ a finitely generated $A$-module.
+  An \emph{associated prime} of $M$ is a
+  prime $\p \le A$ such that
+  $\p = \Ann(m)$ for some $0 \ne m \in M$. Let
+  \[
+    \Ass(M)
+    = \{\p \le A : \p \text{ is an associated prime of } M\}.
+  \]
+\end{definition}
+
+\begin{theorem}
+  We have the following:
+  \begin{enumerate}
+    \item $\Ass(M)$ is finite.
+    \item If $M \ne 0$, then $\Ass(M) \ne 0$.
+    \item $\{\text{zero divisors of } M\} = \bigcup_{\p \in \Ass(M)} \p$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{prop}\label{prop:hyperplane}
+  If $\mathcal{F}$ is a nonzero coherent
+  sheaf on $\PP^n$, then for a general
+  hyperplane $H \subseteq \PP^n$, there is a
+  short exact sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \mathcal{F} \otimes \OO_{\PP^n}(-H)
+      \ar[r] & \mathcal{F} \ar[r] & \mathcal{F} \otimes \OO_H \ar[r] & 0
+    \end{tikzcd}
+  \]
+  and
+  $\dim \Supp(\mathcal{F} \otimes \OO_H) = \dim \Supp \mathcal{F} - 1$.
+\end{prop}
+
+\begin{proof}
+  We have a short exact sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \OO_{\PP^n}(-H)
+      \ar[r] & \OO_{\PP^n} \ar[r] & \OO_H \ar[r] & 0
+    \end{tikzcd}
+  \]
+  Applying $- \otimes \mathcal{F}$,
+  we get an exact sequence
+  \[
+    \begin{tikzcd}
+      \mathcal{F} \otimes \OO_{\PP^n}(-H) \ar[r] & \mathcal{F} \ar[r] & \mathcal{F} \otimes \OO_H \ar[r] & 0
+    \end{tikzcd}
+  \]
+  So it suffices to determine when the map
+  $\mathcal{F} \otimes \OO_{\PP^n}(-H) \to \mathcal{F}$
+  is injective. We can check this on each
+  $U_i = D(x_i) \subseteq \PP^n$:
+  Write
+  \begin{enumerate}[(i)]
+    \item $M_i = \mathcal{F}(U_i)$,
+      which is a finitely generated module over
+      $A_i = k[x_0 / x_i, \dots, x_n / x_i]$;
+    \item $H = V(\sum a_j x_j)$ and
+      $h_i = (a_0 / a_i)(x_0 / x_i) + \cdots + (a_n / a_i)(x_n / x_i) \in A_i$.
+  \end{enumerate}
+  Choose $H$ general so that
+  $h_i \notin \bigcup_{\p \in \Ass(M_i)} \p$.
+  Then the map
+  \begin{align*}
+    M_i \cong M_i \otimes h_i A_i
+    &\longrightarrow M_i \\
+    m &\longmapsto m h_i
+  \end{align*}
+  is injective. So we have that
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \mathcal{F} \otimes \OO_{\PP^n}(-H) \ar[r] & \mathcal{F} \ar[r] & \mathcal{F} \otimes \OO_H \ar[r] & 0
+    \end{tikzcd}
+  \]
+  is a short exact sequence.
+  Check as an exercise that
+  $\Supp(\mathcal{F} \otimes \OO_H) = \Supp(\mathcal{F}) \cap H$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:hilbertpolynomial}]
+  First check that
+  we may reduce to the case $X = \PP^n$:
+  If $i : X \hookrightarrow \PP^n$
+  is a closed embedding, then we have
+  \[
+    \chi(X, \mathcal{F}(m))
+    = \chi(\PP^n, i_* \mathcal{F}(m)).
+  \]
+  We proceed by induction on
+  $\dim \Supp \mathcal{F}$:
+  First note that if
+  $\dim \Supp \mathcal{F} = 0$, then
+  $\mathcal{F} \otimes \OO_H = 0$.
+  Now by Proposition \ref{prop:hyperplane}, we have a short exact sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \mathcal{F}(m - 1)
+      \ar[r] & \mathcal{F}(m) \ar[r] & \mathcal{F}(m) \otimes \OO_H \ar[r] & 0
+    \end{tikzcd}
+  \]
+  where
+  $\dim \Supp(\mathcal{F}(m) \otimes \OO_H) = \dim \Supp \mathcal{F} - 1$.
+  Thus we have
+  \[
+    \chi(X, \mathcal{F}(m))
+    - \chi(X, \mathcal{F}(m - 1))
+    = \chi(X, \mathcal{F}(m) \otimes \OO_H),
+  \]
+  where $\chi(X, \mathcal{F}(m) \otimes \OO_H)$ is a polynomial of degree
+  $\dim \Supp \mathcal{F} - 1$ by the induction
+  hypothesis. Thus
+  by Lemma \ref{lem:polynomial}, $\chi(X, \mathcal{F}(m))$ is a polynomial of degree $\dim \Supp \mathcal{F}$.
+\end{proof}
+
+\begin{remark}
+  Let $X \subseteq \PP^n$ be a projective
+  variety and consider the short exact sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \mathcal{I}_X(m)
+      \ar[r] & \OO_{\PP^n}(m) \ar[r] & \OO_X(m) \ar[r] & 0
+    \end{tikzcd}
+  \]
+  By Serre vanishing, all of the
+  higher cohomology is $0$ for $m \gg 0$. Thus
+  \begin{align*}
+    \dim S(X)_m
+    = \dim \frac{k[x_0, \dots, x_n]_m}{I_X(m)}
+    &= h^0(\PP^n, \OO_{\PP^n}(m)) - h^0(\PP^n, \mathcal{I}_X(m)) \\
+    &= h^0(X, \OO_X(m))
+    = \chi(X, \OO_X(m)),
+  \end{align*}
+  where the last two equalities hold for
+  $m \gg 0$. Note that
+  $\dim S(X)_m$ is a polynomial for $m \gg 0$,
+  whereas $\chi(X, \OO_X(m))$ is a polynomial for all $m \in \Z$.
+\end{remark}

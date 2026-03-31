@@ -1,0 +1,144 @@
+\chapter{Mar.~31 --- Riemann-Roch Theorem}
+
+\section{More on Vanishing of Cohomology}
+
+\begin{theorem}
+  If $X$ is a projective variety
+  and $\mathcal{F}$ is a
+  coherent sheaf on $X$, then
+  \[
+    H^i(X, \mathcal{F}) = 0
+  \]
+  for all $i > \dim \Supp(\mathcal{F})$.
+\end{theorem}
+
+\begin{proof}
+  Set $r = \dim \Supp(\mathcal{F})$ and choose
+  hyperplanes $H_0, \dots, H_r$ such that
+  \[
+    \Supp(\mathcal{F})
+    \cap H_0 \cap \dots \cap H_r = \varnothing.
+  \]
+  Now take $U_i = X \setminus H_i$, which
+  are open affines with
+  \[
+    (U_0 \cup \dots \cup U_r) \cap \Supp(\mathcal{F}) = \Supp(\mathcal{F}).
+  \]
+  Choose an open affine cover
+  $U_{r + 1}, \dots, U_s$ such that
+  $U_{r + 1} \cup \cdots \cup U_s = X \setminus \Supp(\mathcal{F})$.
+  So
+  \[
+    H^i(X, \mathcal{F})
+    = H^i_{U_0, \dots, U_s}(X, \mathcal{F})
+    = H^i_{U_0, \dots, U_r}(X, \mathcal{F})
+  \]
+  since $\mathcal{F}(U_i) = 0$ for $i > r$.
+  Thus $H^i(X, \mathcal{F}) = 0$ for $i > r$.
+\end{proof}
+
+\section{Riemann-Roch Theorem}
+
+\begin{remark}
+  The \emph{Riemann-Roch problem} is the following:
+  Let $C$ be a smooth projective curve and
+  $\mathcal{L}$ an invertible sheaf on $C$.
+  What is $h^0(C, \mathcal{L}) = \dim \Gamma(C, \mathcal{L})$?
+  The following are special cases:
+  \begin{itemize}
+    \item If $\mathcal{L} = \omega_C$, then
+      $h^0(C, \omega_C)$ is the dimension
+      of the space of algebraic $1$-forms.
+    \item If $\mathcal{L} = \omega_C(D) = \omega_C \otimes \OO_C(D)$,
+      then $h^0(C, \omega_C(D))$
+      gives the dimension of the space of algebraic $1$-forms
+      with certain conditions on poles.
+    \item If $\mathcal{L} = \OO_C$, then
+      $h^0(C, \OO_C) = 1$.
+  \end{itemize}
+  We can approach this problem as follows:
+  \begin{itemize}
+    \item instead compute
+      $\chi(C, \mathcal{L}) = h^0(C, \mathcal{L}) - h^1(C, \mathcal{L})$;
+    \item using $\Cl(C) \overset{\cong}{\longrightarrow} \Pic(C)$
+      given by $[D] \mapsto \OO_C(D)$,
+      we may assume that $\mathcal{L} = \OO_C(D)$.
+  \end{itemize}
+\end{remark}
+
+\begin{theorem}[Riemann-Roch]\label{thm:riemann-roch}
+  If $C$ is a smooth projective curve and
+  $D$ is a divisor on $C$, then
+  \[
+    \chi(C, \OO_C(D))
+    = \deg D + 1 - g,
+  \]
+  where $g = h^1(C, \OO_C)$ is the
+  \emph{genus} of $C$, and
+  $\deg D = \sum_{i = 1}^r a_i$ where
+  $D = \sum_{i = 1}^r a_i P_i$.
+\end{theorem}
+
+\begin{remark}
+  By Serre duality, we can rewrite
+  \begin{align*}
+    \chi(C, \OO_C(D))
+    &= h^0(C, \OO_C(D)) - h^1(C, \OO_C(D)) \\
+    &= h^0(C, \OO_C(D)) - h^0(C, \OO_C(-D) \otimes \omega_C) \\
+    &= h^0(C, \OO_C(D)) - h^0(C, \OO_C(K_C - D)),
+  \end{align*}
+  where $K_C$ is the canonical divisor
+  of $C$. Riemann showed (1857) that
+  \[
+    h^0(C, \OO_C(D)) \ge \deg D + 1 - g,
+  \]
+  and Roch improved this (1865) to
+  the full statement of Theorem \ref{thm:riemann-roch}:
+  \[
+    h^0(C, \OO_C(D))
+    - h^0(C, \OO_C(K_C - D))
+    = \deg D + 1 - g.
+  \]
+\end{remark}
+
+\begin{proof}[Proof of Theorem \ref{thm:riemann-roch}]
+  We proceed by induction. The base case is
+  $D = 0$, and we have
+  \[
+    \chi(C, \OO_C)
+    = h^0(C, \OO_C) - h^1(C, \OO_C)
+    = 1 - g = \deg(0) + 1 - g.
+  \]
+  Now we show the inductive step. It suffices
+  to show that for any $P \in C$, the theorem
+  holds for $D$ if and only if it holds for
+  $D - P$ (then we can repeatedly add or
+  subtract points until we get to the desired
+  divisor).
+  Consider the short exact sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \OO_C(-P) \ar[r] & \OO_C \ar[r] & \OO_P \ar[r] & 0,
+    \end{tikzcd}
+  \]
+  and apply $- \otimes \OO_C(D)$ to get
+  a short exact sequence (note that
+  the sheaves above are locally free)
+  \[
+    \begin{tikzcd}[row sep = small]
+      & & & \OO_P \ar[d, equal] \\
+      0 \ar[r] & \OO_C(D - P) \ar[r] & \OO_C(D) \ar[r] & \OO_P \otimes \OO_C(D) \ar[r] & 0.
+    \end{tikzcd}
+  \]
+  Then we have that
+  \begin{align*}
+    \chi(C, \OO_C(D))
+    - \chi(C, \OO_C(D - P))
+    &= \chi(C, \OO_P)
+    = h^0(C, \OO_P) - h^1(C, \OO_P) \\
+    &= h^0(C, \OO_P)
+    = 1 = \deg D - \deg (D - P),
+  \end{align*}
+  so Riemann-Roch holds for $D$ if and only if
+  it holds for $D - P$.
+\end{proof}

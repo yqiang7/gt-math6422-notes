@@ -1,0 +1,388 @@
+\chapter{Apr.~2 --- Applications of Riemann-Roch}
+
+\section{Applications of Riemann-Roch}
+
+\begin{example}
+  Let $C = \PP^1$. We have
+  $g(\PP^1) = h^1(\PP^1, \OO_{\PP^1}) = 0$.
+  Using the isomorphism
+  \begin{align*}
+    \Cl(\PP^1) &\overset{\cong}{\longrightarrow}
+    \Z \\
+    D &\longmapsto \deg D,
+  \end{align*}
+  we have $\OO_{\PP^1}(D) = \OO_{\PP^1}(d)$
+  with $d = \deg D$. So
+  \[
+    \chi(\PP^1, \OO_{\PP^1}(D))
+    = \chi(\PP^1, \OO_{\PP^1}(d))
+    = h^0(\PP^1, \OO_{\PP^1}(d))
+    - h^1(\PP^1, \OO_{\PP^1}(d))
+    = d + 1 = \deg D + 1 - g.
+  \]
+\end{example}
+
+\begin{example}
+  Let $C \subseteq \PP^2$ be a smooth
+  plane curve of degree $d$. Then
+  we have seen that
+  \[
+    g = h^1(C, \OO_C) = \frac{(d - 1)(d - 2)}{2}.
+  \]
+\end{example}
+
+\begin{corollary}\label{cor:linearly_equivalent_divisors_have_same_degree}
+  If $D_1$ and $D_2$ are linearly
+  equivalent divisors on $C$, then
+  $\deg D_1 = \deg D_2$.
+\end{corollary}
+
+\begin{proof}
+  If $D_1 \sim D_2$, then
+  $\OO_C(D_1) \cong \OO_C(D_2)$, so
+  $\chi(C, \OO_C(D_1)) = \chi(C, \OO_C(D_2))$,
+  which then implies that
+  $\deg D_1 = \deg D_2$ by the
+  Riemann-Roch theorem.
+\end{proof}
+
+\begin{definition}
+  Let $\mathcal{L}$ be an invertible sheaf
+  on $C$. The \emph{degree} of $\mathcal{L}$
+  is $\deg \mathcal{L} := \deg D$ where
+  $D$ is a divisor such that
+  $\mathcal{L} \cong \OO_C(D)$.
+\end{definition}
+
+\begin{remark}
+  The degree of $\mathcal{L}$ is
+  well-defined by Corollary
+  \ref{cor:linearly_equivalent_divisors_have_same_degree}.
+\end{remark}
+
+\begin{example}
+  Let $\mathcal{L}$ be an invertible sheaf
+  on $C$. If $h^0(C, \mathcal{L}) \ge 1$,
+  then there exists $0 \ne s \in H^0(C, \mathcal{L})$.
+  Thus there exists $D \ge 0$ such that
+  $\mathcal{L} \cong \OO_C(D)$, so
+  $\deg \mathcal{L} = \deg D \ge 0$.
+  Furthermore, if $h^0(C, \mathcal{L}) \ge 1$
+  and $\deg \mathcal{L} = 0$, then
+  $\mathcal{L} \cong \OO_C$.
+\end{example}
+
+\begin{corollary}\label{cor:degree_of_canonical_divisor}
+  $\deg \omega_C = 2 g - 2$.
+\end{corollary}
+
+\begin{proof}
+  By Serre duality, we have
+  $\chi(C, \OO_C) = -\chi(C, \omega_C)$
+  (as $h^0(\OO_C) = h^1(\omega_C)$ and
+  $h^1(\OO_C) = h^0(\omega_C)$). So by
+  the Riemann-Roch theorem, we have
+  \[
+    -(1 - g)
+    = -\chi(C, \OO_C)
+    = \chi(C, \omega_C)
+    = \deg \omega_C + 1 - g,
+  \]
+  so $\deg \omega_C = 2g - 2$, as desired.
+\end{proof}
+
+\begin{remark}
+  If $0 \ne \eta \in \Gamma(C, \omega_C)$, then
+  $\omega_C \cong \OO_C(\divv_C \eta)$, so
+  by Corollary \ref{cor:degree_of_canonical_divisor},
+  \[
+    2g - 2
+    = \deg \divv_C \eta = \text{\# zeros of $\eta$}.
+  \]
+\end{remark}
+
+\begin{definition}
+  We say that a
+  divisor $D$ on $C$ is \emph{non-special} if
+  $h^0(C, \OO_C(K - D)) = 0$
+  (or equivalently, by Serre duality, if
+  $h^1(C, \OO_C(D)) = 0$).
+\end{definition}
+
+\begin{remark}
+  For $D$ non-special, we have
+  $h^0(C, \OO_C(D)) = \deg D + 1 - g$ by
+  Riemann-Roch.
+\end{remark}
+
+\begin{lemma}
+  If $\deg D \ge 2g - 1$, then
+  $D$ is non-special.
+\end{lemma}
+
+\begin{proof}
+  If $\deg D \ge 2g - 1$, then
+  $\deg(K - D) \le (2g - 2) - (2g - 1) = -1$,
+  so $h^0(C, \OO_C(K - D)) = 0$.
+\end{proof}
+
+\begin{remark}
+  If $\deg D \ge 2g - 1$, then
+  $D$ is non-special, which implies
+  $h^0(C, \OO_C(D)) = \deg D + 1 - g$.
+\end{remark}
+
+\section{More on Embeddings to Projective Space}
+
+\begin{prop}\label{prop:globally_generated_iff_h0_drops_by_1}
+  An invertible sheaf
+  $\mathcal{L}$ on $C$ is globally
+  generated if and only if
+  \[
+    h^0(C, \mathcal{L})
+    - h^0(C, \mathcal{L}(-P)) = 1
+  \]
+  for every $P \in C$.
+\end{prop}
+
+\begin{remark}
+  We define $\mathcal{L}(-P) := \mathcal{L} \otimes \OO_C(-P)$.
+  In these cases, the fibre will be denoted by
+  \[
+    \mathcal{L}_{(P)}
+    := \mathcal{L}_P / \mathfrak{m}_P \mathcal{L}_P
+    = H^0(C, \mathcal{L} / \mathcal{I}_P \mathcal{L}).
+  \]
+\end{remark}
+
+\begin{proof}[Proof of Proposition \ref{prop:globally_generated_iff_h0_drops_by_1}]
+  For $P \in C$, we have a short exact sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \OO_C(-P)
+      \ar[r] & \OO_C \ar[r] & \OO_P \ar[r] & 0
+    \end{tikzcd}
+  \]
+  Applying $- \otimes \mathcal{L}$, we
+  get an exact sequence (since
+  $\mathcal{L}$ is invertible)
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \mathcal{L}(-P)
+      \ar[r] & \mathcal{L} \ar[r] & \mathcal{L} \otimes \OO_P
+      \ar[r] & 0.
+    \end{tikzcd}
+  \]
+  Taking $H^0$, we then get an exact sequence
+  \[
+    \begin{tikzcd}[row sep=small]
+      0 \ar[r] & H^0(\mathcal{L}(-P)) \ar[r] & H^0(\mathcal{L})
+      \ar[r, "\phi"] & H^0(\mathcal{L} \otimes \OO_P) \\
+             & & & \mathcal{L}_{(P)} \cong k \ar[u, equal]
+    \end{tikzcd}
+  \]
+  So $\mathcal{L}$ is globally generated
+  at $P$
+  if and only if $\phi$ is surjective,
+  if and only if
+  $h^0(\mathcal{L}) - h^0(\mathcal{L}(-P)) = 1$.
+\end{proof}
+
+\begin{prop}\label{prop:very_ample_iff_h0_drops_by_2}
+  An invertible sheaf $\mathcal{L}$ on $C$
+  is very ample if and only if
+  \[
+    h^0(C, \mathcal{L})
+    - h^0(C, \mathcal{L}(-P - Q)) = 2
+  \]
+  for every $P, Q \in C$ (not necessarily distinct).
+\end{prop}
+
+\begin{proof}
+  By the proof of Proposition
+  \ref{prop:globally_generated_iff_h0_drops_by_1},
+  we have
+  \[
+    h^0(C, \mathcal{L})
+    - h^0(C, \mathcal{L}(-P))
+    = 1
+  \]
+  for all $P \in C$, so
+  $\mathcal{L}$ is globally generated.
+  In this setting, we know that
+  $\mathcal{L}$ is very ample if and only if
+  $\mathcal{L}$ separates points and
+  tangent vectors. For $P \ne Q \in C$,
+  consider the short exact sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \OO_C(-P - Q)
+      \ar[r] & \OO_C
+      \ar[r] & \OO_P \oplus \OO_Q
+      \ar[r] & 0
+    \end{tikzcd}
+  \]
+  Applying $- \otimes \mathcal{L}$
+  and $H^0$, we get an exact sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & H^0(\mathcal{L}(-P - Q)) \ar[r] & H^0(\mathcal{L}) \ar[r, "\psi"]
+               & \mathcal{L}_{(P)} \oplus \mathcal{L}_{(Q)}
+    \end{tikzcd}
+  \]
+  So $\mathcal{L}$ separates $P, Q$ if and only
+  if
+  $\psi$ is surjective, if and only if
+  $h^0(C, \mathcal{L})
+    - h^0(C, \mathcal{L}(-P - Q)) = 2$.
+
+  Next fix $P \in C$, and consider the
+  short exact sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \OO_C(-2P)
+      \ar[r] & \OO_C
+      \ar[r] & \OO_C / \OO_C(-2P) \ar[r] & 0
+    \end{tikzcd}
+  \]
+  Again applying
+  $- \otimes \mathcal{L}$ and $H^0$, we
+  get an exact sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & H^0(\mathcal{L}(-2P))
+      \ar[r] & H^0(\mathcal{L})
+      \ar[r, "\gamma"] & \mathcal{L}_P / \m_P^2 \mathcal{L}_P
+    \end{tikzcd}
+  \]
+  (note that
+  $\OO_C / \OO_C(-2P) = i_P(\OO_{C, P} / \m_P^2)$).
+  Thus $\mathcal{L}$ separates tangent
+  vectors at $P$ if and only if
+  $\gamma$ is surjective, if and only if
+  $h^0(C, \mathcal{L})
+    - h^0(C, \mathcal{L}(-2P)) = 2$.
+\end{proof}
+
+\begin{corollary}\label{cor:globally_generated_and_very_ample_if_degree_large_enough}
+  We have the following:
+  \begin{enumerate}
+    \item if $\deg \mathcal{L} \ge 2g$, then
+      $\mathcal{L}$ is globally generated;
+    \item if $\deg \mathcal{L} \ge 2g + 1$,
+      then $\mathcal{L}$ is very ample.
+  \end{enumerate}
+\end{corollary}
+
+\begin{proof}
+  (1) If $\deg \mathcal{L} \ge 2g$, then
+  \[
+    h^0(C, \mathcal{L})
+    = \deg \mathcal{L} + 1 - g
+    \quad \text{and} \quad
+    h^0(C, \mathcal{L}(-P))
+    = \deg \mathcal{L}(-P) + 1 - g
+  \]
+  as $\mathcal{L}$ and $\mathcal{L}(-P)$ are
+  both non-special. So
+  $h^0(C, \mathcal{L})
+    - h^0(C, \mathcal{L}(-P)) = 1$ for all
+  $P \in C$, so $\mathcal{L}$ is globally generated
+  by Proposition \ref{prop:globally_generated_iff_h0_drops_by_1}.
+
+  (2) The proof is similar, use that
+  $\deg \mathcal{L} \ge 2g + 1$ implies
+  \[
+    \deg \mathcal{L}
+    > \deg \mathcal{L}(-P)
+    \ge \deg \mathcal{L}(-P - Q)
+    \ge 2g - 1,
+  \]
+  so $\mathcal{L}, \mathcal{L}(-P), \mathcal{L}(-P - Q)$ are all
+  non-special. So
+  \[
+    h^0(C, \mathcal{L})
+    - h^0(C, \mathcal{L}(-P - Q))
+    = \deg \mathcal{L} - \deg \mathcal{L}(-P - Q)
+    = 2,
+  \]
+  so $\mathcal{L}$ is very ample
+  by Proposition \ref{prop:very_ample_iff_h0_drops_by_2}.
+\end{proof}
+
+\begin{remark}
+  Corollary \ref{cor:globally_generated_and_very_ample_if_degree_large_enough}
+  is sharp: Let $C = \PP^1$, then
+  $\deg \OO_{\PP^1} = 2g$, but
+  $\OO_{\PP^1}$ is not very ample. Similarly,
+  $\deg \OO_{\PP^1}(-1) = 2g - 1$, but
+  $\OO_{\PP^1}(-1)$ is not globally generated.
+\end{remark}
+
+\section{Applications to Curves}
+
+\begin{corollary}
+  An invertible sheaf $\mathcal{L}$ on $C$ is
+  ample if and only if $\deg \mathcal{L} > 0$.
+\end{corollary}
+
+\begin{proof}
+  $(\Rightarrow)$ If $\mathcal{L}$ is ample,
+  then there exists $m > 0$ such that
+  $\mathcal{L}^{\otimes m}$ is very ample, so
+  \[
+    m \deg \mathcal{L}
+    = \deg \mathcal{L}^{\otimes m} > 0,
+  \]
+  which implies that $\deg \mathcal{L} > 0$.
+
+  $(\Leftarrow)$ If $\mathcal{L} > 0$, then
+  $\deg \mathcal{L}^{\otimes (2g + 1)} = (\deg \mathcal{L})(2g + 1) \ge 2g + 1$,
+  so $\mathcal{L}$ is very ample.
+\end{proof}
+
+\begin{corollary}
+  If the genus of $C$ is $g = 0$, then
+  $C \cong \PP^1$.
+\end{corollary}
+
+\begin{proof}
+  Fix $P \in C$ and set $\mathcal{L} = \OO_C(P)$.
+  Since $\deg L = 1 \ge g + 1$, we know
+  $\mathcal{L}$ is very ample. Furthermore,
+  \[
+    h^0(\mathcal{L})
+    = \deg \mathcal{L} + 1 - g
+    = 1 + 1 - 0 = 2.
+  \]
+  So we get an embedding
+  $C \hookrightarrow \PP^{2 - 1} = \PP^1$.
+  Since $\dim C = \dim \PP^1 = 1$ and
+  $\PP^1$ is irreducible,
+  $C \cong \PP^1$.
+\end{proof}
+
+\begin{corollary}
+  If the genus of $C$ is $g = 1$, then
+  $C$ is isomorphic to a cubic curve in $\PP^2$.
+\end{corollary}
+
+\begin{proof}
+  Fix $P \in C$ and set $\mathcal{L} = \OO_C(3P)$.
+  Since $\deg \mathcal{L} = 3 \ge 2g + 1$,
+  we know
+  $\mathcal{L}$ is very ample.
+  Similarly,
+  \[
+    h^0(\mathcal{L})
+    = \deg \mathcal{L} + 1 - g = 3.
+  \]
+  Thus we get an embedding
+  $C \hookrightarrow \PP^{3 - 1} = \PP^2$.
+  So $C$ is a plane curve of some
+  degree $d$. Using that
+  \[
+    1 = g = \frac{1}{2}(d - 1)(d - 2),
+  \]
+  we see that we can only have $d = 3$.
+\end{proof}

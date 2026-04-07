@@ -1,0 +1,288 @@
+\chapter{Apr.~7 --- Classification of Curves}
+
+\section{Higher Genus Curves}
+
+\begin{remark}
+  Recall that a smooth plane curve
+  $C_d \subseteq \PP^2$ of
+  degree $d$ has genus
+  $(d - 1)(d - 2) / 2$. This does not cover
+  most $g \ge 2$. One may also try to
+  consider complete intersections, but again
+  this does not cover everything.
+  The full answer is the following:
+  \begin{enumerate}
+    \item For $g \ge 2$, there exists an
+      irreducible quasiprojective variety
+      $\mathcal{M}_g$
+      of dimension $3g - 3$ parametrizing
+      all smooth projective genus $g$ curves.
+    \item If $C \in \mathcal{M}_g$,
+      then either
+      \begin{itemize}
+        \item there exists a 2-to-1
+          cover $C \to \PP^1$
+          (\emph{hyperelliptic curves}), or
+        \item $\OO_C(K_C)$
+          is very ample and induces an
+          embedding $C \hookrightarrow \PP^{g - 1}$
+          (\emph{canonically embedded curves}).
+      \end{itemize}
+  \end{enumerate}
+  To show (2) (we will not prove (1)), we need
+  to understand \emph{finite morphisms}.
+\end{remark}
+
+\section{Finite Morphisms}
+
+\begin{definition}
+  A morphism of varieties $f : X \to Y$ is
+  \emph{finite} if there exists an open
+  affine cover $\{U_i\}$ of $Y$ such that
+  $V_i = f^{-1}(U_i)$ is affine and
+  $\OO_Y(U_i) \to \OO_X(V_i)$ is a finite
+  morphism of rings (i.e.
+  $\OO_X(V_i)$ is a finite $\OO_Y(U_i)$-module).
+\end{definition}
+
+\begin{example}
+  Let $d > 0$ and consider the morphism
+  \begin{align*}
+    \Affine^1_x &\longrightarrow \Affine^1_y \\
+    x &\longmapsto x^d.
+  \end{align*}
+  This morphism is finite, as
+  $k[y] \to k[x]$ is given by $y \mapsto x^d$,
+  which is finite
+  (note that
+  $k[x]$ is generated as a $k[y]$-module by
+  $1, x, \dots, x^{d - 1}$).
+\end{example}
+
+\begin{remark}
+  We have the following properties of
+  finite morphisms:
+  \begin{enumerate}
+    \item If $f : X \to Y$ is finite and
+      $U \subseteq Y$ is open affine, then
+      $V = f^{-1}(U)$ is open affine and
+      $\OO_Y(V) \to \OO_X(U)$ is finite.
+      (See Mustata 5.3.2 for a proof.)
+    \item A closed embedding
+      $Z \hookrightarrow Y$ is finite.
+
+      To see this, note that
+      it suffices to prove this on an
+      open cover, so we may assume
+      $Y$ is affine. Set $A = \OO_Y(Y)$.
+      Then $Z = V(I_Z)$ with $I_Z \subseteq A$
+      and $A = \OO_Y(Y) \to \OO_Z(Z) = A / I_Z$,
+      which is finite.
+    \item If $X \to Y$ is finite, then
+      $\# f^{-1}(\{y\}) < \infty$ for any
+      $y \in Y$.
+
+      To see this, note that this is local in
+      a neighborhood of $y$, so we may assume
+      that $Y$ is affine. Then by (1),
+      $X$ is also affine. Then
+      $B := \OO_Y(Y) \to \OO_X(X) =: C$
+      is finite. Now
+      \[
+        A(f^{-1}(\{y\}))
+        = C / I_{f^{-1}(\{y\})}
+        = (C / \m_y C)^{\mathrm{red}}
+        = (C \otimes_B B / \m_y B)^{\mathrm{red}}
+      \]
+      where $R^{\mathrm{red}}$ denotes
+      the reduced ring corresponding to $R$.
+      Now $C \otimes_B B / \m_y B$ is a
+      finite $B / \m_y B$-module and
+      $B / \m_y \cong k$, so we see that
+      $\dim_k A(f^{-1}(\{y\})) < \infty$.
+      Thus it suffices to show:
+      \begin{quote}
+        \textbf{Claim.} If $X$ is an affine
+        variety and $\dim_k A(X) < \infty$,
+        then $X$ is a finite set of points.
+
+        \begin{proof}[Proof of claim]
+          We may assume that $X$ is
+          irreducible.\footnote{At this point, this is essentially the statement that a finite integral domain is a field, but with a finite-dimensional vector space instead. Either way, the key property is that an injective (linear) map is automatically also surjective.} Since $\dim_k A(X) < \infty$
+          and $A(X)$ is a domain, for any
+          $0 \ne f \in A(X)$, we have an
+          injective linear map given by
+          \begin{align*}
+            A(X) &\longrightarrow A(X) \\
+            1 &\longmapsto f.
+          \end{align*}
+          By finite dimensionality, this map
+          is also surjective, so $f$ has an inverse.
+          Thus $A(X)$ is a field, and hence
+          $X$ is a single point.
+        \end{proof}
+      \end{quote}
+  \end{enumerate}
+\end{remark}
+
+\begin{remark}
+  Morphisms with finite fibers are often not
+  finite. For example, the inclusion
+  $\Affine^1 \setminus \{0\} \hookrightarrow \Affine^1$
+  has finite fibers, but
+  we have $k[x] = A(\Affine^1) \to A(\Affine^1 \setminus \{0\}) = k[x^{\pm 1}]$.
+\end{remark}
+
+\begin{theorem}\label{thm:finite-morphism-finite-fibers}
+  A morphism of complete varieties
+  $f : X \to Y$ with finite fibers is finite.
+\end{theorem}
+
+\begin{proof}
+  See Mustata 14.1.8.
+\end{proof}
+
+\section{Finite Morphisms of Curves}
+
+\begin{remark}
+  Assume $f : X \to Y$ is a surjective
+  morphism of smooth projective curves. Note
+  that such a morphism always has
+  finite fibers (as $\dim X = \dim Y = 1$),
+  so $f$ is finite by
+  Theorem \ref{thm:finite-morphism-finite-fibers}.
+\end{remark}
+
+\begin{definition}
+  Define the \emph{degree} of $f$ to be
+  $\deg f = \deg (K(X) / K(Y))$,
+  where $f^* : K(Y) \hookrightarrow K(X)$.
+  Note that since
+  $\trdeg_k K(Y) = \trdeg_k K(X) = 1$,
+  this extension is finite.
+\end{definition}
+
+\begin{definition}
+  We say that $f$ is \emph{separable}
+  if $K(X) / K(Y)$ is separable (recall that this
+  condition always
+  holds when $\Char k = 0$.)
+\end{definition}
+
+\begin{example}
+  The morphism
+    $\Affine^1_{\overline{\F}_p} \to \Affine^1_{\overline{\F}_p}$
+  given by $x \to x^p$
+  is non-separable.
+\end{example}
+
+\begin{prop}
+  If $D$ is a divisor on $Y$, then
+  $\deg f^* D = (\deg f)(\deg D)$. Here,
+  $f^* D$ is defined by pulling back
+  local equations (recall that every divisor
+  is Cartier when $Y$ is smooth).
+\end{prop}
+
+\begin{proof}
+  As the formula is linear in $D$, we may
+  assume that $D = P$ for some $P \in Y$.
+  Fix an open affine $P \in U \subseteq Y$, and
+  set $V = f^{-1}(U)$. Now consider
+  \[
+    A = \OO_Y(U)
+    \overset{f^*}{\longrightarrow}
+    \OO_X(V) = B,
+  \]
+  which is finite by our assumptions.
+  Let $\m_P \subseteq A$ be the ideal
+  of functions vanishing at $P$. Now
+  $B_{\m_P}$ is a finite $A_{\m_P}$-module,
+  $A_{\m_P}$ is a DVR, and $B_{\m_P}$ is
+  torsion-free, so $B_{\m_P}$ is a finite
+  rank free $A_{\m_P}$-module.
+  So we have $B_{\m_P} \cong A_{\m_P}^{\oplus r}$ for some
+  $r \ge 0$, and $r = d := \deg f$ by localizing
+  away from $0$. So
+  \pagebreak
+  \[
+    d = \dim_k (B_{\m_P} / \m_P B_{\m_P})
+    = \dim_k H^0(X, \OO_{f^* P})
+    = \chi(X, \OO_{f^* P}).
+  \]
+  Now we can consider the short exact sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \OO_X(-f^* P) \ar[r] & \OO_X \ar[r] & \OO_{f^* P} \ar[r] & 0
+    \end{tikzcd}
+  \]
+  from which we see that
+  $\chi(X, \OO_{f^* P}) = \chi(X, \OO_X) - \chi(X, \OO_X(-f^* P)) = \deg f^* P$
+  by Riemann-Roch. So
+  \[
+    \deg f^* P = d = (\deg f)(\deg P)
+  \]
+  since $\deg P = 1$,
+  which is the desired formula.
+\end{proof}
+
+\begin{example}
+  Let $f : \Affine^1 \to \Affine^1$
+  be given by $x \mapsto x^2$. Then
+  \[
+    f^*([0] + [1])
+    = 2[0] + [1] + [-1].
+  \]
+\end{example}
+
+\begin{remark}
+  How do we compare
+  $\genus(X)$ and $\genus(Y)$? We have
+  an exact sequence
+  \[
+    \begin{tikzcd}
+      f^*\Omega_Y
+      \ar[r, "\alpha"] & \Omega_X
+      \ar[r] & \Omega_{X/Y} \ar[r] & 0
+    \end{tikzcd} \tag{$*$}
+  \]
+  \begin{quote}
+    \textbf{Claim.} If $f$ is separable,
+    then $(*)$ is short exact.
+
+    \begin{proof}
+      Since $f^* \Omega_Y$ and $\Omega_X$
+      are invertible, it suffices to show
+      that $\alpha \ne 0$. Since
+      $f$ is separable,
+      we know that $\Omega_{K(X) / K(Y)} = 0$.
+      Taking stalks at $p \in X$ and
+      setting $q = f(p)$, we get
+      \[
+        \begin{tikzcd}
+          \Omega_{\OO_{Y, q} / k}
+          \otimes \OO_{X, p}
+          \ar[r, "\alpha_p"] &
+          \Omega_{\OO_{X, p}}
+          \ar[r] & 
+          \Omega_{\OO_{X, p} / \OO_{Y, q}}
+          \ar[r] & 0
+        \end{tikzcd}
+      \]
+      and applying $- \otimes K(X)$ gives
+      \[
+        \begin{tikzcd}[row sep=small]
+          \Omega_{K(Y) / k} \otimes K(X)
+          \ar[r, "\alpha_{K(X)}"] &
+          \Omega_{K(X) / k}
+          \ar[r] & \Omega_{K(X) / K(Y)} \ar[r] & 0 \\
+                 & & 0 \ar[u, equal]
+        \end{tikzcd}
+      \]
+      Thus $\alpha_{K(X)} \ne 0$, so
+      $\alpha_P \ne 0$, and hence $\alpha \ne 0$.
+    \end{proof}
+  \end{quote}
+  So now we assume that $f$ is separable
+  and study $\Omega_{X / Y}$.
+\end{remark}

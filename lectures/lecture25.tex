@@ -1,0 +1,378 @@
+\chapter{Apr.~21 --- Surfaces}
+
+\section{Intersection Numbers}
+
+\begin{remark}
+  Recall that if $X$ is a projective
+  variety and $\mathcal{F} \in \Coh_X$,
+  then
+  \[
+    \chi(X, \mathcal{F} \otimes \OO_X(m))
+  \]
+  (the \emph{Hilbert polynomial})
+  is a polynomial of degree $\dim \Supp(\mathcal{F})$
+  in $m$.
+  When $\dim X = 1$, we have an explicit
+  description (by Riemann-Roch) as follows:
+  \begin{quote}
+    \vspace{-2em}
+    \begin{theorem}
+      If $C$ is a curve and $D$ is a
+      Cartier divisor on $C$, then
+      \[
+        \chi(C, \OO_C(mD))
+        = m \deg D + 1 - g(C).
+      \]
+    \end{theorem}
+  \end{quote}
+  How does this generalize to higher
+  dimensions?
+
+  Let $X \subseteq \PP^n$ be a smooth
+  projective surface and $D$ a divisor on
+  $X$. We want to extract something like
+  ``$\deg D$.'' The idea is the following:
+  Take a general hyperplane 
+  $H \subseteq \PP^n$, and consider
+  $\#(D \cap H)$. Note
+  \[
+    D \cap H
+    = D \cap (H \cap X),
+  \]
+  where $D$ and $H \cap X$ are both curves.
+\end{remark}
+
+\begin{theorem}
+  There exists a symmetric bilinear pairing
+  \begin{align*}
+    \Div X \times \Div X
+    &\longrightarrow \Z \\
+    (C, D) &\longmapsto C \cdot D
+  \end{align*}
+  such that
+  \begin{enumerate}
+    \item (linear equivalence) if
+      $C, D, C', D' \in \Div X$ with
+      $C \sim C'$ and $D \sim D'$, then
+      $C \cdot D = C' \cdot D'$;
+    \item if $C, D$ are distinct irreducible
+      curves, then
+      $C \cdot D = \sum_{p \in C \cap D} (C \cdot D)_p$,
+      where
+      \[
+        (C \cdot D)_p
+        = \text{local intersection number at $p$}
+        = \dim_k (\OO_{X, p} / (f, g))
+      \]
+      with $I_{C, p} = (f)$ and
+      $I_{D, p} = (g)$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{remark}
+  If $C$ and $D$ are smooth
+  curves meeting transversely at
+  $p$ (i.e. the tangent directions of
+  $C, D$ at $p$ are
+  distinct), then
+  $(C \cdot D)_p = 1$.
+
+  To see this, note that $C, D$ meet
+  transversely at $p$ if and only if
+  $k[f] \ne k[g]$ in
+  $\m_p / \m_p^2$, which happens if and only
+  if $[f], [g]$ generate
+  $\m_p / \m_p^2$. By Nakayama's lemma,
+  this happens if and only if
+  $f, g$ generate $\m_p$, i.e.
+  $(f, g) = \m_p$. This implies that
+  $\dim_k (\OO_{X, p} / (f, g)) = \dim_k k = 1$.
+\end{remark}
+
+\begin{remark}
+  The pairing $\Div X \times \Div X \to \Z$
+  induces a symmetric bilinear
+  form
+  \begin{align*}
+    \Cl(X) \times \Cl(X) &\longrightarrow \Z \\
+    ([C], [D]) &\longmapsto C \cdot D.
+  \end{align*}
+\end{remark}
+
+\begin{example}
+  Consider $\PP^2$, where
+  $\Cl(\PP^2) = \Z[H]$ for some line
+  $H \subseteq \PP^2$.
+  Then
+  \[
+    H \cdot H
+    = H \cdot H'
+    = 1,
+  \]
+  where $H'$ is a line different
+  from $H$ in $\PP^2$.
+  So if $C, D \subseteq \PP^2$ are
+  plane curves of degrees $c, d$, then
+  \[
+    C \cdot D
+    = (cH) \cdot (dH)
+    = cd H^2 = cd.
+  \]
+  This recovers the version of
+  Bezout's theorem which
+  counts multiplicity.
+\end{example}
+
+\begin{example}
+  Consider $\PP^1_{x_0 : x_1} \times \PP^1_{y_0 : y_1}$,
+  where $\Cl(\PP^1 \times \PP^1) = \Z[H_1] \oplus \Z[H_2]$
+  for
+  \[
+    H_1 = \{[0 : 1]\} \times \PP^1
+    \quad \text{and} \quad
+    H_2 = \PP^1 \times \{[0 : 1]\}.
+  \]
+  Then $H_1 \cdot H_1 = H_1 \cdot ([1 : 0] \times \PP^1) = 0$
+  (similarly, $H_2 \cdot H_2 = 0$) and
+  $H_1 \cdot H_2 = 1$.
+\end{example}
+
+\begin{example}
+  Let
+  $\pi : B_p \PP^2 \to \PP^2$ be the
+  blowup and
+  $E \subseteq B_p \PP^2$ the
+  exceptional divisor. Then
+  \[
+    \Cl(B_p \PP^2)
+    = \Z[E] \oplus \Z[\widetilde{H}],
+  \]
+  where $p \notin H \subseteq \PP^2$ is a
+  hyperplane. Here $\widetilde{H}$ denotes
+  the strict transform. Then we can compute:
+  \begin{enumerate}
+    \item $\widetilde{H} \cdot \widetilde{H}$. Choose
+      a line $p \notin H' \subseteq \PP^2$
+      different from $H$. Now
+      $H \sim H'$, so
+      \[
+        \widetilde{H}
+        = \pi^* H
+        \sim \pi^* H'
+        = \widetilde{H}',
+      \]
+      and thus $\widetilde{H} \cdot \widetilde{H} = \widetilde{H} \cdot \widetilde{H}' = 1$.
+    \item $E \cdot \widetilde{H} = 0$.
+    \item $E \cdot E$. Choose distinct
+      lines $p \in L_i \subseteq \PP^2$ for
+      $i = 1, 2$. Now
+      $L_1 \sim L_2 \sim H$, and
+      \[
+        \pi^* L_i
+        = E + \widetilde{L}_i.
+      \]
+      So
+      $E \sim \pi^* L_i - \widetilde{L}_i \sim \widetilde{H} - \widetilde{L}_i$,
+      and thus
+      \begin{align*}
+        E \cdot E
+        = (\widetilde{H} - \widetilde{L}_1)
+        \cdot (\widetilde{H} - \widetilde{L}_2)
+        &= (\widetilde{H} \cdot \widetilde{H})
+        - (\widetilde{L}_1 \cdot \widetilde{H})
+        - (\widetilde{L}_2 \cdot \widetilde{H})
+        + (\widetilde{L}_1 \cdot \widetilde{L}_2) \\
+        &= 1
+        - (\widetilde{L}_1 \cdot \widetilde{H})
+        - (\widetilde{L}_2 \cdot \widetilde{H})
+        + (\widetilde{L}_1 \cdot \widetilde{L}_2).
+      \end{align*}
+      Note that $\widetilde{L}_1$ and
+      $\widetilde{L}_2$ do not intersect in
+      the blowup, while
+      $\widetilde{L}_i$ and $\widetilde{H}$
+      intersect at a point. Thus
+      \[
+        E \cdot E
+        = 1 - 1 - 1 + 0 = -1.
+      \]
+  \end{enumerate}
+\end{example}
+
+\begin{lemma}
+  If $C$ and $D$ are distinct curves
+  on $X$ with $C$ smooth and irreducible, then
+  \[
+    C \cdot D
+    = \deg(\OO_X(D)|_C).
+  \]
+\end{lemma}
+
+\begin{proof}
+  We have a short exact sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \mathcal{I}_D
+      \ar[r] & \OO_X
+      \ar[r] & \OO_D
+      \ar[r] & 0
+    \end{tikzcd}
+  \]
+  and applying $- \otimes \OO_C$ gives a
+  short exact sequence
+  (recall that $\OO_D = \OO_X / \mathcal{I}_D$)
+  \[
+    \begin{tikzcd}
+      0 \ar[r] &
+      \OO_X(-D) \otimes \OO_C
+      \ar[r] & \OO_C
+      \ar[r] & \OO_X / (\mathcal{I}_C + \mathcal{I}_D)
+      \ar[r] & 0
+    \end{tikzcd}
+  \]
+  Thus the Euler characteristics satisfy
+  \[
+    \chi(C, \OO_C)
+    - \chi(C, \OO_X(-D)|_C)
+    = \chi(X, \OO_X / (\mathcal{I}_C + \mathcal{I}_D))
+    = h^0(X, \OO_X / (\mathcal{I}_C + \mathcal{I}_D))
+    = C \cdot D,
+  \]
+  since $\OO_X / (\mathcal{I}_C + \mathcal{I}_D)$ is supported at finitely many points,
+  so $h^1(X, \OO_X / (\mathcal{I}_C + \mathcal{I}_D)) = 0$.
+  Also,
+  \[
+    \chi(C, \OO_C)
+    - \chi(C, \OO_X(-D)|_C)
+    = 0 - \deg(\OO_X(-D)|_C)
+    = \deg(\OO_X(D)|_C)
+  \]
+  by the Riemann-Roch theorem, which
+  gives the desired formula.
+\end{proof}
+
+\begin{example}
+  If $C$ is a smooth curve on $X$, then
+  $\omega_C
+    = \omega_X(C)|_C$, where
+  $\omega_X(C) = \OO_X(K_X + C)$.
+  This implies that
+  \[
+    2 g(C) - 2
+    = \deg \omega_C
+    = \deg(\omega_X(C)|_C)
+    = (K_X + C) \cdot C.
+  \]
+  As a special case, if $C$ is a smooth
+  degree $d$ plane curve in $\PP^2$, then
+  we see that
+  \[
+    2g(C) - 2
+    = (K_{\PP^2} + C) \cdot C
+    = (-3H + d H) \cdot dH
+    = (d - 3)d,
+  \]
+  where $H \subseteq \PP^2$ is a line.
+  This recovers the formula
+  $g(C) = (d - 1)(d - 2) / 2$.
+\end{example}
+
+\section{Riemann-Roch for Surfaces}
+
+\begin{theorem}[Riemann-Roch for surfaces]\label{thm:RR-surfaces}
+  For a divisor $D$ on a smooth
+  projective surface $X$,
+  \[
+    \chi(X, \OO_X(D))
+    = \frac{1}{2} D \cdot (D - K_X)
+    + 1 + p_a(X),
+  \]
+  where $p_a(X) = \chi(X, \OO_X) - 1$
+  is the \emph{arithmetic genus} of $X$.
+\end{theorem}
+
+\begin{lemma}\label{lem:divisor-decomposition}
+  Any divisor $D$ on a smooth
+  projective surface $X$ can be written
+  as $D \sim C' - C$ with
+  $C$ and $C'$ smooth irreducible curves.
+\end{lemma}
+
+\begin{proof}
+  Choose a very ample divisor $H$ on $X$.
+  For $k \gg 0$, the divisor
+  $D + kH$ is very ample.
+  By Bertini's theorem (see
+  Mustata 6.4.1), there exist
+  smooth irreducible curves
+  $C \sim kH$ and $C' \sim D + kH$.
+  Then we can write
+  $D = (D + kH) - kH \sim C' - C$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:RR-surfaces}]
+  The goal is to reduce to the case
+  of curves.
+  Since the left and right hand sides
+  only depend on the linear equivalence class
+  of $D$, we may assume that $D = C - E$ 
+  with $C, E$ smooth irreducible curves
+  (by Lemma \ref{lem:divisor-decomposition}).
+  We have a short exact sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \OO_X(C - E)
+      \ar[r] & \OO_X(C) \ar[r] & \OO_X(C) \otimes \OO_E
+      \ar[r] & 0
+    \end{tikzcd}
+  \]
+  We also have a second short exact sequence
+  \[
+    \begin{tikzcd}
+      0 \ar[r]
+      & \OO_X
+      \ar[r] & \OO_X(C)
+      \ar[r] & \OO_X(C) \otimes \OO_C
+      \ar[r] & 0
+    \end{tikzcd}
+  \]
+  \pagebreak
+  Thus taking Euler characteristics, we see
+  that
+  \begin{align*}
+    \chi(X, \OO_X(C - E))
+    &= \chi(X, \OO_X(C))
+    - \chi(X, \OO_X(C) \otimes \OO_E) \\
+    &= \chi(X, \OO_X)
+    + \chi(X, \OO_X(C) \otimes \OO_C)
+    - \chi(X, \OO_X(C) \otimes \OO_E) \\
+    &= \chi(X, \OO_X)
+    + \chi(C, \OO_X(C)|_C)
+    - \chi(E, \OO_X(C)|_E) \\
+    &= (1 + p_a(X))
+    + (C^2 + 1 - g(C))
+    - (C \cdot E + 1 - g(E)).
+  \end{align*}
+  Now
+  $g(C) = \frac{1}{2} C \cdot (C + K_X) - 1$
+  and $g(E) = \frac{1}{2} E \cdot (E + K_X) - 1$,
+  so we get
+  \[
+    \chi(X, \OO_X(C - E))
+    = \frac{1}{2}(C - E) \cdot (C - E - K_X)
+    + 1 + p_a(X).
+  \]
+  Since $D = C - E$, this gives the
+  desired formula.
+\end{proof}
+
+\begin{remark}
+  There is a criterion for ampleness
+  in terms of intersection numbers
+  (the \emph{Nakai-Moishezon criterion}):
+  A divisor $D$ on $X$ is ample
+  if and only if $D^2 > 0$ and
+  $D \cdot C > 0$ for all irreducible
+  curves $C \subseteq X$. This is
+  generally true in any dimension.
+\end{remark}

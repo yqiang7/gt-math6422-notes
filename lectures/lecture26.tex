@@ -1,0 +1,335 @@
+\chapter{Apr.~23 --- Complex Analytic Geometry}
+
+\section{Holomorphic Functions}
+
+\begin{remark}
+  Let $k = \C$. We will replace polynomials
+  with holomorphic functions and consider
+  the usual analytic topology on $\C^n$.
+\end{remark}
+
+\begin{definition}
+  Let $U \subseteq \C$ be open.
+  A function $f : U \to \C$ is
+  \emph{holomorphic at $c \in U$} (we
+  say that $f$ is \emph{holomorphic} if it is
+  holomorphic at every point) if one of the
+  following equivalent conditions hold:
+  \begin{enumerate}
+    \item $f$ is \emph{analytic} at $c$;
+    \item $f$ is \emph{complex differentiable} at $c$;
+    \item the \emph{Cauchy-Riemann
+      equations} hold at $c$.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  Let $U \subseteq \C^n$ be an open set.
+  We say that a function
+  $f : U \to \C$ is \emph{holomorphic} if
+  one of the following equivalent conditions hold:
+  \begin{enumerate}
+    \item $f$ is analytic, i.e. if at each
+      $c = (c_1, \dots, c_n) \in U$,
+      there exist $a_J \in \C$ such that
+      \[
+        f(z)
+        = \sum_{J = (j_1, \dots, j_n) \in \N^n}
+        a_J (z_1 - c_1)^{j_1} \cdots (z_n - c_n)^{j_n}
+      \]
+      in some neighborhood around $c$;
+    \item at each $c = (c_1, \dots, c_n) \in U$,
+      $f(c_1, \dots, c_{i - 1}, z_i, c_{i + 1}, \dots, c_n)$
+      is holomorphic in $z_i$ near $c_i$,
+    \item the Cauchy-Riemann equations hold:
+      Write $f(z) = f(x, y) = u(x, y) + iv(x, y)$, then
+      \[
+        \frac{\partial u}{\partial x_i}
+        - \frac{\partial v}{\partial y_i} = 0
+        \quad\text{and}\quad
+        \frac{\partial u}{\partial y_i}
+        + \frac{\partial v}{\partial x_i} = 0.
+      \]
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  A \emph{germ} of a holomorphic function
+  at $c \in \C^n$ is a holomorphic
+  function $\varphi : U \to \C$ (where
+  $c \in U \subseteq \C^n$)
+  up to the equivalence relation
+  where $(\varphi, U) \sim (\varphi', U')$
+  if there exists
+  $c \in W \subseteq U \cap U'$ open such
+  that $\varphi|_W = \varphi'|_W$. Define
+  the space of germs
+  \[
+    \OO_n
+    = \{
+      \text{germs of holomorphic functions at $0 \in \C^n$}
+    \}.
+  \]
+\end{definition}
+
+\begin{prop}\label{prop:properties-of-On}
+  We have the following:
+  \begin{enumerate}
+    \item $\OO_n$ is a ring;
+    \item there is an inclusion
+      $\OO_n \to \C \llbracket z_1, \dots, z_n \rrbracket$
+      (we often write $\C \langle z_1, \dots, z_n \rangle$ for the image);
+    \item $\OO_n$ has a unique
+      maximal ideal
+      $\m = \{\varphi \in \OO_n : \varphi(0) = 0\}$
+      (so $\OO_n$ is a local ring);
+    \item $\OO_n$ is Noetherian;
+    \item $\OO_n$ is a UFD.
+  \end{enumerate}
+\end{prop}
+
+\begin{remark}
+  When $n = 1$, the ideals of $\OO_1$
+  are of the form $(z^m)$ with $m \ge 0$
+  and $(0)$. In general, proving
+  Proposition \ref{prop:properties-of-On}(4)-(5)
+  is more difficult and relies on the
+  \emph{Weierstrass division theorem}.
+\end{remark}
+
+\begin{remark}
+  If we take an open set $U \subseteq \C^n$,
+  we can consider
+  \[
+    \OO_{\C^n}(U)
+    = \{\text{holomorphic functions $U \to \C$}\}.
+  \]
+  However, $\OO_{\C^n}(U)$ is not
+  necessarily Noetherian. For example,
+  in $\OO_\C(\C)$ we can take
+  \[
+    I_k = \{
+      \varphi \in \OO_\C(\C)
+      : f(i) = 0 \text{ for all } i \in \N
+      \text{ with } i \ge k
+    \}.
+  \]
+  Then $I_k \subseteq I_{k + 1} \subseteq I_{k + 2} \subseteq \cdots$
+  and the chain is strict: Something like
+  $\sin(\pi z) / (z - k)$ lies in
+  $I_{k + 1} \setminus I_k$.
+\end{remark}
+
+\section{Analytic Subvarieties}
+\begin{definition}
+  Let $U \subseteq \C^n$ be an open
+  set. An \emph{analytic subvariety}
+  of $U$ is a subset $X \subseteq U$ such
+  that for each $x \in X$, there exists an
+  open neighborhood $x \in V \subseteq U$
+  such that
+  \[
+    V \cap X
+    = \{x \in V : f_1(x) = \cdots = f_r(x) = 0\}
+    =: V(f_1, \dots, f_r)
+  \]
+  for some $f_1, \dots, f_r \in \OO_{\C^n}(V)$.
+\end{definition}
+
+\begin{example}
+  The following are analytic subvarieties:
+  \begin{enumerate}
+    \item Hypersurfaces:
+      Given $f \in \OO_{\C^n}(U)$, we have
+      $V(f) = \{x \in U : f(x) = 0\}$.
+    \item $Z = V(w - e^z) \subseteq \C^2$.
+      Note that $Z \cap V(w - 1) = \{(1, 2\pi i k) : k \in \Z\}$,
+      which is notably infinite.\footnote{We saw that with polynomials, the intersection of two distinct curves is finite.}
+    \item Let $U = \C_{w, z}^2 \setminus \{w = 0\}$
+      and $X = \bigcup_{n = 1}^\infty V(z - nw)$.
+      Note that
+      $\overline{X} \subseteq \C^2$
+      is \emph{not} an analytic subvariety of $\C^2$.
+      This is intuitively because
+      $\codim_{\C^2} \{w = 0\} = 1$ and
+      $\codim_U X = 1$.
+  \end{enumerate}
+\end{example}
+
+\begin{definition}
+  A \emph{germ} of a complex analytic
+  subvariety of $\C^n$ at $0$ is a complex
+  analytic subvariety
+  $0 \in X \subseteq U \subseteq \C^n$
+  (where $U$ is open in $\C^n$), up to the
+  equivalence relation where
+  $X \sim X'$ if there exists
+  $0 \in W \subseteq U \cap U'$ such that
+  $X \cap W = X' \cap W$.
+\end{definition}
+
+\begin{remark}
+  Given a germ $0 \in X \subseteq \C^n$ of
+  a complex analytic subvariety, we can
+  define
+  \[
+    I(X)
+    = \{
+      \varphi \in \OO_n :
+      \text{$\varphi$ vanishes on a neighborhoods of $X$ containing $0$}
+    \}.
+  \]
+  Similarly, given an ideal $I \subseteq \OO_n$,
+  we can define
+  \[
+    0 \in X = V(f_1, \dots, f_r),
+  \]
+  where $f_1, \dots, f_r$ are generators
+  of $I$ (recall that $\OO_n$ is Noetherian)
+  defined on some open neighborhood of
+  $0 \in U \subseteq \C^n$.
+  Note that $X$ itself is not an
+  analytic subvariety, but a germ
+  of an analytic subvariety.
+\end{remark}
+
+\begin{prop}
+  We have the following:
+  \begin{enumerate}
+    \item if $X_1 \subseteq X_2$ are
+      germs of analytic subvarieties
+      (i.e. there is some neighborhood
+      $0 \in U \subseteq \C^n$ where
+      $X_1 \cap U \subseteq X_2 \cap U$), then
+      $I(X_1) \supseteq I(X_2)$;
+      \pagebreak
+    \item if $I_1 \subseteq I_2 \subseteq \OO_n$
+      are ideals, then
+      $V(I_1) \supseteq V(I_2)$;
+    \item $V(I(X)) = X$;
+    \item $I(V(I)) = \sqrt{I}$;
+    \item $X$ is irreducible if and only if
+      $I(X)$ is prime;
+    \item any germ of a complex analytic
+      subvariety at $0 \in \C^n$
+      can be written uniquely (up to
+      reordering) as a union of
+      irreducible ones.
+  \end{enumerate}
+\end{prop}
+
+\begin{remark}
+  Consider the curve
+  $x^2 - y^2 - y^3 = 0$. Recall that
+  this is irreducible
+  in algebraic geometry (i.e. in the
+  Zariski topology). However, in complex
+  analytic geometry, we can write
+  \[
+    x^2 - y^2 - y^3
+    = x^2 - y^2(1 + y)
+    = (x - y\sqrt{1 + y})(x + y\sqrt{1 + y})
+  \]
+  for $|y| < 1$, so this curve is
+  not irreducible as a germ of a
+  complex analytic subvariety.
+\end{remark}
+
+\begin{remark}
+  The finiteness of the irreducible
+  decomposition fails for non-germs:
+  Consider
+  \[
+    \{0, 1, 2, \dots\} \subseteq \C.
+  \]
+\end{remark}
+
+\section{Complex Manifolds}
+
+\begin{definition}
+  A \emph{complex manifold} $(X, \OO_X)$ is a
+  locally ringed space if
+  \begin{itemize}
+    \item $X$ is Hausdorff with countable
+      basis;
+    \item $\OO_X$ is a subsheaf of the
+      sheaf of $\C$-valued continuous
+      functions on $X$;
+    \item at any $x \in X$, there exists
+      $x \in U \subseteq X$ open such that
+      \[
+        (U, \OO_X|_U) \cong (V, \OO_{\C^n}|_V)
+      \]
+      for some open set $0 \in V \subseteq \C^n$.
+  \end{itemize}
+\end{definition}
+
+\begin{example}
+  The following are examples of complex
+  manifolds:
+  \begin{enumerate}
+    \item $X = \C^n$ or $\C \PP^n$.
+    \item $X = V(f) \subseteq \C^n$
+      such that $f \in \OO_{\C^n}(\C^n)$
+      and $[\partial f / \partial z_1, \cdots, \partial f / \partial z_n] \ne 0$
+      on $X$.
+  \end{enumerate}
+\end{example}
+
+\begin{definition}
+  A \emph{complex analytic closed subvariety}
+  of a complex manifold $X$ is a closed
+  set $Z \subseteq X$ that is locally a
+  complex analytic subvariety for an open
+  ball $V \subseteq \C^n$.
+\end{definition}
+
+\begin{theorem}[Chow's theorem]
+  If $X \subseteq \C \PP^n$ is an analytic
+  subvariety, then there exist
+  homogeneous polynomials
+  $F_1, \dots, F_r \in \C[z_0, \dots, z_n]$ 
+  such that $X = V(F_1, \dots, F_r)$.
+\end{theorem}
+
+\begin{proof}
+  Consider the quotient map
+  $q : \C^{n + 1} \setminus \{0\} \to \C \PP^n$.
+  Note that $Z = q^{-1}(X)$ is a complex
+  analytic subvariety of $\C^{n + 1} \setminus \{0\}$.
+  Now we have
+  \[
+    \codim_{\C^{n + 1}} \{0\}
+    = n + 1 > \codim_{\C^{n + 1} \setminus \{0\}} Z,
+  \]
+  so Levi's extension theorem says that
+  $\overline{Z}$ is a complex analytic
+  subvariety of $\C^{n + 1}$.
+  Let $I = I(\overline{Z}) \subseteq \OO_{n + 1}$.
+  Now for any $f \in I$, we can write
+  $f(z) = \sum_{j \ge 0} f_j(z)$ with
+  a $f_j$ homogeneous polynomial
+  of degree $j$.
+  
+  For any fixed $a \in \overline{Z}$, we have
+  \[
+    0 = f(\lambda a)
+    = \sum_{j \ge 0} \lambda^j f_j(a)
+  \]
+  for every $\lambda \in \C$, so
+  $f_j(a) = 0$ for all $j \ge 0$. So
+  $f_j \in I$.  Thus there are
+  homogeneous polynomials $(F_j)_{j \in J}$
+  that generate $I$ (up to infinite sums).
+  This gives that
+  $V(F_j : j \in J) = X$, and
+  we can then choose a finite collection
+  cutting out $X$ by Noetherianity.
+\end{proof}
+
+\begin{example}
+  Consider $X = \{1, 2, \dots, \} \subseteq \C^1 \subseteq \C \PP^1$.
+  Now $X$ is an analytic subvariety of
+  $\C^1$, but it is not an analytic
+  subvariety of $\C \PP^1$.
+\end{example}

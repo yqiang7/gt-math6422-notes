@@ -1,0 +1,302 @@
+\chapter{Apr.~28 --- GAGA}
+
+\section{Revisiting Coherent Sheaves}
+
+\begin{remark}
+  Recall Chow's theorem says that if
+  $X \subseteq \PP^n_\C$ is a closed analytic
+  subvariety, then there exist
+  $f_0, \dots, f_r \in \C[x_0, \dots, x_n]$
+  homogeneous such that
+  $X = V(f_0, \dots, f_r)$.
+  Our goal is to compare
+  coherent sheaves on
+  $X^{\mathrm{alg}}$ and $X^{\mathrm{an}}$.
+  This problem was solved by Serre
+  in his GAGA paper.
+\end{remark}
+
+\begin{remark}
+  Let $(X, \OO_X)$ be a ringed space,
+  e.g. an algebraic variety or a complex analytic variety.
+\end{remark}
+
+\begin{definition}
+  Let $\mathcal{F} \in \mathrm{Mod}_{\OO_X}$.
+  \begin{enumerate}
+    \item $\mathcal{F}$ is \emph{finite type}
+      if at each $x \in X$, there exists
+      $x \in U \subseteq X$ open and
+      a surjection
+      $\OO_U^{\oplus r} \twoheadrightarrow \mathcal{F}|_U$
+      for some $r \ge 0$.
+    \item $\mathcal{F}$ is
+      \emph{coherent} if it is finite type
+      and for every $U \subseteq X$ and
+      morphism $\phi : \OO_U^{\oplus r} \to \mathcal{F}|_U$,
+      we have that $\ker \phi$ is
+      finite type (on $U$).
+  \end{enumerate}
+\end{definition}
+
+\begin{remark}
+  If $\mathcal{F} \in \mathrm{Mod}_{\OO_X}$ is coherent, then
+  at each $x \in X$, there exists
+  $x \in U \subseteq X$ open such that
+  there exists an exact sequence
+  \[
+    \begin{tikzcd}
+      \OO_U^{\oplus s}
+      \ar[r] & \OO_U^{\oplus r}
+      \ar[r] & \mathcal{F}|_U
+      \ar[r] & 0
+    \end{tikzcd}
+  \]
+\end{remark}
+
+\begin{example}
+  We have the following:
+  \begin{enumerate}
+    \item $\OO_X^{\oplus r}$ is finite type.
+    \item If $(X, \OO_X)$ is an algebraic
+      variety, then this new definition of
+      coherence agrees with
+      the old one.
+  \end{enumerate}
+\end{example}
+
+\begin{theorem}[Oka-Cartan]\label{thm:oka-cartan}
+  If $(X, \OO_X)$ is a complex analytic
+  space, then $\OO_X$ is coherent.
+\end{theorem}
+
+\begin{proof}
+  Look this up online, the proof uses
+  the Weierstrass division theorem.
+  Oka showed that $\OO_{\C^n}$ is coherent,
+  and Cartan showed that if $X \subseteq \C^n$
+  is a complex analytic subvariety, then
+  $\mathcal{I}_X \subseteq \OO_{\C^n}$ is
+  coherent (recall that $i_* \OO_X \cong \OO_{\C^n}/\mathcal{I}_X$ where $i : X \hookrightarrow \C^n$).
+\end{proof}
+
+\begin{remark}
+  The category $\Coh_X$ of
+  coherent sheaves on $X$ is an abelian
+  category.
+\end{remark}
+
+\begin{definition}
+  Let $\mathcal{F} \in \Coh_X$. Define
+  \[
+    H^i(X, \mathcal{F})
+    = \varinjlim_{\mathcal{U}} H^i(\mathcal{U}, \mathcal{F}),
+  \]
+  where $\mathcal{U}$ ranges through all
+  open (not necessarily affine) covers of $X$.
+\end{definition}
+
+\begin{remark}
+  We have the following:
+  \pagebreak
+  \begin{enumerate}
+    \item A short exact sequence in
+      $\Coh_X$ gives rise to a longe
+      exact sequences on $H^i$.
+    \item If $(X, \OO_X)$ is a separated
+      algebraic variety, then this new definition of
+      $H^i$ agrees with the old one.
+  \end{enumerate}
+\end{remark}
+
+\section{Analytification}
+
+\begin{remark}
+  Let $X \subseteq \PP^n_\C$ be a projective
+  algebraic variety, and let
+  $X^{\mathrm{an}} \subseteq \PP^{n, \mathrm{an}}_\C$ be
+  $X$ viewed as a projective
+  complex analytic variety.
+  Note that there is a morphism of ringed
+  spaces
+  \[
+    (X^{\mathrm{an}}, \OO_{X^{\mathrm{an}}})
+    \longrightarrow (X, \OO_X)
+  \]
+  where $X^{\mathrm{an}} \to X$ is a set-theoretic
+  bijection and
+  $\OO_X \to i_* \OO_{X^{\mathrm{an}}}$ is
+  given on open sets
+  by $f \mapsto f^{\mathrm{an}}$.
+  Letting $i^{-1}$ be the adjoint functor
+  to $i_*$, we get a functor
+  \begin{align*}
+    \Phi : \Coh_X &\longrightarrow \Coh_{X^{\mathrm{an}}} \\
+    \mathcal{F} &\longmapsto i^{-1} \mathcal{F} \otimes_{i^{-1} \OO_X} \OO_{X^{\mathrm{an}}},
+  \end{align*}
+  where the right-hand side is coherent
+  by the Oka-Cartan theorem.
+\end{remark}
+
+\begin{remark}
+  The functor $\Phi$ is exact. To prove
+  this, Serre uses that the map
+  \[
+    \OO_{X, x}
+    \longrightarrow \widehat{\OO}_{X, x}
+  \]
+  (here $\widehat{\OO}_{X, x}$ is the completion of $\OO_{X, x}$)
+  is faithfully flat and
+  $\widehat{\OO}_{X, x} \cong \widehat{\OO}_{X^{\mathrm{an}}, x}$.
+\end{remark}
+
+\begin{remark}
+  If $\mathcal{U}$ is an open cover of $X$,
+  then we get a map
+  \[
+    H^i(\mathcal{U}, \mathcal{F})
+    \longrightarrow H^i(\mathcal{U}^{\mathrm{an}}, \Phi \mathcal{F}),.
+  \]
+  This induces a natural map (after taking
+  direct limits)
+  \[
+    \phi^i_{\mathcal{F}} : H^i(X, \mathcal{F})
+    \longrightarrow H^i(X^{\mathrm{an}}, \mathcal{F}^{\mathrm{an}}).
+  \]
+\end{remark}
+
+\begin{theorem}[Theorem A]\label{thm:theorem-a}
+  If $\mathcal{F} \in \Coh_X$, then
+  $\phi^i_\mathcal{F}$ is an isomorphism.
+\end{theorem}
+
+\begin{proof}
+  The sketch of the proof is as follows:
+  \begin{enumerate}
+    \item[0.] Reduce to the case $X = \PP^n$.
+    \item Prove the result for
+      $\mathcal{F} = \OO_{\PP^n}$.
+
+      For this part, one notes that
+      $H^0(\PP^n, \OO_{\PP^n}) = \C = H^0(\PP^{n, \mathrm{an}}, \OO_{\PP^{n, \mathrm{an}}})$ and
+      for $i \ge 1$,
+      \[
+        H^i(\PP^n, \OO_{\PP^n})
+        = 0 = H^i(\PP^{n, \mathrm{an}}, \OO_{\PP^{n, \mathrm{an}}}).
+      \]
+      The equality
+      $H^i(\PP^{n, \mathrm{an}}, \OO_{\PP^{n, \mathrm{an}}}) = 0$ for $i \ge 1$
+      follows from \emph{Hodge theory}.
+    \item Prove the result for $\mathcal{F} = \OO_{\PP^n}(m)$.
+
+      To prove this, use the short exact
+      sequence (let $H = V(x_0)$)
+      \[
+        \begin{tikzcd}
+          0 \ar[r] & \OO_{\PP^n}(m - 1)
+          \ar[r, "\times x_0"]
+               & \OO_{\PP^n}(m)
+          \ar[r] & \OO_H(m) \ar[r] & 0
+        \end{tikzcd}
+      \]
+      Then use induction
+      on $n$ to see that
+      $\phi^i_{\OO(m)}$ is an isomorphism
+      if and only if $\phi^i_{\OO(m - 1)}$
+      is.
+    \item Prove the result for $\mathcal{F}$
+      arbitrary.
+
+      To do this, one chooses a presentation
+      \[
+        \begin{tikzcd}
+          \bigoplus_{j = 1}^s \OO_{\PP^n}(n_j)
+          \ar[r] & \bigoplus_{i = 1}^r \OO_{\PP^n}(m_i)
+          \ar[r] & \mathcal{F} \ar[r] & 0
+        \end{tikzcd}
+      \]
+      and uses the previous steps.
+  \end{enumerate}
+  See Serre's GAGA paper for more details.
+\end{proof}
+
+\begin{theorem}[Theorem B]\label{thm:theorem-b}
+  For $\mathcal{F}, \mathcal{G} \in \Coh_X$,
+  the map
+  \[
+    \Hom_{\OO_X}(\mathcal{F}, \mathcal{G})
+    \longrightarrow \Hom_{\OO_{X^{\mathrm{an}}}}(\mathcal{F}^{\mathrm{an}}, \mathcal{G}^{\mathrm{an}})
+  \]
+  is an isomorphism.
+\end{theorem}
+
+\begin{proof}
+  Set
+  $\mathcal{A} := \Homm_{\OO_X}(\mathcal{F}, \mathcal{G})$ and
+  $\mathcal{B} := \Homm_{\OO_{X^{\mathrm{an}}}}(\mathcal{F}^{\mathrm{an}}, \mathcal{G}^{\mathrm{an}})$.
+  Then the result is equivalent to showing
+  that $\Gamma(X, \mathcal{A})
+    \to \Gamma(X^{\mathrm{an}}, \mathcal{B})$
+  is an isomorphism. Consider the
+  analytification of $\mathcal{A}$:
+  \[
+    \begin{tikzcd}
+      \Gamma(X, \mathcal{A})
+      \ar[r] \ar[dr, "\cong", swap] & {\Gamma(X^{\mathrm{an}}, \mathcal{B})} \\
+                     & {\Gamma(X^{\mathrm{an}}, \mathcal{A}^{\mathrm{an}})} \ar[u]
+    \end{tikzcd}
+  \]
+  The labeled map is an isomorphism by
+  Theorem \ref{thm:theorem-a}, so it
+  suffices to show $\mathcal{A}^{\mathrm{an}} = \mathcal{B}$.
+  See GAGA.
+\end{proof}
+
+\begin{remark}
+  Both Theorem \ref{thm:theorem-a} and Theorem \ref{thm:theorem-b}
+  may be false if $X$ is not assumed to be
+  projective. For example, consider
+  $X = \Affine^1$ and
+  $\mathcal{F} = \mathcal{G} = \OO_X$.
+\end{remark}
+
+\begin{theorem}\label{thm:theorem-c}
+  For any $\mathcal{H} \in \Coh_{X^{\mathrm{an}}}$, there exists
+  $\mathcal{F}$ such that
+  $\mathcal{F}^{\mathrm{an}} \cong \mathcal{H}$.
+  In particular,
+  \[
+    \Phi : \Coh_X \longrightarrow \Coh_{X^{\mathrm{an}}}
+  \]
+  is an equivalence of categories.
+\end{theorem}
+
+\begin{proof}
+  The idea is to show
+  $\mathcal{H}(m)$ is globally generated
+  for $m \gg 0$. Use this to construct
+  a presentation
+  \[
+    \begin{tikzcd}
+      \bigoplus_{j = 1}^s \OO_{X^{\mathrm{an}}}(n_j)
+      \ar[r, "\alpha"]
+            & \bigoplus_{i = 1}^r \OO_{X^{\mathrm{an}}}(m_i)
+      \ar[r] & \mathcal{H} \ar[r] & 0
+    \end{tikzcd}
+  \]
+  and use Theorem \ref{thm:theorem-b} to
+  show that $\alpha$ is algebraic.
+\end{proof}
+
+\begin{remark}
+  Theorem \ref{thm:theorem-c} gives an
+  alternative proof of Chow's theorem
+  (Theorem \ref{thm:chow}). Fix an analytic
+  subvariety $Z \subseteq \PP^n$. Then
+  Cartan's theorem implies
+  $\mathcal{I}_Z$ is coherent, and
+  Theorem \ref{thm:theorem-c} implies
+  there exists $\mathcal{F} \in \Coh_{\PP^n}$ such that
+  $\mathcal{F}^{\mathrm{an}} \cong \OO_{\PP^{n, \mathrm{an}}}/\mathcal{I}_Z$.
+  Now $\Supp \mathcal{F} = \Supp \mathcal{F}^{\mathrm{an}} = Z$.
+\end{remark}

@@ -1,0 +1,348 @@
+\chapter{Apr.~30 --- Hodge Theory}
+
+\section{Hodge Decomposition Theorem}
+
+\begin{remark}
+  For this lecture, we will always denote
+  Cech cohomology by $\widecheck{H}^i$.
+  We want to see how this is related
+  to the singular cohomology
+  $H^i_{\mathrm{sing}}(X^{\mathrm{an}}, \C)$.
+\end{remark}
+
+\begin{theorem}[Hodge decomposition theorem]
+  For $X \subseteq \PP^n_\C$ a smooth
+  projective variety of dimension $n$, there
+  exists a decomposition
+  \[
+    H^k_{\mathrm{sing}}(X^{\mathrm{an}}, \C)
+    = \bigoplus_{p + q = k} H^{p, q}
+  \]
+  for $0 \le k \le 2n$. Furthermore,
+  \begin{enumerate}
+    \item $\overline{H^{p, q}} = H^{q, p}$ (where we view $H^k_{\mathrm{sing}}(X^{\mathrm{an}}, \C) = H^k_{\mathrm{sing}}(X^{\mathrm{an}}, \R)$ by the universal coefficients theorem and $\overline{H^{p, q}}$ denotes complex conjugation);
+    \item $H^{p, q} = H^q(X, \Omega_X^p)$
+      ($= H^q(X^{\mathrm{an}}, \Omega_{X}^{p, \mathrm{an}})$ by GAGA);
+    \item writing $h^{p, q} = \dim H^{p, q}$,
+      we have $h^{p, q} = h^{q, p}$
+      (by (1), also called \emph{Hodge duality})
+      and $h^{p, q} = h^{n - p, n - q}$
+      (by Serre duality).
+  \end{enumerate}
+\end{theorem}
+
+\begin{remark}
+  Note that $b_i = \dim H^i_{\mathrm{sing}}(X^{\mathrm{an}}, \C) = \sum_{p + q = i} h^{p, q}$,
+  so the Betti numbers
+  $b_i$ are even for $i$ odd.
+\end{remark}
+
+\begin{example}
+  Let $C$ be a genus $g$ curve. Then
+  for $k = 1$, we have
+  \[
+    h^{1, 1} = h^{0, 0}
+    = h^0(C, \OO_C) = 1.
+  \]
+  Note that we have the diamond
+  \[
+    \begin{tikzcd}[row sep=small, column sep=tiny]
+      & h^{1, 1} = 1 \\
+      h^{0, 1} = g & & h^{1, 0} = g \\
+      & h^{0, 0} = 1
+    \end{tikzcd}
+  \]
+\end{example}
+
+\begin{remark}
+  We want to explain where the $H^{p, q}$
+  come from and why it is related to
+  $H^q(X, \Omega_X^p)$.
+\end{remark}
+
+\section{Cohomology of Sheaves}
+
+\begin{remark}
+  Let $X$ be a topological space and
+  $\mathcal{F}$ a sheaf of abelian groups
+  (e.g. $X$ a complex manifold with
+  $\mathcal{F} = \underline{\C}$ or $\OO_X$).
+  Recall that we have defined Cech
+  cohomology, which we now denote by
+  $\widecheck{H}^i(X, \mathcal{F})$.
+\end{remark}
+
+\begin{definition}
+  A sheaf $\mathcal{F}$ is \emph{flasque}
+  if $\mathcal{F}(U) \to \mathcal{F}(V)$
+  is surjective for all $V \subseteq U \subseteq X$
+  open.
+\end{definition}
+
+
+\begin{example}
+  Let $\mathcal{G}$ be a sheaf. Define
+  \emph{Godement sheaf} $\mathrm{God}(\mathcal{G})$
+  by
+  \[
+    U \longmapsto
+    \mathrm{God}(\mathcal{G})(U)
+    := \prod_{x \in U} \mathcal{G}_x.
+  \]
+  Then we can observe that
+  $\mathrm{God}(\mathcal{G})$
+  is flasque.
+\end{example}
+
+\begin{definition}
+  A \emph{flasque resolution} of a sheaf
+  $\mathcal{F}$ is a complex of sheaves
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \mathcal{F}
+      \ar[r] & \mathcal{I}^0
+      \ar[r, "d_0"] & \mathcal{I}^1
+      \ar[r, "d_1"] & \cdots
+    \end{tikzcd}
+  \]
+  such that
+  \begin{enumerate}
+    \item $d^2 = 0$;
+    \item $\im d_{i - 1} = \ker d_i$ for
+      all $i$;
+    \item each $\mathcal{I}^i$ is flasque.
+  \end{enumerate}
+\end{definition}
+
+\begin{example}[Godement resolution]
+  Let $\mathcal{F}$ be a sheaf. Then
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \mathcal{F}
+      \ar[r, "\alpha"] & \mathrm{God}(\mathcal{F}) \ar[d, dashed] \ar[r, "d_0"] & \mathrm{God}(\coker \alpha) \ar[d, dashed] \ar[r] & \cdots \\
+                       & & \coker \alpha \ar[ur, dashed] & \coker d_0 \ar[ur, dashed]
+    \end{tikzcd}
+  \]
+  is a (canonical) flasque resolution of
+  $\mathcal{F}$.
+\end{example}
+
+\begin{definition}[Sheaf cohomology]
+  Let $X$ be a topological space and
+  $\mathcal{F}$ a sheaf of abelian groups.
+  Then we can define
+  \[
+    H^i(X, \mathcal{F})
+    := H^i(\Gamma(X, \mathcal{I}^\bullet)),
+  \]
+  where $\mathcal{F} \to \mathcal{I}^\bullet$ is a flasque resolution of $\mathcal{F}$ (e.g. the Godement resolution).
+  One can check that this definition is
+  independent of the choice of flasque resolution.
+\end{definition}
+
+\begin{example}
+  If $X$ is locally contractible
+  (e.g. a manifold), then
+  \[
+    H^k(X, \underline{\R})
+    \cong H^k_{\mathrm{sing}}(X, \R).
+  \]
+  To see this, consider the complex of sheaves
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \underline{\R}
+      \ar[r] & \mathcal{C}^0_{\mathrm{sing}}
+      \ar[r, "\partial"] & \mathcal{C}^1_{\mathrm{sing}}
+      \ar[r, "\partial"] & \cdots
+    \end{tikzcd}
+  \]
+  where $\mathcal{C}^p_{\mathrm{sing}}$ is
+  the sheaf defined by
+  $U \mapsto C^p_{\mathrm{sing}}(U, \R)$.
+  We can note that:
+  \begin{enumerate}
+    \item $\partial^2 = 0$ (from algebraic topology);
+    \item the sequence is exact
+      (since $X$ is locally contractible);
+    \item each $\mathcal{C}^p_{\mathrm{sing}}$ is flasque (essentially by the definition of a cochain).
+  \end{enumerate}
+  Thus this complex is a flasque resolution,
+  so we
+  see that
+  \[
+    H^k(X, \underline{\R}) = \frac{\ker(\partial : C^k_{\mathrm{sing}}(X, \R) \to C^{k + 1}_{\mathrm{sing}}(X, \R))}{{\im(\partial : C^{k - 1}_{\mathrm{sing}}(X, \R) \to C^k_{\mathrm{sing}}(X, \R))}}
+    = H^k_{\mathrm{sing}}(X, \R).
+  \]
+  In fact, this works more generally for
+  any ring $R$, not just $\R$.
+\end{example}
+
+\pagebreak
+
+\begin{theorem}
+  If $X$ is Hausdorff and paracompact,
+  then
+  \[
+    \widecheck{H}^i(X, \mathcal{F})
+    \longrightarrow H^i(X, \mathcal{F})
+  \]
+  is an isomorphism.
+\end{theorem}
+
+\begin{example}
+  Let $X$ be a smooth manifold. Consider
+  the de Rham complex
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \underline{\R}
+      \ar[r] & \mathcal{A}^0
+      \ar[r] & \mathcal{A}^1
+      \ar[r] & \cdots
+    \end{tikzcd}
+  \]
+  where $\mathcal{A}^p$ is the sheaf
+  defined by
+  $U \mapsto \mathcal{A}^p(U)$ (the space of
+  smooth $p$-forms on $U$). We have:
+  \begin{enumerate}
+    \item exactness: this is by the Poincar\'e lemma;
+    \item $d^2 = 0$: this follows from differentiation rules;
+    \item flasqueness: this fails, even
+      for $\mathcal{A}^0$.
+  \end{enumerate}
+  However, $\mathcal{A}^p$ is still
+  a \emph{fine} sheaf, so by Theorem
+  \ref{thm:fine} below, we still have
+  \[
+    H^p(X, \underline{\R})
+    = \frac{\ker(d : \mathcal{A}^p(X) \to \mathcal{A}^{p + 1}(X))}{\im(d : \mathcal{A}^{p - 1}(X) \to \mathcal{A}^p(X))}
+    = H^p_{\mathrm{dR}}(X, \R).
+  \]
+\end{example}
+
+\begin{definition}
+  A sheaf $\mathcal{F}$ is \emph{fine} if
+  it can be viewed as a sheaf of
+  $\mathcal{A}$-modules for some sheaf of
+  rings $\mathcal{A}$ on $X$ such that
+  for every open cover $\{U_i\}_{i \in I}$
+  of $X$, there exist $f_i \in \mathcal{A}(U_i)$
+  such that
+  $\sum_{i \in I} (f_i)_x = 1$.
+\end{definition}
+
+\begin{example}
+  Each $\mathcal{A}^p$ is fine, as we can
+  view $\mathcal{A}^p$
+  as a sheaf of $\mathcal{A}$-modules,
+  where $\mathcal{A}$ is the sheaf of
+  smooth functions. Note that
+  $\mathcal{A}$ admits partitions of unity.
+\end{example}
+
+\begin{theorem}\label{thm:fine}
+  If $\mathcal{F}$ is a sheaf and admits a
+  resolution
+  $0 \to \mathcal{F} \to \mathcal{I}^\bullet$
+  by fine sheaves, then
+  \[
+    H^i(X, \mathcal{F})
+    = H^i(\Gamma(X, \mathcal{I}^\bullet)).
+  \]
+\end{theorem}
+
+\section{Complex Geometry}
+
+\begin{remark}
+  Let $X$ be a complex manifold
+  of complex dimension $n$
+  and $\mathcal{A}^k_\C$ the sheaf
+  of complex $k$-forms.
+  Locally, with respect to complex coordinates
+  $z_1, \dots, z_n$
+  with $z_j = x_j + i y_j$, a complex
+  $k$-form is given by
+  \[
+    \sum_{\substack{I, J \subseteq \{1, \dots, n\} \\ |I| + |J| = k}} f_{I, J}\,
+    dx_{i_1} \wedge \cdots \wedge dx_{i_r}
+    \wedge dy_{j_1} \wedge \cdots \wedge dy_{j_s},
+  \]
+  where the $f_{I, J}$ are smooth
+  complex-valued functions. Then we
+  have a complex
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \underline{\C}
+      \ar[r, "d"] & \mathcal{A}^0_\C
+      \ar[r, "d"] & \mathcal{A}^1_\C
+      \ar[r, "d"] & \cdots
+    \end{tikzcd}
+  \]
+  which is a fine resolution
+  of $\underline{\C}$. Thus we have
+  $H^k(X, \underline{\C}) \cong H^k_{\mathrm{dR}}(X, \C)$.
+\end{remark}
+
+\begin{remark}
+  Observe that there is a decomposition
+  \[
+    \mathcal{A}^k_\C
+    = \bigoplus_{p + q = k} \mathcal{A}^{p, q},
+  \]
+  where $\mathcal{A}^{p, q}$ is the sheaf
+  of $(p, q)$-forms. Writing
+  $z_j = x_j + i y_j$ and $\overline{z}_j = x_j - i y_j$, we can locally write a
+  $(p, q)$-form in the form
+  \[
+    \sum_{|I| = p, |J| = q} f_{I, J}\,
+    d z_I \wedge d \overline{z}_J,
+  \]
+  where the $f_{I, J}$
+  are smooth complex-valued functions. Then
+    $d : \mathcal{A}^k_\C \to \mathcal{A}^{k + 1}_\C$
+  decomposes  as $d = \partial + \overline{\partial}$, with
+  \[
+    \partial (f_{I, J}\, dz_I \wedge d\overline{z}_J)
+    = \sum_{i = 1}^n \frac{\partial}{\partial z_i} f_{I, J} dz_i \wedge dz_I \wedge d\overline{z}_J
+  \]
+  and $\overline{\partial}$ defined similarly.
+  This decomposition satisfies the following properties:
+  \begin{enumerate}
+    \item $\partial^2 = \overline{\partial}^2 = 0$;
+    \item $\partial \overline{\partial} + \overline{\partial} \partial = 0$;
+    \item $\partial A^{p, q} \subseteq A^{p + 1, q}$ and $\overline{\partial} A^{p, q} \subseteq A^{p, q + 1}$;
+    \item $\OO_X = \ker(\overline{\partial} : \mathcal{A}^{0, 0} \to \mathcal{A}^{0, 1})$
+      and $\Omega_X^p = \ker(\overline{\partial} : \mathcal{A}^{p, 0} \to \mathcal{A}^{p, 1})$.\footnote{Here $\OO_X$ denotes the sheaf of holomorphic functions and $\Omega_X^p$ denotes the sheaf of holomorphic $p$-forms. Note that $\Omega_X^p$ coincides with the analytification of the sheaf of algebraic $p$-forms when $X \subseteq \PP^n_\C$ is a projective algebraic variety.}
+  \end{enumerate}
+  Now the complex
+  \[
+    \begin{tikzcd}
+      0 \ar[r] & \Omega_X^p
+      \ar[r] & \mathcal{A}^{p, 0}
+      \ar[r, "\overline{\partial}"] & \mathcal{A}^{p, 1}
+      \ar[r, "\overline{\partial}"] & \cdots
+    \end{tikzcd}
+  \]
+  satisfies the following:
+  \begin{enumerate}
+    \item $A^{p, q}$ is fine
+      ($\OO_X$ has partitions of unity);
+    \item exactness (this follows
+      by the antiholomorphic Poincar\'e lemma).
+  \end{enumerate}
+  Thus we get that
+  \[
+    H^q(X, \Omega_X^p)
+    = H^q(\Gamma(X, \mathcal{A}^{p, \bullet}))
+    = \frac{\ker(\overline{\partial} : \mathcal{A}^{p, q}(X) \to \mathcal{A}^{p, q + 1}(X))}{\im(\overline{\partial} : \mathcal{A}^{p, q - 1}(X) \to \mathcal{A}^{p, q}(X))}
+    =: H^{p, q}.
+  \]
+  We call the $H^{p, q}$ the
+  \emph{Dolbeault cohomology} of $X$.
+  Then the Hodge decomposition theorem
+  says that
+  \[
+    H^k_{\mathrm{sing}}(X, \C)
+    = \bigoplus_{p + q = k} H^{p, q}.
+  \]
+\end{remark}

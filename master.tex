@@ -19,6 +19,11 @@
 \usepackage[overload]{textcase}
 \usepackage{graphicx}
 
+\DeclareFontFamily{U}{mathx}{}
+\DeclareFontShape{U}{mathx}{m}{n}{<-> mathx10}{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareMathAccent{\widecheck}{0}{mathx}{"71}
+
 \renewcommand{\chaptername}{Lecture}
 \newtheorem{axiom}{Axiom}[chapter]
 \newtheorem{theorem}{Theorem}[chapter]
@@ -156,4 +161,5 @@
   \input{lectures/lecture25.tex}
   \input{lectures/lecture26.tex}
   \input{lectures/lecture27.tex}
+  \input{lectures/lecture28.tex}
 \end{document}

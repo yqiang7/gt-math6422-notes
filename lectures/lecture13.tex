@@ -172,17 +172,17 @@
   \pagebreak
   \[
     \begin{tikzcd}
-      B \ar[d] \ar[r] & \Omega_{B / A} \ar[d, "D", dashed] \ar[dr] \\
-      S^{-1} B \ar[r] \ar[rr, bend right, "S^{-1} D", swap] & M & S^{-1} \Omega_{B / A} \ar[l, dashed, "\phi"]
+      B \ar[d] \ar[r, "d"] & \Omega_{B / A} \ar[d, "D", dashed] \ar[dr] \\
+      S^{-1} B \ar[r] \ar[rr, bend right, "d'", swap] & M & S^{-1} \Omega_{B / A} \ar[l, dashed, "S^{-1} D"]
     \end{tikzcd}
   \]
-  Note that the universal property of
+  Note that by the universal property of
   localization,
   we get a unique map $S^{-1} D$ that
   fits into the above diagram. Then
   one can check that the map
   \begin{align*}
-    S^{-1} D : S^{-1} B &\longrightarrow S^{-1} \Omega_{B / A} \\
+    d' : S^{-1} B &\longrightarrow S^{-1} \Omega_{B / A} \\
     \frac{b}{s} &\longmapsto \frac{1}{s} db - \frac{b}{s^2} ds
   \end{align*}
   makes the diagram commute and is
